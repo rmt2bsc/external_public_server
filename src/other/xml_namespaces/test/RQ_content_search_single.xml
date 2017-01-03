@@ -1,0 +1,18 @@
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<rmt2-hns:serviceId xmlns:rmt2-hns="http://www.rmt2.net/soapheader" SOAP-ENV:actor="" SOAP-ENV:mustUnderstand="1">RQ_content_search</rmt2-hns:serviceId>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<RQ_content_search>
+			<header>
+				<message_id>RQ_content_search</message_id>
+				<delivery_mode>SYNC</delivery_mode>
+				<message_mode>REQUEST</message_mode>
+				<delivery_date>08/08/2010 07:56:13</delivery_date>
+				<user_id>admin</user_id>
+			</header>
+			<content_id>284</content_id>
+		</RQ_content_search>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

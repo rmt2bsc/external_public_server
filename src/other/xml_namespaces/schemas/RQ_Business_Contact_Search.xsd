@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" xmlns:cct="http://rmt2.net/ContactsCommonTypes" elementFormDefault="unqualified">
+	
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+	
+	<xsd:import schemaLocation="contacts/Contacts_Common_Type.xsd" namespace="http://rmt2.net/ContactsCommonTypes"/>
+	
+	<xsd:element name="RQ_business_contact_search">
+		<xsd:complexType>
+			<xsd:sequence>
+			<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="criteria_data" type="cct:business_contact_criteria" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation>Selection criteria fields for business contact entity</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

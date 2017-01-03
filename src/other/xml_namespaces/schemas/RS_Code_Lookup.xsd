@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:gct="http://rmt2.net/GeneralCodesType" xmlns:ht="http://rmt2.net/HeaderType" xmlns:rst="http://rmt2.net/ReplyStatusType" elementFormDefault="unqualified">
+    
+	<xsd:import schemaLocation="codes/Contacts_General_Codes_Type.xsd" namespace="http://rmt2.net/GeneralCodesType"/>
+    
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+    
+	<xsd:import schemaLocation="RMT2_Message_Reply_Status_Type.xsd" namespace="http://rmt2.net/ReplyStatusType"/>
+    
+	<xsd:element name="RS_code_lookup">
+		<xsd:complexType>
+		  <xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="reply_status" type="rst:reply_status_type" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The status of the content web service invocation.  The return code will be greater than or equal to zero indicating the total number of records retrieved.   Otherwise, a value less than zero is present when an error occurs.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="item" type="gct:lookup_code_type" minOccurs="1" maxOccurs="1">
+			    	<xsd:annotation>
+			    		<xsd:documentation>A single group along with one or more lookup code detail records</xsd:documentation>
+			    	</xsd:annotation>
+			    </xsd:element>
+			    <xsd:element name="group" type="gct:lookup_code_type" minOccurs="0" maxOccurs="unbounded">
+			    	<xsd:annotation>
+			    		<xsd:documentation>List of general code groups along with their respective code detail records</xsd:documentation>
+			    	</xsd:annotation>
+			    </xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

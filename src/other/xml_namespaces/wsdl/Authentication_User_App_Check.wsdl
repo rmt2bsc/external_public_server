@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/RQ_Authentication_User_Appcheck.xsd"/>
+		</xsd:schema>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/RS_Authentication_User_Appcheck.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="InMessage">
+		<wsdl:part name="InMessageRequest" element="RQ_authentication_user_appcheck"/>
+	</wsdl:message>
+	<wsdl:message name="OutMessage">
+		<wsdl:part name="OutMessageResponse" element="RS_authentication_user_appcheck"/>
+	</wsdl:message>
+	<wsdl:portType name="AuthenticationLogoutInterface">
+		<wsdl:operation name="Execute">
+			<wsdl:input message="InMessage"/>
+			<wsdl:output message="OutMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="AuthenticationUserAppcheckSoapHttpBinding" type="AuthenticationUserAppcheckInterface">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="Execute">
+			<soap:operation style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AuthenticationUserAppcheckService">
+		<wsdl:port name="AuthenticationUserAppcheckEndpoint" binding="AuthenticationUserAppcheckSoapHttpBinding">
+			<soap:address location="http://www.rmt2.net/ServiceDispatch/soapRouter"/>
+<!--
+			<soap:address location"http://rmt2.net/ServiceDispatch/soapRouter"/>
+-->
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>

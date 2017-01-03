@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" xmlns:rst="http://rmt2.net/ReplyStatusType" elementFormDefault="unqualified">
+   
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+   
+	<xsd:import schemaLocation="RMT2_Message_Reply_Status_Type.xsd" namespace="http://rmt2.net/ReplyStatusType"/>
+   
+	<xsd:element name="RS_business_contact_update">
+		<xsd:complexType>
+		   <xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="reply_status" type="rst:reply_status_type" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The status of the customer business contact web service update.  The return code will be greater than or equal to 1 indicating the business id of the inserted or updated record.   Otherwise, a value less than zero is present when an error occurs.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+		   </xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

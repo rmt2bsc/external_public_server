@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/ProjectTrackerTypes" elementFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>Project Tracker Data Types</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="client_project_type">
+		<xsd:sequence>
+			<xsd:element name="client_id" type="xsd:integer" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>This is the client id</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="proj_id" type="xsd:integer" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>This is the project id related to the client</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>This is the name of the project related to the clinet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="effective_date" type="xsd:date" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The date the project was associated with the client</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="end_date" type="xsd:date" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The date the project was disassociated from the client</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date_created" type="xsd:dateTime" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The date the record was created</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date_updated" type="xsd:dateTime" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The date the record was last updated</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="update_user" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The login id of the user who last updated the record</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

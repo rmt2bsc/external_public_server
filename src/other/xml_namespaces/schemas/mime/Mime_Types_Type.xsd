@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"  targetNamespace="http://rmt2.net/MIMETypesType" elementFormDefault="unqualified">
+		<xsd:complexType name="mime_type">
+			<xsd:annotation>
+				<xsd:documentation>This is the document that tracks MIME Type information.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="mime_type_id" type="xsd:integer" default="0" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>MIME type id that serves as a foreign key value.  Default to zero when record is new.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="file_ext" type="xsd:string" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The filename extension that is associated with the MIME Type.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="media_type" type="xsd:string" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The Type/Sub Type notation of the MIME.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" elementFormDefault="unqualified">
+   
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+	<xsd:element name="RQ_authentication_resource_subtype">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="rsrc_type_id" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The resource type id to use in query.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="rsrc_subtype_id" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The resource sub type id to use in query.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="rsrc_subtype_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The resource sub type name to use in query.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

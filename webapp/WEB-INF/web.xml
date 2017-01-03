@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>RMT2 Public Web Services Network</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+<!--  	
+  
+  <servlet>
+    <servlet-name>sysconfig</servlet-name>
+    <servlet-class>com.api.config.SystemConfiguratorController</servlet-class>
+    <init-param>
+   	<param-name>ContainerManagedPool</param-name>
+   	<param-value>true</param-value>
+    </init-param>
+    <init-param>
+   	<param-name>ServiceLoaderFactory</param-name>
+   	<param-value>ldap</param-value>
+    </init-param>
+     <init-param>
+       <param-name>ServiceLoaderFactory</param-name>
+       <param-value>ldap</param-value>
+    </init-param>
+    <init-param>
+       <param-name>LdapBaseDn</param-name>
+       <param-value>ou=Web Services,ou=Resources</param-value>
+    </init-param>
+    <init-param>
+       <param-name>LdapMapperClass</param-name>
+       <param-value>com.api.ldap.beans.LdapWebServiceConfig</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup> 
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sysconfig</servlet-name>
+    <url-pattern>/sysconfig</url-pattern>
+  </servlet-mapping>  
+-->
+
+
+  <servlet>
+    <servlet-name>JerseyRESTEngine</servlet-name>
+<!--
+<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>      
+-->
+   <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+       <init-param>
+          <param-name>jersey.config.server.provider.packages</param-name>
+          <param-value>org.rmt2.rest</param-value>
+       </init-param>
+       <init-param>
+					<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+					<param-value>true</param-value>
+			 </init-param>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>JerseyRESTEngine</servlet-name>
+      <url-pattern>/rest/*</url-pattern>
+   </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>RMT2SoapEngine</servlet-name>
+    <servlet-class>com.api.messaging.webservice.soap.engine.RMT2SoapEngine</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RMT2SoapEngine</servlet-name>
+    <url-pattern>/soap</url-pattern>
+  </servlet-mapping>
+  
+   
+  <servlet>
+    <servlet-name>httpRouter</servlet-name>
+    <servlet-class>com.api.messaging.webservice.http.engine.HttpServiceController</servlet-class>
+  </servlet>
+  
+<!--    
+  <servlet>
+    <description></description>
+    <display-name>JMS Engine</display-name>
+    <servlet-name>JmsEngine</servlet-name>
+    <servlet-class>com.api.messaging.jms.common.engine.JmsController</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JmsEngine</servlet-name>
+    <url-pattern>/JmsEngine</url-pattern>
+  </servlet-mapping>
+  
+-->  
+</web-app>

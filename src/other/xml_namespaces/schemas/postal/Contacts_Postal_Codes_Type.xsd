@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"  
+            targetNamespace="http://rmt2.net/ContactsPostalCodesType"
+			xmlns:cpct="http://rmt2.net/ContactsPostalCodesType"
+			xmlns:mtt="http://rmt2.net/MiscTypesType" elementFormDefault="unqualified">
+	
+    
+	<xsd:import schemaLocation="../misc/Misc_Types_Type.xsd" namespace="http://rmt2.net/MiscTypesType"/>
+	
+    
+	<xsd:complexType name="timezone_type">
+		<xsd:sequence>
+			<xsd:element name="timezone_id" type="xsd:integer" nillable="false" default="0"/>
+			<xsd:element name="timeszone_desc" nillable="false" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="citytype_type">
+		<xsd:sequence>
+			<xsd:element name="city_type_id" type="xsd:string" nillable="false" default="0"/>
+			<xsd:element name="city_type_desc" nillable="false" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="state_type">
+		<xsd:sequence>
+			<xsd:element name="state_id" type="xsd:integer" nillable="false" default="0"/>
+			<xsd:element name="state_name" nillable="true" type="xsd:string"/>
+			<xsd:element name="state_code" nillable="true" type="xsd:string"/>
+			<xsd:element name="country_id" type="xsd:integer" nillable="true" default="0"/>
+			<xsd:element name="country_name" nillable="true" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="country_type">
+		<xsd:sequence>
+			<xsd:element name="country_id" type="xsd:integer"  minOccurs="0" maxOccurs="1" nillable="false" default="0"/>
+			<xsd:element name="country_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="country_code" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="states" type="cpct:state_type" nillable="false" maxOccurs="unbounded" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="zipcode_type">
+		<xsd:sequence>
+			<xsd:element name="zip_id" type="xsd:integer" nillable="false" default="0"/>
+			<xsd:element name="zipcode" type="xsd:integer" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="city" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="state" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="areaCode" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cityAliasName" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cityAliasAbbr" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="countyName" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="zipcode_full_type">
+		<xsd:sequence>
+			<xsd:element name="zip_id" type="xsd:integer" nillable="false" default="0" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="zipcode" type="xsd:integer" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="city" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="state" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="areaCode" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cityAliasName" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cityAliasAbbr" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="cityTypeId" type="cpct:citytype_type" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="countyName" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="countyFips" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="timeZoneId" type="cpct:timezone_type" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="dayLightSaving" type="xsd:string" nillable="false" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="latitude" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="longitude" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="elevation" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="msa" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="pmsa" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="cbsa" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="cbsaDiv" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="persons_per_household" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="zipcode_population" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="counties_area" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="households_per_zipcode" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="white_population" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="black_population" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="hispanic_population" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="income_per_household" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="average_house_value" type="xsd:double" nillable="false" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	
+
+	<xsd:complexType name="address_type">
+		<xsd:sequence>
+			<xsd:element name="addr_id" type="xsd:integer" minOccurs="1" default="0" maxOccurs="1"/>
+			<xsd:element name="person_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="business_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="addr1" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="addr2" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="addr3" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="addr4" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="zip" type="cpct:zipcode_type" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="zip_ext" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_home" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_work" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_work_ext" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_main" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_cell" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_fax" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xsd:element name="phone_pager" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ip_details">
+		<xsd:sequence>
+			<xsd:element name="ip_id" type="xsd:string" minOccurs="1" default="0" maxOccurs="1"/>
+			<xsd:element name="ip_from" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ip_to" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="ip_octal" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="country_code" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="country_name" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="region" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="city" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="latitude" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xsd:element name="longitude" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xsd:element name="zip" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xsd:element name="timezone" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="zipcode_criteria_type">
+		<xsd:sequence>
+			<xsd:element name="zipcode" type="xsd:integer" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="city" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="state" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="areaCode" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="countyName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="result_format" nillable="false" minOccurs="1" maxOccurs="1" default="SHORT">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string" id="zip_result_format_type">
+						<xsd:enumeration value="FULL"/>
+						<xsd:enumeration value="SHORT"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="country_criteria_type">
+		<xsd:annotation>
+				<xsd:documentation>Country search criteria.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="country_id" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The unique id of the country to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="countyName" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The name of the country to search.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="states_criteria_type">
+		<xsd:annotation>
+				<xsd:documentation>State/Province search criteria.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="state_id" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The unique id of the state to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="country_id" type="xsd:integer" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The unique id of the country to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="state_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The long name of the state to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="state_code" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The abbreviated state name to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="login_id" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The user's login id.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="order_by" type="mtt:order_by_type" minOccurs="0" maxOccurs="unbounded" nillable="true">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">A comma separated list of properties and sequencing direction indicators which is used to indicate how the result set is to be ordered.  The expressions should resemble the syntax of SQL order by clause.  For example, "first_name asc, last_name desc"</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ip_criteria_type">
+		<xsd:sequence>
+			<xsd:element name="ip_standard" type="xsd:string" nillable="false" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="ip_network" type="xsd:long" nillable="false" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

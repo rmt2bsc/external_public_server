@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" xmlns:acct="http://rmt2.net/AccountingTypes" elementFormDefault="unqualified">
+    <xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+    <xsd:import schemaLocation="accounting/Accounting_Type.xsd" namespace="http://rmt2.net/AccountingTypes"/>
+    <xsd:annotation>
+    	<xsd:documentation>Web service message for capturing the results of an sales order invoice request.</xsd:documentation>
+    </xsd:annotation>
+    
+	<xsd:element name="RS_accounting_invoice_sales_order">
+		<xsd:complexType>
+		  <xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="invoice_result" type="acct:sales_order_invoice_result_type" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">General information about the status of invoicing a sales order.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

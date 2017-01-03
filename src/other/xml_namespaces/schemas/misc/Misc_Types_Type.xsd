@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"  targetNamespace="http://rmt2.net/MiscTypesType" elementFormDefault="unqualified">
+		<xsd:complexType name="order_by_type">
+			<xsd:annotation>
+				<xsd:documentation>This type serves as a basis for specifying SQL order by types.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="prop_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The name of the property or column to sort by.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="direction" minOccurs="1" maxOccurs="1" default="ASC">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Indicates if the order by direction is ascending or descending</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string" id="direction_type">
+							<xsd:enumeration value="ASC"/>
+							<xsd:enumeration value="DESC"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+</xsd:schema>

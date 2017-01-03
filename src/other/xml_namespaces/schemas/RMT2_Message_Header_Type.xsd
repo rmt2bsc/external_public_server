@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/HeaderType" elementFormDefault="unqualified">
+	<xsd:complexType name="header_type" mixed="false" abstract="false">
+		<xsd:sequence>
+			<xsd:element name="message_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">This is the name of the message to invoke</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="target_action" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">This is the name of the service that will need to handle this message.   This is useful in cases where the need arises to identify a distinct service handler when the message is suited to serve multiple services.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="delivery_mode" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">How MOM is supposed deliver the message...Asynchronous or Synchronous</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string" id="delivery_mode_type">
+						<xsd:enumeration value="ASYNC"/>
+						<xsd:enumeration value="SYNC"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="message_mode" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Indicates if message is a request or response</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string" id="message_mode_type">
+						<xsd:enumeration value="REQUEST"/>
+						<xsd:enumeration value="RESPONSE"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="delivery_date" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The date and time this message was sent</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The session id used to verify user authenticity and accessibility</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="user_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The Id of the user requesting the service</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

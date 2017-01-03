@@ -1,0 +1,53 @@
+
+<RS_business_contact_search>
+	<business_list>
+		<business_id>1456</business_id>
+		<entity_type>
+			<code_id>26</code_id>
+			<shortdesc></shortdesc>
+			<longdesc>Corporation</longdesc>
+		</entity_type>
+		<service_type>
+			<code_id>61</code_id>
+			<shortdesc></shortdesc>
+			<longdesc>Computer - Contractor/Consultant</longdesc>
+		</service_type>
+		<long_name>Matrix Resources, Inc</long_name>
+		<short_name></short_name>
+		<contact_firstname>John</contact_firstname>
+		<contact_lastname>Gruebmeyer</contact_lastname>
+		<contact_phone>8174291003</contact_phone>
+		<contact_ext></contact_ext>
+		<contact_email>john_gruebmeyer@matrixresources.com</contact_email>
+		<taxId></taxId>
+		<website>www.mymatrixjobs.com</website>
+		<category xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+		<address>
+			<addr_id>2363</addr_id>
+			<person_id>0</person_id>
+			<business_id>1456</business_id>
+			<addr1>5601 Bridge Street</addr1>
+			<addr2>Suite 300</addr2>
+			<addr3></addr3>
+			<addr4></addr4>
+			<zip>
+				<zip_id>62308</zip_id>
+				<zipcode>76112</zipcode>
+				<city>FORT WORTH</city>
+				<state>TX</state>
+				<areaCode>817</areaCode>
+				<cityAliasName>FORT WORTH</cityAliasName>
+				<cityAliasAbbr></cityAliasAbbr>
+				<countyName>TARRANT</countyName>
+			</zip>
+			<zip_ext>0</zip_ext>
+			<phone_home></phone_home>
+			<phone_work></phone_work>
+			<phone_work_ext></phone_work_ext>
+			<phone_main>8662132701</phone_main>
+			<phone_cell></phone_cell>
+			<phone_fax>8174291004</phone_fax>
+			<phone_pager></phone_pager>
+		</address>
+	</business_list>
+</RS_business_contact_search>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<project name="Service Dispatcher" basedir="." default="compile">
+	<property file="build.properties" />
+
+	<path id="build.classpath">
+		<pathelement path="${lib.classpath}" />
+	</path>
+
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+		<classpath>
+			<fileset dir="C:\tools\jaxb-ri-20100511\lib" includes="*.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="clean" description="Deletes the work directories">
+		<echo message="Cleaning scratch directories for application ${appName}..." />
+		<delete dir="${compileDir}" />
+		<delete dir="${webDeploytDir}/classes" />
+		<delete dir="${webDeploytDir}/lib" />
+	</target>
+
+	<target name="compile" depends="clean" description="Compiles the Application">
+		<echo message="OS Architecture ${os.arch}" />
+		<echo message="OS Name ${os.name}" />
+		<echo message="OS Version ${os.version}" />
+		<echo message="Classpath: ${lib.classpath}" />
+
+		<mkdir dir="${classesDir}" />
+		<echo message="Compliling application ${appName}..." />
+		<javac srcdir="${javaSrcDir}" destdir="${classesDir}">
+			<classpath refid="build.classpath" />
+		</javac>
+		<copy todir="${classesDir}">
+			<fileset dir="${resourceDir}">
+				<include name="**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build" depends="clean, build-dependencies, compile" description="Compile and assemble dependencies for the Application">
+		<echo message="Building application ${appName}..." />
+		<copy todir="${webDeploytDir}">
+			<fileset dir="${compileDir}">
+				<include name="**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build-dependencies" description="Compiles and imports dependent external projects">
+		<mkdir dir="${webDeploytDir}/lib" />
+		<ant antfile="${build.framework}" inheritall="false" target="deploy" />
+		<copy todir="${webDeploytDir}/lib">
+			<fileset dir="${libFwDir}">
+				<include name="fw2012.jar" />
+			</fileset>
+			<fileset dir="${libDir}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy" depends="build" description="Prepares the application for distribution which includes creating the directory structure, copying the application files to the respective directories, and creating the runnable jar">
+		<echo message="Deploying application ${appName}..." />
+		<echo message="Creating war file for ${appName} and sending to ${distDir}..." />
+		<war destfile="${distDir}/${appName}.war" basedir="${webRoot}" webxml="${webDeploytDir}/web.xml" />
+		<echo message="Deployment completed" />
+	</target>
+
+	<target name="generate-jaxb" description="Creaets the Java XML bindigs classes from the XML schemas">
+		<mkdir dir="${sourceRoot}/java/main/com/bindings/xml/jaxb" />
+		<xjc removeOldOutput="yes" destdir="${sourceRoot}/java" 
+			                         package="com.bindings.xml.jaxb" 
+															 binding="jaxb-custom-bindings.xml" >
+			<schema dir="${xsdLoc}" includes="**/*.xsd" />
+			<produces dir="${sourceRoot}/java/main/com/bindings/xml/jaxb" />
+		</xjc>
+	</target>
+
+	<target name="jar-jaxb" depends="compile" description="Creaets the Java XML bindigs classes from the XML schemas">
+		<echo message="Preparing to jar XML-Java binding classes in ${classesDir}" />
+		<jar destfile="${distDir}/${jaxbJar}" basedir="${classesDir}" includes="com/**" />
+	</target>
+</project>

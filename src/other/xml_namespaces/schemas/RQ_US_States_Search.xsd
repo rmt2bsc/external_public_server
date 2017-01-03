@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" xmlns:mtt="http://rmt2.net/MiscTypesType" elementFormDefault="unqualified">
+	
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+	
+	<xsd:import schemaLocation="misc/Misc_Types_Type.xsd" namespace="http://rmt2.net/MiscTypesType"/>
+	
+	<xsd:element name="RQ_us_states_search">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>Request one or more records from the Country/State/Province data source.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="state_id" type="xsd:integer" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The unique id of the state to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="country_id" type="xsd:integer" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The unique id of the country to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="state_name" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The long name of the state to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="state_code" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The abbreviated state name to target search request.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="login_id" type="xsd:string" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">The user's login id.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="order_by" type="mtt:order_by_type" minOccurs="0" maxOccurs="unbounded" nillable="true">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">A comma separated list of properties and sequencing direction indicators which is used to indicate how the result set is to be ordered.  The expressions should resemble the syntax of SQL order by clause.  For example, "first_name asc, last_name desc"</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

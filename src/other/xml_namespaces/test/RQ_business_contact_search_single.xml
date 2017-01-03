@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<rmt2-hns:serviceId xmlns:rmt2-hns="http://www.rmt2.net/soapheader" SOAP-ENV:actor="" SOAP-ENV:mustUnderstand="1">RQ_business_contact_search</rmt2-hns:serviceId>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<RQ_business_contact_search>
+			<header>
+				<message_id>RQ_business_contact_search</message_id>
+				<delivery_mode>SYNC</delivery_mode>
+				<message_mode>REQUEST</message_mode>
+				<delivery_date>08/08/2010 07:44:28</delivery_date>
+				<user_id>admin</user_id>
+			</header>
+			<criteria_data>
+				<business_id>1461</business_id>
+			</criteria_data>
+		</RQ_business_contact_search>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

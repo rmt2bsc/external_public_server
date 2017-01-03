@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/MIMEType" xmlns:mtt="http://rmt2.net/MIMETypesType" elementFormDefault="unqualified">
+		
+		<xsd:import schemaLocation="../mime/Mime_Types_Type.xsd" namespace="http://rmt2.net/MIMETypesType"/>
+		
+		<xsd:complexType name="mime_content_type">
+			<xsd:annotation>
+				<xsd:documentation>This is the document that houses binary data and large text which the data elements can be mapped to the content table from the mime database.   The binary data can be of any multimedia resource such as documents, images, audio, video, and other binary forms of data.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="content_id" type="xsd:integer" default="0" maxOccurs="1" minOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>This is the primary key.  Will default to zero when record is new.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="mime_type_details" type="mtt:mime_type" minOccurs="1" maxOccurs="unbounded">
+					<xsd:annotation>
+						<xsd:documentation>Provides MIME type/sub type details.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Application code.  This value can be cross referenced in the Authentication application.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="module_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The module of the application.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="filename" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The file name of the binary data at the time when persisted.   This should include the file extension.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="filepath" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The file path of the where the binary data was found at the time when persisted.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="filesize" type="xsd:integer" default="0" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The size of the binary data in bytes.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="binary_data" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The data in binary code.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="text_data" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The data as text</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://rmt2.net/XMLMessages" xmlns:ht="http://rmt2.net/HeaderType" xmlns:rst="http://rmt2.net/ReplyStatusType" xmlns:at="http://rmt2.net/AuthenticationTypes" elementFormDefault="unqualified">
+   
+	<xsd:import schemaLocation="RMT2_Message_Header_Type.xsd" namespace="http://rmt2.net/HeaderType"/>
+   
+	<xsd:import schemaLocation="RMT2_Message_Reply_Status_Type.xsd" namespace="http://rmt2.net/ReplyStatusType"/>
+   
+	<xsd:import schemaLocation="authentication/Authentication_Type.xsd" namespace="http://rmt2.net/AuthenticationTypes"/>
+   
+	<xsd:element name="RS_authentication_user_app_roles">
+		<xsd:complexType>
+		  <xsd:sequence>
+				<xsd:element name="header" type="ht:header_type" minOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="reply_status" type="rst:reply_status_type" minOccurs="1" maxOccurs="1" nillable="false">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">General information about the status of retrieving the user's application roles.  The return code should contain the number of roles found for the application the user is being verified.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			    <xsd:element name="role_data" type="at:user_app_roles_type" minOccurs="1" maxOccurs="1">
+			    	<xsd:annotation>
+			    		<xsd:documentation>The user's granted and revoked roles.</xsd:documentation>
+			    	</xsd:annotation>
+			    </xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
