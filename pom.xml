@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>PublicServer</groupId>
-	<artifactId>PublicServer</artifactId>
+	<groupId>com.rmt2.server.public</groupId>
+	<artifactId>public-server</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Web Services Public Server</name>
@@ -19,9 +19,6 @@
 			<artifactId>rmt2-web-service-messages</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-
-		<!-- Move these dependencies to fw_messaging pom's dependencyManagement 
-			Section -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
@@ -37,8 +34,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.6.3</version>
 		</dependency>
-		<!-- End move to dependencyManagement Section -->
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -47,30 +42,13 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<sourceDirectory>src/java/main</sourceDirectory>
-		<testSourceDirectory>src/java/test</testSourceDirectory>
-		<resources>
-			<resource>
-				<directory>resources</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source />
-					<target />
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<warSourceDirectory>webapp</warSourceDirectory>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
