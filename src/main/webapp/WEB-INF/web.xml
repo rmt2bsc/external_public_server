@@ -61,7 +61,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>JerseyRESTEngine</servlet-name>
-      <url-pattern>/rest/*</url-pattern>
+      <url-pattern>/services/mobile/*</url-pattern>
    </servlet-mapping>  
   
   <servlet>
@@ -70,7 +70,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RMT2SoapEngine</servlet-name>
-    <url-pattern>/soap</url-pattern>
+    <url-pattern>/services/web</url-pattern>
   </servlet-mapping>
   
    
