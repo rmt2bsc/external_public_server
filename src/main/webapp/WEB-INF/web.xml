@@ -52,7 +52,7 @@
    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
        <init-param>
           <param-name>jersey.config.server.provider.packages</param-name>
-          <param-value>org.rmt2.rest</param-value>
+          <param-value>org.rmt2.rest.accounting;org.rmt2.rest.contacts;org.rmt2.rest.media;org.rmt2.rest.projecttracker;org.rmt2.rest.security</param-value>
        </init-param>
        <init-param>
 					<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
