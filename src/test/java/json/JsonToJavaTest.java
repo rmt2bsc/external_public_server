@@ -3,8 +3,6 @@ package json;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import javax.xml.bind.JAXBElement;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -109,9 +107,7 @@ public class JsonToJavaTest {
         ContactCriteriaGroup ccg = f.createContactCriteriaGroup();
         BusinessContactCriteria bcc = (BusinessContactCriteria) obj;
         ccg.setBusinessCriteria(bcc);
-        JAXBElement<ContactCriteriaGroup> criteriaGrp = f
-                .createAddressBookRequestCriteria(ccg);
-        r.setCriteria(criteriaGrp);
+        r.setCriteria(ccg);
         r.setHeader(h);
 
         String xml = util.marshalMessage(r);

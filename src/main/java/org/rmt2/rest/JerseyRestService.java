@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.JAXBElement;
 
 import org.rmt2.jaxb.AddressBookRequest;
 import org.rmt2.jaxb.BusinessContactCriteria;
@@ -83,10 +82,7 @@ public class JerseyRestService {
 
         ContactCriteriaGroup ccg = f.createContactCriteriaGroup();
         ccg.setBusinessCriteria(criteria);
-
-        JAXBElement<ContactCriteriaGroup> jaxbCriteria = f
-                .createAddressBookRequestCriteria(ccg);
-        r.setCriteria(jaxbCriteria);
+        r.setCriteria(ccg);
         r.setHeader(h);
         return r;
     }
