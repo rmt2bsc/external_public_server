@@ -1,5 +1,7 @@
 package org.rmt2.rest.media;
 
+import java.math.BigInteger;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -15,6 +17,7 @@ import org.rmt2.jaxb.ObjectFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.util.RMT2File;
 
 @Path("/media")
 public class DocumentMediaResource {
@@ -36,6 +39,13 @@ public class DocumentMediaResource {
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse r = f.createMultimediaResponse();
         MimeContentType content = f.createMimeContentType();
+        content.setAppCode("ACCT");
+        content.setContentId(BigInteger.valueOf(contentId));
+        content.setFilename("example.jpg");
+        content.setFilepath("/tmp/somefilepath/");
+        String imgContent = RMT2File.getFileContentAsBase64(
+                "/Users/royterrell/Pictures/pearl-weathered-leather-1600-1200.jpg");
+        content.setBinaryData(imgContent);
         r.getContent().add(content);
         // Marshal to JSON
         final Gson gson = new GsonBuilder().create();
