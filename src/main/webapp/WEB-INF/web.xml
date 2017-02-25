@@ -9,47 +9,38 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
-<!--  	
-  
+
   <servlet>
-    <servlet-name>sysconfig</servlet-name>
-    <servlet-class>com.api.config.SystemConfiguratorController</servlet-class>
-    <init-param>
-   	<param-name>ContainerManagedPool</param-name>
-   	<param-value>true</param-value>
-    </init-param>
-    <init-param>
-   	<param-name>ServiceLoaderFactory</param-name>
-   	<param-value>ldap</param-value>
-    </init-param>
+    <description></description>
+    <display-name>SystemConfigurator</display-name>
+    <servlet-name>SysConfig</servlet-name>
+    <servlet-class>com.api.config.WebSystemConfigController</servlet-class>
      <init-param>
-       <param-name>ServiceLoaderFactory</param-name>
-       <param-value>ldap</param-value>
-    </init-param>
-    <init-param>
-       <param-name>LdapBaseDn</param-name>
-       <param-value>ou=Web Services,ou=Resources</param-value>
-    </init-param>
-    <init-param>
-       <param-name>LdapMapperClass</param-name>
-       <param-value>com.api.ldap.beans.LdapWebServiceConfig</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup> 
+      <param-name>Environment</param-name>
+      <param-value>DEV</param-value>
+     </init-param>
+     <init-param>
+      <param-name>ContainerManagedPool</param-name>
+      <param-value>true</param-value>
+     </init-param>
+     <init-param>
+      <param-name>AppServerConfigSource</param-name>
+      <param-value>/tmp/AppServer/config/RMT2AppServerConfig.xml</param-value>
+     </init-param>
+     <init-param>
+      <param-name>JmsProviderUrl</param-name>
+      <param-value>tcp://localhost:61616</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>sysconfig</servlet-name>
-    <url-pattern>/sysconfig</url-pattern>
-  </servlet-mapping>  
--->
-
+    <servlet-name>SysConfig</servlet-name>
+    <url-pattern>/SysConfig</url-pattern>
+  </servlet-mapping>
 
   <servlet>
-    <servlet-name>JerseyRESTEngine</servlet-name>
-<!--
-<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>      
--->
-   <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+      <servlet-name>JerseyRESTEngine</servlet-name>
+      <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
       <init-param>
 					<param-name>javax.ws.rs.Application</param-name>
 					<param-value>org.rmt2.rest.PublicGatewayServerApplication</param-value>
@@ -68,7 +59,6 @@
     <servlet-name>RMT2SoapEngine</servlet-name>
     <url-pattern>/services/web/*</url-pattern>
   </servlet-mapping>
-  
    
   <servlet>
     <servlet-name>httpRouter</servlet-name>
