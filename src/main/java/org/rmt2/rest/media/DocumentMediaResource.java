@@ -31,9 +31,15 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         super("media", "document", transaction);
     }
 
+    /**
+     * Fetch the metadata and binary content by content id.
+     * 
+     * @param contentId
+     *            the unique identifier of the content record.
+     * @return JSON containing metadata and base64 encoded binary content
+     */
     @GET
     @Path("attachment/{contentId}")
-    // @Produces({ "image/png", "image/jpeg", "image/gif", "application/pdf" })
     @Produces(MediaType.APPLICATION_JSON)
     public Response fetchImageContent(@PathParam("contentId") final long contentId) {
         LOGGER.info("REST method, forms/{contentId}/image-attachment, was called");
@@ -69,6 +75,15 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         return Response.status(Status.OK).type(MediaType.APPLICATION_JSON_TYPE).entity(gson.toJson(r)).build();
     }
 
+    /**
+     * Add the metadata and binary content.
+     * 
+     * @param content
+     *            the metadata and binary content to be added. The binary
+     *            content should be recieved as base64 encoded.
+     * @return content metadata only in which a new content id should be
+     *         provided.
+     */
     @PUT
     @Path("attachment/save")
     @Consumes(MediaType.APPLICATION_JSON)
