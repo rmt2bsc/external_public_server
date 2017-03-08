@@ -27,13 +27,13 @@ public class RMT2BaseRestResouce extends RMT2Base {
      * and transaction.
      */
     public RMT2BaseRestResouce(String app, String module, String transaction) {
+        this.msgRouterHelper = new MessageRouterHelper();
         this.application = app;
         this.module = module;
         this.transaction = transaction;
 
         logger.info("Contacting web service for: [Application ->" + app + ", Module->" + module + ", Transaction->"
                 + transaction + "]");
-        this.msgRouterHelper = new MessageRouterHelper();
     }
 
     /**
