@@ -32,12 +32,13 @@ import com.util.RMT2File;
 public class DocumentMediaResourceTest {
     private static final long TEST_CONTENT_ID = 7777;
 
-    // private MessageRouterHelper mockMsgRouterHelper;
+    private MessageRouterHelper mockMsgRouterHelper;
 
     @Before
     public void setUp() throws Exception {
-        // this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
-        // whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
+        this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
+        whenNew(MessageRouterHelper.class).withNoArguments()
+                .thenReturn(this.mockMsgRouterHelper);
     }
 
     @After
@@ -46,14 +47,6 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testGetContentByIdSuccess() {
-        MessageRouterHelper mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
-        try {
-            whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(mockMsgRouterHelper);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MessageRouterHelper msgRouterHelper = new MessageRouterHelper();
-
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest mockRequest = f.createMultimediaRequest();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
@@ -70,15 +63,15 @@ public class DocumentMediaResourceTest {
         content.setContentId(BigInteger.valueOf(TEST_CONTENT_ID));
         content.setFilename("example.jpg");
         content.setFilepath("/tmp/somefilepath/");
-        InputStream is = ClassLoader.getSystemResourceAsStream("pearl-weathered-leather-1600-1200.jpg");
+        InputStream is = ClassLoader.getSystemResourceAsStream(
+                "pearl-weathered-leather-1600-1200.jpg");
         byte contentBytes[] = RMT2File.getStreamByteData(is);
         String imgContent = RMT2Base64Encoder.encode(contentBytes);
-        // String imgContent =
-        // RMT2File.getFileContentAsBase64("pearl-weathered-leather-1600-1200.jpg");
         content.setBinaryData(imgContent);
         mockResponse.setContent(content);
 
-        when(mockMsgRouterHelper.routeJsonMessage("getContent", mockRequest)).thenReturn(mockResponse);
+        when(mockMsgRouterHelper.routeJsonMessage("getContent", mockRequest))
+                .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource("getContent");
         Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
