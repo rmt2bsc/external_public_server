@@ -30,7 +30,6 @@ import org.glassfish.jersey.filter.LoggingFilter;
 //import org.glassfish.jersey.filter.LoggingFilter;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.rmt2.jaxb.BusinessContactCriteria;
 import org.rmt2.jaxb.ObjectFactory;
 
@@ -46,7 +45,7 @@ public class JerseyJsonClientTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
+    // @Test
     public void testPost() {
         ObjectFactory f = new ObjectFactory();
         BusinessContactCriteria p = f.createBusinessContactCriteria();
@@ -67,18 +66,15 @@ public class JerseyJsonClientTest {
             // // Add Jackson JSON serializer
             // cc.getClasses().add(JacksonJsonProvider.class);
 
-            Client c = ClientBuilder.newClient(new ClientConfig()
-                    .register(LoggingFilter.class));
+            Client c = ClientBuilder.newClient(new ClientConfig().register(LoggingFilter.class));
             // c.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS,
             // true);
             // c.setConnectTimeout(3000);
-            WebTarget srvc = c
-                    .target("http://localhost:8080/PublicServer/rest/jsonServices/send");
+            WebTarget srvc = c.target("http://localhost:8080/PublicServer/rest/jsonServices/send");
 
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(p);
-            Response response = srvc.request("application/json").post(
-                    Entity.entity(p, MediaType.APPLICATION_JSON));
+            Response response = srvc.request("application/json").post(Entity.entity(p, MediaType.APPLICATION_JSON));
 
             // ClientResponse response = webResource.accept("application/json")
             // .type("application/json").post(ClientResponse.class, p);
