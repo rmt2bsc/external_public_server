@@ -104,10 +104,7 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
             throw new WebApplicationException(
                     Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
-        if (content.getContentId().longValue() == 0) {
-            // Valid...
-        }
-        else {
+        if (content.getContentId().longValue() != 0) {
             this.msg = "Content id must be zero when adding content";
             LOGGER.error(this.msg);
             throw new WebApplicationException(
@@ -126,11 +123,17 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         req.getContent().add(content);
 
         // Route message to business server
-        Object response = this.msgRouterHelper.routeJsonMessage(this.transaction, req);
-
         MultimediaResponse r = null;
-        if (response != null && response instanceof MultimediaResponse) {
-            r = (MultimediaResponse) response;
+        try {
+            Object response = this.msgRouterHelper.routeJsonMessage(this.transaction, req);
+            if (response != null && response instanceof MultimediaResponse) {
+                r = (MultimediaResponse) response;
+            }
+        } catch (MessageRoutingException e) {
+            this.msg = e.getMessage();
+            LOGGER.error("Unable to route attachment/save to its destination", e);
+            throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
 
         // Exclude binary data for save. Only include metadata.
