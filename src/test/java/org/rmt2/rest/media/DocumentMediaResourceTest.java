@@ -37,32 +37,9 @@ public class DocumentMediaResourceTest {
     private static final String TEST_FILENAME = "pearl-weathered-leather-1600-1200.jpg";
 
     private MessageRouterHelper mockMsgRouterHelper;
-    private MimeContentType modifiedContentType;
-    private MimeContentType newContentType;
 
     @Before
     public void setUp() throws Exception {
-        // ObjectFactory f = new ObjectFactory();
-        // newContentType = f.createMimeContentType();
-        // modifiedContentType = f.createMimeContentType();
-        //
-        // String imgContent =
-        // this.getImageContentTypeAsBase64String("pearl-weathered-leather-1600-1200.jpg");
-        //
-        // newContentType.setAppCode("ACCT");
-        // newContentType.setContentId(BigInteger.valueOf(0));
-        // newContentType.setFilename("example.jpg");
-        // newContentType.setFilepath("/tmp/somefilepath/");
-        // // Set binary content
-        // newContentType.setBinaryData(imgContent);
-        //
-        // modifiedContentType.setAppCode("ACCT");
-        // // New content id
-        // modifiedContentType.setContentId(BigInteger.valueOf(TEST_NEW_CONTENT_ID));
-        // modifiedContentType.setFilename("example.jpg");
-        // modifiedContentType.setFilepath("/tmp/somefilepath/");
-        // // Set binary content
-        // modifiedContentType.setBinaryData(imgContent);
     }
 
     @After
@@ -78,11 +55,11 @@ public class DocumentMediaResourceTest {
         }
     }
 
-    private MimeContentType createMockContentType(long contentId, String appCode, String fileName, String filePath) {
+    private MimeContentType createMockContentType(Long contentId, String appCode, String fileName, String filePath) {
         ObjectFactory f = new ObjectFactory();
         MimeContentType ct = f.createMimeContentType();
         ct.setAppCode(appCode);
-        ct.setContentId(BigInteger.valueOf(contentId));
+        ct.setContentId(contentId == null ? null : BigInteger.valueOf(contentId));
         ct.setFilename(fileName);
         ct.setFilepath(filePath);
         // Set binary content
@@ -160,10 +137,79 @@ public class DocumentMediaResourceTest {
                 .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
-        MimeContentType contentTypeParm = this.createMockContentType(0, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
+        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = srvc.saveImageContent(contentTypeParm);
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
 
+    @Test
+    public void testSaveContentWithNullContentObject() {
+        Response resp = null;
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        try {
+            resp = srvc.saveImageContent(null);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testSaveContentWithNullContentId() {
+        Response resp = null;
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        MimeContentType contentTypeParm = this.createMockContentType(null, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
+        try {
+            resp = srvc.saveImageContent(contentTypeParm);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testSaveContentWithNonZeroContentId() {
+        Response resp = null;
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        MimeContentType contentTypeParm = this.createMockContentType(849L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
+        try {
+            resp = srvc.saveImageContent(contentTypeParm);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testSaveContentWithNullBinaryContent() {
+        Response resp = null;
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", null, "/tmp/somefilepath/");
+        try {
+            resp = srvc.saveImageContent(contentTypeParm);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testSaveContentBusinessServerUnavailable() {
+        ObjectFactory f = new ObjectFactory();
+        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
+        Response resp = null;
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        try {
+            resp = srvc.saveImageContent(contentTypeParm);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
 }
