@@ -23,6 +23,7 @@ import org.rmt2.rest.RMT2BaseRestResouce;
 import com.api.messaging.MessageRoutingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.util.RMT2String2;
 
 @Path("/media/document/{transaction}")
 public class DocumentMediaResource extends RMT2BaseRestResouce {
@@ -44,9 +45,9 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
     @Path("attachment/{contentId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response fetchImageContent(@PathParam("contentId") final long contentId) {
-        LOGGER.info("REST method, forms/{contentId}/image-attachment, was called");
+        LOGGER.info("REST method, fetchImageContent, was called");
         if (contentId <= 0) {
-            this.msg = "Web Service Error: Content Id must be greater than zero in order to retrieve image attachment";
+            this.msg = "Content Id must be greater than zero in order to retrieve image attachment";
             LOGGER.error(this.msg);
             throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
                     .entity(this.msg).build());
@@ -71,21 +72,6 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
-        // if (response != null && response instanceof MultimediaResponse) {
-        // r = (MultimediaResponse) response;
-        // }
-        // else { // TODO: Remove "else" once properly implemented
-        // r = f.createMultimediaResponse();
-        // MimeContentType content = f.createMimeContentType();
-        // content.setAppCode("ACCT");
-        // content.setContentId(BigInteger.valueOf(contentId));
-        // content.setFilename("example.jpg");
-        // content.setFilepath("/tmp/somefilepath/");
-        // String imgContent = RMT2File
-        // .getFileContentAsBase64("/Users/royterrell/Pictures/pearl-weathered-leather-1600-1200.jpg");
-        // content.setBinaryData(imgContent);
-        // r.setContent(content);
-        // }
 
         // Marshal to JSON
         final Gson gson = new GsonBuilder().create();
@@ -105,10 +91,33 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
     @Path("attachment/save")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response saveImageContent(final MimeContentType content) {
-        LOGGER.info("REST method, image-attachment/save, was called");
-        ObjectFactory f = new ObjectFactory();
-
+        LOGGER.info("REST method, saveImageContent, was called");
+        if (content == null) {
+            this.msg = "Content object cannot be null";
+            LOGGER.error(this.msg);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
+        if (content.getContentId() == null) {
+            this.msg = "Content id is required";
+            LOGGER.error(this.msg);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
+        if (content.getContentId().longValue() <= 0) {
+            this.msg = "Content id must be greater than zero";
+            LOGGER.error(this.msg);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
+        if (content.getBinaryData() == null || RMT2String2.isEmpty(content.getBinaryData())) {
+            this.msg = "Binary content is required";
+            LOGGER.error(this.msg);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
         // Create multimedia request object with "content" param
+        ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
         req.setHeader(this.getHeader());
         req.getContent().add(content);
@@ -129,7 +138,7 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
             contentType.setFilename("example.jpg");
             contentType.setFilepath("/tmp/somefilepath/");
         }
-        // Do not return binary data for save. Only metadata.
+        // Exclude binary data for save. Only include metadata.
         r.setContent(null);
 
         // Marshal to JSON
