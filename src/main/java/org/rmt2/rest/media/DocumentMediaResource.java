@@ -49,8 +49,8 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         if (contentId <= 0) {
             this.msg = "Content Id must be greater than zero in order to retrieve image attachment";
             LOGGER.error(this.msg);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
+            throw new WebApplicationException(
+                    Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
 
         // Create multimedia request object with "contentId" param
@@ -95,26 +95,29 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         if (content == null) {
             this.msg = "Content object cannot be null";
             LOGGER.error(this.msg);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
+            throw new WebApplicationException(
+                    Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
         if (content.getContentId() == null) {
             this.msg = "Content id is required";
             LOGGER.error(this.msg);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
+            throw new WebApplicationException(
+                    Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
-        if (content.getContentId().longValue() <= 0) {
-            this.msg = "Content id must be greater than zero";
+        if (content.getContentId().longValue() == 0) {
+            // Valid...
+        }
+        else {
+            this.msg = "Content id must be zero when adding content";
             LOGGER.error(this.msg);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
+            throw new WebApplicationException(
+                    Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
         if (content.getBinaryData() == null || RMT2String2.isEmpty(content.getBinaryData())) {
             this.msg = "Binary content is required";
             LOGGER.error(this.msg);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
+            throw new WebApplicationException(
+                    Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
@@ -129,17 +132,9 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         if (response != null && response instanceof MultimediaResponse) {
             r = (MultimediaResponse) response;
         }
-        else { // TODO: Remove "else" once properly implemented
-            r = f.createMultimediaResponse();
-            MimeContentType contentType = f.createMimeContentType();
-            contentType.setAppCode("ACCT");
-            // New content id
-            contentType.setContentId(BigInteger.valueOf(77777));
-            contentType.setFilename("example.jpg");
-            contentType.setFilepath("/tmp/somefilepath/");
-        }
+
         // Exclude binary data for save. Only include metadata.
-        r.setContent(null);
+        r.getContent().setBinaryData(null);
 
         // Marshal to JSON
         final Gson gson = new GsonBuilder().create();

@@ -92,9 +92,14 @@ public class DocumentMediaResourceTest {
     }
 
     private String getImageContentTypeAsBase64String(String fileName) {
-        InputStream is = ClassLoader.getSystemResourceAsStream(fileName);
-        byte contentBytes[] = RMT2File.getStreamByteData(is);
-        String imgContent = RMT2Base64Encoder.encode(contentBytes);
+        String imgContent = null;
+        try {
+            InputStream is = ClassLoader.getSystemResourceAsStream(fileName);
+            byte contentBytes[] = RMT2File.getStreamByteData(is);
+            imgContent = RMT2Base64Encoder.encode(contentBytes);
+        } catch (Exception e) {
+            imgContent = null;
+        }
         return imgContent;
     }
 
@@ -107,8 +112,8 @@ public class DocumentMediaResourceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class))).thenReturn(
-                mockResponse);
+        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
+                .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource("getContent");
         Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
@@ -144,41 +149,21 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testSaveContentSuccess() {
+        this.setupMocks();
+        ObjectFactory f = new ObjectFactory();
+        MultimediaResponse mockResponse = f.createMultimediaResponse();
+        MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
+                "/tmp/somefilepath/");
+        mockResponse.setContent(content);
 
+        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
+                .thenReturn(mockResponse);
+
+        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        MimeContentType contentTypeParm = this.createMockContentType(0, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
+        Response resp = srvc.saveImageContent(contentTypeParm);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
     }
 
-    // @Test
-    // public void testGetContentWithInvalidId() {
-    // ObjectFactory f = new ObjectFactory();
-    // MultimediaRequest mockRequest = f.createMultimediaRequest();
-    // MultimediaResponse mockResponse = f.createMultimediaResponse();
-    //
-    // HeaderType mockHeaderType = f.createHeaderType();
-    // mockHeaderType.setApplication("media");
-    // mockHeaderType.setModule("document");
-    // mockHeaderType.setTransaction("getContent");
-    // mockRequest.setHeader(mockHeaderType);
-    // mockRequest.setContentId(BigInteger.valueOf(TEST_CONTENT_ID));
-    //
-    // MimeContentType content = f.createMimeContentType();
-    // content.setAppCode("ACCT");
-    // content.setContentId(BigInteger.valueOf(TEST_CONTENT_ID));
-    // content.setFilename("example.jpg");
-    // content.setFilepath("/tmp/somefilepath/");
-    // InputStream is =
-    // ClassLoader.getSystemResourceAsStream("pearl-weathered-leather-1600-1200.jpg");
-    // byte contentBytes[] = RMT2File.getStreamByteData(is);
-    // String imgContent = RMT2Base64Encoder.encode(contentBytes);
-    // content.setBinaryData(imgContent);
-    // mockResponse.setContent(content);
-    //
-    // when(mockMsgRouterHelper.routeJsonMessage(any(String.class),
-    // any(MultimediaRequest.class)))
-    // .thenReturn(mockResponse);
-    //
-    // DocumentMediaResource srvc = new DocumentMediaResource("getContent");
-    // Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
-    // Object obj = resp.getEntity();
-    // Assert.assertNotNull(obj);
-    // }
 }
