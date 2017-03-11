@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.rmt2.messaging.services</groupId>
-			<artifactId>rmt2-web-service-messages</artifactId>
+			<artifactId>ws-dto-model</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
