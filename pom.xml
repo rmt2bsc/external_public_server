@@ -5,7 +5,7 @@
 	<artifactId>server-public-gateway</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Web Services Public Server</name>
+	<name>public-gateway</name>
 	<description>Server for housing and managing various types of web services.</description>
 
 	<dependencies>
@@ -72,17 +72,28 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+		<extensions>
+      <!-- Enabling the use of FTP -->
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-ftp</artifactId>
+         <version>2.12</version>
+      </extension>
+    </extensions>
 	</build>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>InternalSnapshots</id>
+			<id>ftp-snapshot-repository</id>
 			<name>Internal Snapshots</name>
-			<url>file://rmtdaldev77/download/repo/snapshots</url>
+			<url>ftp://rmtdalsys01/repo/snapshots</url>
+			<!-- <url>file:///tmp/maven/repo/snapshots</url> -->
 		</snapshotRepository>
 		<repository>
-			<id>InternalReleases</id>
+			<id>ftp-release-repository</id>
 			<name>Internal Releases</name>
-			<url>file://rmtdalsys01/rmt2/repo/releases/</url>
+			<url>ftp://rmtdalsys01/repo/releases</url>
+			<!-- <url>file:///tmp/maven/repo/releases</url> -->
 		</repository>
 	</distributionManagement>
 </project>
