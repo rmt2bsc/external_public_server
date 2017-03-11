@@ -10,7 +10,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.rmt2.messaging.services</groupId>
+			<groupId>org.rmt2.messaging</groupId>
 			<artifactId>ws-dto-model</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
