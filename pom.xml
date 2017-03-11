@@ -86,14 +86,14 @@
 		<snapshotRepository>
 			<id>ftp-snapshot-repository</id>
 			<name>Internal Snapshots</name>
-			<url>ftp://rmtdalsys01/repo/snapshots</url>
-			<!-- <url>file:///tmp/maven/repo/snapshots</url> -->
+			<!-- IP Address for RMTDALSYS01 -->
+			<url>ftp://192.168.0.4/repo/snapshots</url>
 		</snapshotRepository>
 		<repository>
 			<id>ftp-release-repository</id>
 			<name>Internal Releases</name>
-			<url>ftp://rmtdalsys01/repo/releases</url>
-			<!-- <url>file:///tmp/maven/repo/releases</url> -->
+			<!-- IP Address for RMTDALSYS01 -->
+			<url>ftp://192.168.0.4/repo/releases</url>
 		</repository>
 	</distributionManagement>
 </project>
