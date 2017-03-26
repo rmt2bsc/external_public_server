@@ -20,20 +20,17 @@ public class RMT2BaseRestResouce extends RMT2Base {
     protected MessageRouterHelper msgRouterHelper;
     protected String application;
     protected String module;
-    protected String transaction;
 
     /**
-     * Create a RMT2BaseRestResouce which is aware of the application, module,
-     * and transaction.
+     * Create a RMT2BaseRestResouce which is aware of the application and
+     * module.
      */
-    public RMT2BaseRestResouce(String app, String module, String transaction) {
+    public RMT2BaseRestResouce(String app, String module) {
         this.msgRouterHelper = new MessageRouterHelper();
         this.application = app;
         this.module = module;
-        this.transaction = transaction;
 
-        logger.info("Contacting web service for: [Application ->" + app + ", Module->" + module + ", Transaction->"
-                + transaction + "]");
+        logger.info("Contacting web service for: [Application ->" + app + ", Module->" + module + "]");
     }
 
     /**
@@ -46,7 +43,6 @@ public class RMT2BaseRestResouce extends RMT2Base {
         HeaderType header = f.createHeaderType();
         header.setApplication(this.application);
         header.setModule(this.module);
-        header.setTransaction(this.transaction);
         return header;
     }
 }
