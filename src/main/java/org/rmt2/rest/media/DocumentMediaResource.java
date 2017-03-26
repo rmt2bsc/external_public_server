@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
+import org.rmt2.constants.TransId;
 import org.rmt2.jaxb.MimeContentType;
 import org.rmt2.jaxb.MultimediaRequest;
 import org.rmt2.jaxb.MultimediaResponse;
@@ -29,8 +30,7 @@ import com.util.RMT2String2;
 public class DocumentMediaResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger.getLogger(DocumentMediaResource.class);
 
-    public static final String TRAN_ID_GET_CONTENT = "GET_CONTENT_ATTACHMENT";
-    public static final String TRAN_ID_SAVE_CONTENT = "SAVE_CONTENT_ATTACHMENT";
+
 
     public DocumentMediaResource() {
         super("media", "document");
@@ -59,7 +59,7 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "contentId" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        this.getHeader().setTransaction(TRAN_ID_GET_CONTENT);
+        this.getHeader().setTransaction(TransId.MEDIA_GET_CONTENT);
         req.setHeader(this.getHeader());
         req.setContentId(BigInteger.valueOf(contentId));
 
@@ -67,7 +67,7 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         MultimediaResponse r = null;
 
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_GET_CONTENT, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TransId.MEDIA_GET_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
@@ -125,14 +125,14 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        this.getHeader().setTransaction(TRAN_ID_SAVE_CONTENT);
+        this.getHeader().setTransaction(TransId.MEDIA_SAVE_CONTENT);
         req.setHeader(this.getHeader());
         req.getContent().add(content);
 
         // Route message to business server
         MultimediaResponse r = null;
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_SAVE_CONTENT, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TransId.MEDIA_SAVE_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }

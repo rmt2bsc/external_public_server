@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
+import org.rmt2.constants.TransId;
 import org.rmt2.jaxb.AddressBookRequest;
 import org.rmt2.jaxb.AddressBookResponse;
 import org.rmt2.jaxb.BusinessContactCriteria;
@@ -30,9 +31,7 @@ import com.google.gson.GsonBuilder;
 public class ContactEntityResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger
             .getLogger(ContactEntityResource.class);
-    public static final String TRAN_ID_GET_ALL_BUS_CONTACTS = "GET_ALL_BUSINESS_CONTACTS";
-    public static final String TRAN_ID_GET_BUS_CONTACT = "GET_BUSINESS_CONTACT";
-    public static final String TRAN_ID_GET_BUS_CONTACTS_USING_CRITERIA = "GET_BUSINESS_CONTACTS_USING_CRITERIA";
+
 
     public ContactEntityResource() {
         super("contacts", "entity");
@@ -45,20 +44,20 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TRAN_ID_GET_ALL_BUS_CONTACTS);
+        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET_ALL);
         req.setHeader(this.getHeader());
 
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_GET_ALL_BUS_CONTACTS, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET_ALL, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (AddressBookResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
             LOGGER.error(
-                    "Unable to route /contacts/entity/" + TRAN_ID_GET_ALL_BUS_CONTACTS + "/business to its destination",
+"Unable to route /contacts/entity//business to its destination",
                     e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
@@ -76,7 +75,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(businessId), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TRAN_ID_GET_BUS_CONTACT);
+        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET);
         req.setHeader(this.getHeader());
 
         // Validations
@@ -97,7 +96,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_GET_BUS_CONTACT, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -126,7 +125,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(usinessContactCriteria), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TRAN_ID_GET_BUS_CONTACTS_USING_CRITERIA);
+        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET_CRITERIA);
         req.setHeader(this.getHeader());
 
         // Setup business contact criteria. At least one criteria item is
@@ -197,7 +196,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(TRAN_ID_GET_BUS_CONTACTS_USING_CRITERIA, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET_CRITERIA, req);
             if (responseMsg != null && responseMsg instanceof MultimediaResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
