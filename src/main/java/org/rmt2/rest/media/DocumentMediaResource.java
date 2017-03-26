@@ -29,8 +29,11 @@ import com.util.RMT2String2;
 public class DocumentMediaResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger.getLogger(DocumentMediaResource.class);
 
-    public DocumentMediaResource(@PathParam("transaction") final String transaction) {
-        super("media", "document", transaction);
+    public static final String TRAN_ID_GET_CONTENT = "GET_CONTENT_ATTACHMENT";
+    public static final String TRAN_ID_SAVE_CONTENT = "SAVE_CONTENT_ATTACHMENT";
+
+    public DocumentMediaResource() {
+        super("media", "document");
     }
 
     /**
@@ -56,19 +59,22 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "contentId" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
+        this.getHeader().setTransaction(TRAN_ID_GET_CONTENT);
         req.setHeader(this.getHeader());
         req.setContentId(BigInteger.valueOf(contentId));
 
         // Route message to business server
         MultimediaResponse r = null;
+
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(this.transaction, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_GET_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Unable to route attachment/{contentId} to its destination", e);
+            LOGGER.error("Unable to route /media/document/attachment/" + contentId
+                    + " to its destination", e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
@@ -119,19 +125,22 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
+        this.getHeader().setTransaction(TRAN_ID_SAVE_CONTENT);
         req.setHeader(this.getHeader());
         req.getContent().add(content);
 
         // Route message to business server
         MultimediaResponse r = null;
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(this.transaction, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(TRAN_ID_SAVE_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Unable to route attachment/save to its destination", e);
+            LOGGER.error(
+                    "Unable to route /media/document/attachment/save to its destination",
+                    e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }

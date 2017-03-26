@@ -92,7 +92,7 @@ public class DocumentMediaResourceTest {
         when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
-        DocumentMediaResource srvc = new DocumentMediaResource("getContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
@@ -100,7 +100,7 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testGetContentWithInvalidId() {
-        DocumentMediaResource srvc = new DocumentMediaResource("getContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = null;
         try {
             srvc.fetchImageContent(TEST_INVALID_CONTENT_ID);
@@ -113,7 +113,7 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testGetContentBusinessServerUnavailable() {
-        DocumentMediaResource srvc = new DocumentMediaResource("getContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = null;
         try {
             srvc.fetchImageContent(TEST_CONTENT_ID);
@@ -136,7 +136,7 @@ public class DocumentMediaResourceTest {
         when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = srvc.saveImageContent(contentTypeParm);
         Object obj = resp.getEntity();
@@ -146,7 +146,7 @@ public class DocumentMediaResourceTest {
     @Test
     public void testSaveContentWithNullContentObject() {
         Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         try {
             resp = srvc.saveImageContent(null);
         } catch (WebApplicationException e) {
@@ -159,7 +159,7 @@ public class DocumentMediaResourceTest {
     @Test
     public void testSaveContentWithNullContentId() {
         Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(null, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         try {
             resp = srvc.saveImageContent(contentTypeParm);
@@ -173,7 +173,7 @@ public class DocumentMediaResourceTest {
     @Test
     public void testSaveContentWithNonZeroContentId() {
         Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(849L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         try {
             resp = srvc.saveImageContent(contentTypeParm);
@@ -187,7 +187,7 @@ public class DocumentMediaResourceTest {
     @Test
     public void testSaveContentWithNullBinaryContent() {
         Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", null, "/tmp/somefilepath/");
         try {
             resp = srvc.saveImageContent(contentTypeParm);
@@ -203,7 +203,7 @@ public class DocumentMediaResourceTest {
         ObjectFactory f = new ObjectFactory();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource("saveContent");
+        DocumentMediaResource srvc = new DocumentMediaResource();
         try {
             resp = srvc.saveImageContent(contentTypeParm);
         } catch (WebApplicationException e) {
