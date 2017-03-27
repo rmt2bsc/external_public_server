@@ -37,6 +37,10 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         super("contacts", "entity");
     }
 
+    /**
+     * 
+     * @return
+     */
     @GET
     @Path("business")
     @Produces(MediaType.APPLICATION_JSON)
@@ -68,6 +72,11 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         return Response.status(Status.OK).type(MediaType.APPLICATION_JSON_TYPE).entity(gson.toJson(r)).build();
     }
 
+    /**
+     * 
+     * @param businessId
+     * @return
+     */
     @GET
     @Path("business/{businessId}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -112,6 +121,22 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         return Response.status(Status.OK).type(MediaType.APPLICATION_JSON_TYPE).entity(gson.toJson(r)).build();
     }
 
+    /**
+     * 
+     * @param contactId
+     * @param businessIdList
+     * @param businessName
+     * @param entityType
+     * @param serviceType
+     * @param taxId
+     * @param contactFirstName
+     * @param contactLastName
+     * @param contactEmail
+     * @param city
+     * @param state
+     * @param zipcode
+     * @return
+     */
     @GET
     @Path("business/criteria")
     @Produces(MediaType.APPLICATION_JSON)
