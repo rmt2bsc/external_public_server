@@ -2,7 +2,6 @@ package org.rmt2.rest.media;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 import java.io.InputStream;
 import java.math.BigInteger;
@@ -15,45 +14,45 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.rmt2.jaxb.MimeContentType;
 import org.rmt2.jaxb.MultimediaRequest;
 import org.rmt2.jaxb.MultimediaResponse;
 import org.rmt2.jaxb.ObjectFactory;
+import org.rmt2.rest.BaseRestServiceTest;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
-import com.api.messaging.webservice.router.MessageRouterHelper;
 import com.util.RMT2Base64Encoder;
 import com.util.RMT2File;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ RMT2BaseRestResouce.class })
-public class DocumentMediaResourceTest {
+public class DocumentMediaResourceTest extends BaseRestServiceTest {
     private static final long TEST_CONTENT_ID = 7777;
     private static final long TEST_NEW_CONTENT_ID = 12345;
     private static final long TEST_INVALID_CONTENT_ID = 0;
     private static final String TEST_FILENAME = "pearl-weathered-leather-1600-1200.jpg";
 
-    private MessageRouterHelper mockMsgRouterHelper;
+    // private MessageRouterHelper mockMsgRouterHelper;
 
     @Before
     public void setUp() throws Exception {
+        super.setUp();
     }
 
     @After
     public void tearDown() throws Exception {
     }
 
-    private void setupMocks() {
-        this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
-        try {
-            whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // private void setupMocks() {
+    // this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
+    // try {
+    // whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    // }
 
     private MimeContentType createMockContentType(Long contentId, String appCode, String fileName, String filePath) {
         ObjectFactory f = new ObjectFactory();
@@ -82,7 +81,7 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testGetContentByIdSuccess() {
-        this.setupMocks();
+        // this.setupMocks();
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_CONTENT_ID, "ACCT", TEST_FILENAME,
@@ -126,7 +125,7 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testSaveContentSuccess() {
-        this.setupMocks();
+        // this.setupMocks();
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
@@ -200,7 +199,7 @@ public class DocumentMediaResourceTest {
 
     @Test
     public void testSaveContentBusinessServerUnavailable() {
-        ObjectFactory f = new ObjectFactory();
+        // ObjectFactory f = new ObjectFactory();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = null;
         DocumentMediaResource srvc = new DocumentMediaResource();
