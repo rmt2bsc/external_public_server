@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.core.MockRepository;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -33,5 +34,15 @@ public class BaseRestServiceTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Removes the MessageRouterHelper class from mock repository.
+     * <p>
+     * This is typically called when you want to exercise the "Server
+     * Unavailable" test scenario
+     */
+    protected void cancelMessageRouterHelperMock() {
+        MockRepository.remove(MessageRouterHelper.class);
     }
 }
