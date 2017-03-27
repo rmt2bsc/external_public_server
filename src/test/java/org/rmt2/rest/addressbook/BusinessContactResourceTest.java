@@ -2,12 +2,7 @@ package org.rmt2.rest.addressbook;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
 
-import java.io.InputStream;
-import java.math.BigInteger;
-
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
 import org.junit.After;
@@ -15,201 +10,178 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.rmt2.jaxb.MimeContentType;
+import org.rmt2.constants.ApiTransactionCodes;
+import org.rmt2.jaxb.AddressBookResponse;
+import org.rmt2.jaxb.AddressType;
+import org.rmt2.jaxb.BusinessType;
+import org.rmt2.jaxb.ContactDetailGroup;
+import org.rmt2.jaxb.HeaderType;
 import org.rmt2.jaxb.MultimediaRequest;
 import org.rmt2.jaxb.MultimediaResponse;
 import org.rmt2.jaxb.ObjectFactory;
+import org.rmt2.jaxb.ZipcodeType;
+import org.rmt2.rest.BaseRestServiceTest;
 import org.rmt2.rest.RMT2BaseRestResouce;
-import org.rmt2.rest.media.DocumentMediaResource;
-
-import com.api.messaging.webservice.router.MessageRouterHelper;
-import com.util.RMT2Base64Encoder;
-import com.util.RMT2File;
+import org.rmt2.util.HeaderTypeBuilder;
+import org.rmt2.util.addressbook.AddressTypeBuilder;
+import org.rmt2.util.addressbook.BusinessTypeBuilder;
+import org.rmt2.util.addressbook.ZipcodeTypeBuilder;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ RMT2BaseRestResouce.class })
-public class BusinessContactResourceTest {
-    private static final long TEST_CONTENT_ID = 7777;
-    private static final long TEST_NEW_CONTENT_ID = 12345;
-    private static final long TEST_INVALID_CONTENT_ID = 0;
-    private static final String TEST_FILENAME = "pearl-weathered-leather-1600-1200.jpg";
-
-    private MessageRouterHelper mockMsgRouterHelper;
+public class BusinessContactResourceTest extends BaseRestServiceTest {
+    private static final int BUSINESS_ID_1 = 77777;
+    private static final int BUSINESS_ID_2 = 88888;
+    private static final int BUSINESS_ID_3 = 99999;
+    private AddressBookResponse mockAllResponse;
+    private AddressBookResponse mockSingleResponse;
+    private AddressBookResponse mockCriteriaResponse;
 
     @Before
     public void setUp() throws Exception {
+        super.setUp();
+        this.mockAllResponse = this.createBusinessContactFetchAllResponse();
+        this.mockSingleResponse = this.createBusinessContactFetchSingleResponse();
+        this.mockCriteriaResponse = this.createBusinessContactFetchCriteriaResponse();
     }
 
     @After
     public void tearDown() throws Exception {
     }
 
-    private void setupMocks() {
-        this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
-        try {
-            whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private MimeContentType createMockContentType(Long contentId, String appCode, String fileName, String filePath) {
+    private AddressBookResponse createBusinessContactFetchAllResponse() {
         ObjectFactory f = new ObjectFactory();
-        MimeContentType ct = f.createMimeContentType();
-        ct.setAppCode(appCode);
-        ct.setContentId(contentId == null ? null : BigInteger.valueOf(contentId));
-        ct.setFilename(fileName);
-        ct.setFilepath(filePath);
-        // Set binary content
-        String imgContent = this.getImageContentTypeAsBase64String(fileName);
-        ct.setBinaryData(imgContent);
-        return ct;
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL).withUserId("rterrell").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddrId(1234).withAddressLine1("84394 Allan Ave")
+                .withBusinessId(BUSINESS_ID_1).withZipcode(zipcode).withPhoneMain("3186871234").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withBusinessId(BUSINESS_ID_1).withLongname("ABC Rentals").withContactFirstname("roy")
+                .withContactLastname("terrell").withTaxId("777777777").withContactEmail("royterrell@gte.net")
+                .withContactPhone("3189999999").withAddress(address).build();
+        contactGrp.getBusinessContacts().add(bus);
+
+        // Contact #2
+        ZipcodeType zipcode2 = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(75232)
+                .withCity("Dallas")
+                .withState("TX").withAreaCode("214").withCountyName("Dallas").build();
+        AddressType address2 = AddressTypeBuilder.Builder.create().withAddrId(2234).withAddressLine1("2343 Reynoldston")
+                .withBusinessId(BUSINESS_ID_2).withZipcode(zipcode2).withPhoneMain("2146789483").build();
+        BusinessTypeBuilder.Builder builder2 = BusinessTypeBuilder.Builder.create();
+        BusinessType bus2 = builder2.withBusinessId(BUSINESS_ID_2).withLongname("XYZ Club")
+                .withContactFirstname("terrance")
+                .withContactLastname("williams").withTaxId("999999999").withContactEmail("xyz@gmail.com")
+                .withContactPhone("9723455847").withAddress(address2).build();
+        contactGrp.getBusinessContacts().add(bus2);
+
+        // Contact #3
+        ZipcodeType zipcode3 = ZipcodeTypeBuilder.Builder.create().withZipId(75028).withZipcode(75028)
+                .withCity("Flower Mound").withState("TX").withAreaCode("972").withCountyName("Denton").build();
+        AddressType address3 = AddressTypeBuilder.Builder.create().withAddrId(3334)
+                .withAddressLine1("1079 W. Round Grove Rd.").withAddressLine2("Suite 300").withAddressLine3("P.O. 232")
+                .withBusinessId(BUSINESS_ID_3).withZipcode(zipcode3).withPhoneMain("9725673213").build();
+        BusinessTypeBuilder.Builder builder3 = BusinessTypeBuilder.Builder.create();
+        BusinessType bus3 = builder3.withBusinessId(BUSINESS_ID_3).withLongname("Dairy Queen")
+                .withContactFirstname("john").withContactLastname("holmes").withTaxId("123456783")
+                .withContactEmail("johnholmes@gmail.com").withContactPhone("2145556666").withAddress(address3).build();
+        contactGrp.getBusinessContacts().add(bus3);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
     }
 
-    private String getImageContentTypeAsBase64String(String fileName) {
-        String imgContent = null;
-        try {
-            InputStream is = ClassLoader.getSystemResourceAsStream(fileName);
-            byte contentBytes[] = RMT2File.getStreamByteData(is);
-            imgContent = RMT2Base64Encoder.encode(contentBytes);
-        } catch (Exception e) {
-            imgContent = null;
-        }
-        return imgContent;
+    private AddressBookResponse createBusinessContactFetchSingleResponse() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET).withUserId("jfoster").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddrId(1234).withAddressLine1("84394 Allan Ave")
+                .withBusinessId(BUSINESS_ID_1).withZipcode(zipcode).withPhoneMain("3186871234").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withBusinessId(BUSINESS_ID_1).withLongname("ABC Rentals").withContactFirstname("roy")
+                .withContactLastname("terrell").withTaxId("777777777").withContactEmail("royterrell@gte.net")
+                .withContactPhone("3189999999").withAddress(address).build();
+        contactGrp.getBusinessContacts().add(bus);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
+    }
+
+    private AddressBookResponse createBusinessContactFetchCriteriaResponse() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA).withUserId("jfoster").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddrId(1234).withAddressLine1("84394 Allan Ave")
+                .withBusinessId(BUSINESS_ID_1).withZipcode(zipcode).withPhoneMain("3186871234").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withBusinessId(BUSINESS_ID_1).withLongname("ABC Rentals").withContactFirstname("roy")
+                .withContactLastname("terrell").withTaxId("777777777").withContactEmail("royterrell@gte.net")
+                .withContactPhone("3189999999").withAddress(address).build();
+        contactGrp.getBusinessContacts().add(bus);
+
+        // Contact #2
+        ZipcodeType zipcode2 = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address2 = AddressTypeBuilder.Builder.create().withAddrId(4563).withAddressLine1("3875 Masters Dr")
+                .withBusinessId(BUSINESS_ID_2).withZipcode(zipcode2).withPhoneMain("31899955555").build();
+        BusinessTypeBuilder.Builder builder2 = BusinessTypeBuilder.Builder.create();
+        BusinessType bus2 = builder2.withBusinessId(BUSINESS_ID_2).withLongname("Big O's Seafood")
+                .withContactFirstname("frank").withContactLastname("footer").withTaxId("555364732")
+                .withContactEmail("frankfooter@gmail.com").withContactPhone("3183455847").withAddress(address2).build();
+        contactGrp.getBusinessContacts().add(bus2);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
+    }
+
+
+    @Test
+    public void testGetAllBusinessContactsSuccess() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+
+        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
+                .thenReturn(mockResponse);
+
+        Response resp = null;
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
     }
 
     @Test
     public void testGetContentByIdSuccess() {
-        this.setupMocks();
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
-        MimeContentType content = this.createMockContentType(TEST_CONTENT_ID, "ACCT", TEST_FILENAME,
-                "/tmp/somefilepath/");
-        mockResponse.setContent(content);
 
         when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testGetContentWithInvalidId() {
-        DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = null;
-        try {
-            srvc.fetchImageContent(TEST_INVALID_CONTENT_ID);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testGetContentBusinessServerUnavailable() {
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        Response resp = null;
-        try {
-            srvc.fetchImageContent(TEST_CONTENT_ID);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentSuccess() {
-        this.setupMocks();
-        ObjectFactory f = new ObjectFactory();
-        MultimediaResponse mockResponse = f.createMultimediaResponse();
-        MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
-                "/tmp/somefilepath/");
-        mockResponse.setContent(content);
-
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
-                .thenReturn(mockResponse);
-
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
-        Response resp = srvc.saveImageContent(contentTypeParm);
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentWithNullContentObject() {
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        try {
-            resp = srvc.saveImageContent(null);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentWithNullContentId() {
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        MimeContentType contentTypeParm = this.createMockContentType(null, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
-        try {
-            resp = srvc.saveImageContent(contentTypeParm);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentWithNonZeroContentId() {
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        MimeContentType contentTypeParm = this.createMockContentType(849L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
-        try {
-            resp = srvc.saveImageContent(contentTypeParm);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentWithNullBinaryContent() {
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", null, "/tmp/somefilepath/");
-        try {
-            resp = srvc.saveImageContent(contentTypeParm);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentBusinessServerUnavailable() {
-        ObjectFactory f = new ObjectFactory();
-        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        try {
-            resp = srvc.saveImageContent(contentTypeParm);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
