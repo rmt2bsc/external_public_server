@@ -27,7 +27,7 @@ import com.api.messaging.MessageRoutingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-@Path("/contacts/entity")
+@Path("/addressbook/entity")
 public class ContactEntityResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger
             .getLogger(ContactEntityResource.class);
