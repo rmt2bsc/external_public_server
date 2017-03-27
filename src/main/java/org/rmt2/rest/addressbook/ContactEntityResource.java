@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
-import org.rmt2.constants.TransId;
+import org.rmt2.constants.ApiTransactionCodes;
 import org.rmt2.jaxb.AddressBookRequest;
 import org.rmt2.jaxb.AddressBookResponse;
 import org.rmt2.jaxb.BusinessContactCriteria;
@@ -48,20 +48,19 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET_ALL);
+        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
         req.setHeader(this.getHeader());
 
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET_ALL, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (AddressBookResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error(
-"Unable to route /contacts/entity//business to its destination",
+            LOGGER.error("Unable to route /contacts/entity//business to its destination",
                     e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
@@ -84,7 +83,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(businessId), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET);
+        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
         req.setHeader(this.getHeader());
 
         // Validations
@@ -105,7 +104,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -150,7 +149,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(usinessContactCriteria), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(TransId.CONTACTS_BUSINESS_GET_CRITERIA);
+        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
         req.setHeader(this.getHeader());
 
         // Setup business contact criteria. At least one criteria item is
@@ -221,7 +220,7 @@ public class ContactEntityResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(TransId.CONTACTS_BUSINESS_GET_CRITERIA, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA, req);
             if (responseMsg != null && responseMsg instanceof MultimediaResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
