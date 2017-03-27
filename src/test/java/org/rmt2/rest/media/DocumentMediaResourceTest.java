@@ -34,8 +34,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
     private static final long TEST_INVALID_CONTENT_ID = 0;
     private static final String TEST_FILENAME = "pearl-weathered-leather-1600-1200.jpg";
 
-    // private MessageRouterHelper mockMsgRouterHelper;
-
     @Before
     public void setUp() throws Exception {
         super.setUp();
@@ -44,15 +42,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
     @After
     public void tearDown() throws Exception {
     }
-
-    // private void setupMocks() {
-    // this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
-    // try {
-    // whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
 
     private MimeContentType createMockContentType(Long contentId, String appCode, String fileName, String filePath) {
         ObjectFactory f = new ObjectFactory();
@@ -81,7 +70,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetContentByIdSuccess() {
-        // this.setupMocks();
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_CONTENT_ID, "ACCT", TEST_FILENAME,
@@ -112,6 +100,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetContentBusinessServerUnavailable() {
+        this.cancelMessageRouterHelperMock();
         DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = null;
         try {
@@ -125,7 +114,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testSaveContentSuccess() {
-        // this.setupMocks();
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
@@ -199,7 +187,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testSaveContentBusinessServerUnavailable() {
-        // ObjectFactory f = new ObjectFactory();
+        this.cancelMessageRouterHelperMock();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = null;
         DocumentMediaResource srvc = new DocumentMediaResource();
