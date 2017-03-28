@@ -1,6 +1,7 @@
 package org.rmt2.rest.addressbook;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 import javax.ws.rs.core.Response;
@@ -13,13 +14,12 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.rmt2.constants.ApiTransactionCodes;
+import org.rmt2.jaxb.AddressBookRequest;
 import org.rmt2.jaxb.AddressBookResponse;
 import org.rmt2.jaxb.AddressType;
 import org.rmt2.jaxb.BusinessType;
 import org.rmt2.jaxb.ContactDetailGroup;
 import org.rmt2.jaxb.HeaderType;
-import org.rmt2.jaxb.MultimediaRequest;
-import org.rmt2.jaxb.MultimediaResponse;
 import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.jaxb.ZipcodeType;
 import org.rmt2.rest.BaseRestServiceTest;
@@ -54,7 +54,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
     private AddressBookResponse createBusinessContactFetchAllResponse() {
         ObjectFactory f = new ObjectFactory();
         AddressBookResponse mockResponse = f.createAddressBookResponse();
-        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
                 .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL).withUserId("rterrell").build();
         mockResponse.setHeader(header);
 
@@ -103,7 +103,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
     private AddressBookResponse createBusinessContactFetchSingleResponse() {
         ObjectFactory f = new ObjectFactory();
         AddressBookResponse mockResponse = f.createAddressBookResponse();
-        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
                 .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET).withUserId("jfoster").build();
         mockResponse.setHeader(header);
 
@@ -127,7 +127,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
     private AddressBookResponse createBusinessContactFetchCriteriaResponse() {
         ObjectFactory f = new ObjectFactory();
         AddressBookResponse mockResponse = f.createAddressBookResponse();
-        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("addressbook").withModule("entity")
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
                 .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA).withUserId("jfoster").build();
         mockResponse.setHeader(header);
 
@@ -162,26 +162,34 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetAllBusinessContactsSuccess() {
-        ObjectFactory f = new ObjectFactory();
-        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL),
+                any(AddressBookRequest.class))).thenReturn(this.mockAllResponse);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
-                .thenReturn(mockResponse);
-
-        Response resp = null;
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = srvc.fetchBusinessContact();
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
 
     @Test
-    public void testGetContentByIdSuccess() {
-        ObjectFactory f = new ObjectFactory();
-        MultimediaResponse mockResponse = f.createMultimediaResponse();
+    public void testGetSingleBusinessContactsSuccess() {
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET),
+                any(AddressBookRequest.class))).thenReturn(this.mockSingleResponse);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
-                .thenReturn(mockResponse);
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = srvc.fetchBusinessContact(BUSINESS_ID_1);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
 
-        Response resp = null;
+    @Test
+    public void testGetBusinessContactsUsingCriteriaSuccess() {
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA),
+                any(AddressBookRequest.class))).thenReturn(this.mockCriteriaResponse);
+
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = srvc.fetchBusinessContact(null, null, null, null, null, null, null, null, null, null, null,
+                "71106");
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
