@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import org.rmt2.rest.accounting.AccountingEntityResource;
-import org.rmt2.rest.addressbook.ContactEntityResource;
+import org.rmt2.rest.addressbook.ContactProfileResource;
 import org.rmt2.rest.media.DocumentMediaResource;
 
 public class PublicGatewayServerApplication extends Application {
@@ -15,7 +15,7 @@ public class PublicGatewayServerApplication extends Application {
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         classes.add(AccountingEntityResource.class);
-        classes.add(ContactEntityResource.class);
+        classes.add(ContactProfileResource.class);
         classes.add(DocumentMediaResource.class);
         return classes;
     }
