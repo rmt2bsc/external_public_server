@@ -78,10 +78,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
-        // when(mockMsgRouterHelper.routeJsonMessage(any(String.class),
-        // any(MultimediaRequest.class)))
-        // .thenReturn(mockResponse);
-
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT))
                 .thenReturn(this.mockMessageRoutingInfo);
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
@@ -107,30 +103,12 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
     }
 
     @Test
-    public void testGetContentBusinessServerUnavailable() {
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        Response resp = null;
-        try {
-            this.cancelMessageRouterHelperMock();
-            srvc.fetchImageContent(TEST_CONTENT_ID);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
     public void testSaveContentSuccess() {
         ObjectFactory f = new ObjectFactory();
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
-
-        // when(mockMsgRouterHelper.routeJsonMessage(any(String.class),
-        // any(MultimediaRequest.class)))
-        // .thenReturn(mockResponse);
 
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
@@ -190,21 +168,6 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         Response resp = null;
         DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", null, "/tmp/somefilepath/");
-        try {
-            resp = srvc.saveImageContent(contentTypeParm);
-        } catch (WebApplicationException e) {
-            resp = e.getResponse();
-        }
-        Object obj = resp.getEntity();
-        Assert.assertNotNull(obj);
-    }
-
-    @Test
-    public void testSaveContentBusinessServerUnavailable() {
-        MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
-        Response resp = null;
-        DocumentMediaResource srvc = new DocumentMediaResource();
-        this.cancelMessageRouterHelperMock();
         try {
             resp = srvc.saveImageContent(contentTypeParm);
         } catch (WebApplicationException e) {
