@@ -4,6 +4,7 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.core.MockRepository;
@@ -63,5 +64,10 @@ public class BaseRestServiceTest {
      */
     protected void cancelMessageRouterHelperMock() {
         MockRepository.remove(MessageRouterHelper.class);
+    }
+
+    @Test
+    public void dummyTest() {
+
     }
 }
