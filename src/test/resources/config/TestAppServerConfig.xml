@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppServerConfig>
+
+        <!-- ******************************* -->
+	<!-- Application Properties          -->
+	<!-- ******************************* -->
+	<LoggerConfigPath>/tmp/AppServer/config/log4j.properties</LoggerConfigPath>
+	<ContainerManagedPool>true</ContainerManagedPool>
+        <PageLinkMax>10</PageLinkMax>
+	<PaginationPageSize>20</PaginationPageSize>
+	<PollingPage>/polling_wait_page.jsp</PollingPage>
+	<ProtocolInformation>http</ProtocolInformation>
+	<RemoteSrvcApp>ServiceDispatch</RemoteSrvcApp>
+	<RptFileExt>.xsl</RptFileExt>
+	<RptXsltPath>/reports</RptXsltPath>
+	<SerialDrive>c:</SerialDrive>
+	<SerialExt>.txt</SerialExt>
+	<SerialPath>\\temp\\</SerialPath>
+	<TimeoutInterval>1800</TimeoutInterval>
+	<WebAppMapping>AppCommandMappings</WebAppMapping>
+	<WebAppsDir>/Program Files/Apache Software Foundation/Tomcat 6.0/webapps</WebAppsDir>
+	<WebAppsDrive>c\:</WebAppsDrive>
+
+	
+	<!-- ******************************* -->
+	<!-- JVM System Properties           -->
+	<!-- ******************************* -->
+	<SystemProperties>
+	   <environment></environment>
+	   <soaphost>http://localhost:8080/server-external-webservices/services/web</soaphost>
+	   <SaxDriver>org.apache.xerces.parsers.SAXParser</SaxDriver>
+	   <EmailConfig>
+	       <Authentication>true</Authentication>
+	       <Defaultcontent>text/html</Defaultcontent>
+	       <HostPop3>incoming.verizon.net</HostPop3>
+	       <HostSmtp>outgoing.verizon.net</HostSmtp> 
+	       <InternalSmtpDomain>verizon.net</InternalSmtpDomain>
+	       <UserId>rmt2it</UserId> 
+	       <Password>drum7777</Password>
+	       <Resourcetype>file</Resourcetype>
+	       <TemplatePath>\\source\\dotcom5\\aviall\\resources\\templates\\</TemplatePath> 
+	   </EmailConfig>
+	   <ConsumerMsgHandlerMappingsKey>msg_handler_reg_pkg</ConsumerMsgHandlerMappingsKey>
+	   <ConsumerMsgHandlerMappingsLocation>org.rmt2.config.transactions</ConsumerMsgHandlerMappingsLocation>
+	</SystemProperties>
+	
+	<!-- ******************************************************************** -->
+	<!-- Configurators used to initialize individual Api environments.        -->
+	<!-- Each class must derive ApiConfigurator interface.                    -->
+	<!-- ******************************************************************** -->
+	<ApiConfigurators>
+	  <ApiConfigurator className="org.modules.AddressBookConfigurator"/>
+	  <ApiConfigurator className="org.modules.AccountingConfigurator"/>
+	  <ApiConfigurator className="org.modules.ProjectTrackerConfigurator"/>
+	  <ApiConfigurator className="org.modules.MediaConfigurator"/>
+	  <ApiConfigurator className="org.modules.SecurityConfigurator"/>
+	</ApiConfigurators>
+	
+	<!-- ******************************* -->
+	<!-- Messaging related configuration -->
+	<!-- ******************************* -->
+	<JaxbContexts>
+			<JaxbContext name="RMT2">org.rmt2.jaxb</JaxbContext>
+			<JaxbContext name="CONFIG">com.api.config.jaxb</JaxbContext>
+	</JaxbContexts>
+	<MessagingSystemsInfo>
+		<System>
+		    <Name>RMT2</Name>
+		    <UseJndi>true</UseJndi>
+		    <UseAuthentication>false</UseAuthentication>
+		    <InitialContextFactory>org.apache.activemq.jndi.ActiveMQInitialContextFactory</InitialContextFactory>
+		    <ConnectionFactory>ConnectionFactory</ConnectionFactory>
+		    <ProviderUrl>tcp://localhost:61616</ProviderUrl>
+		    <UserId>admin</UserId>
+		    <Password>admin</Password>
+		    <MaxConnectAttemps>30</MaxConnectAttemps>
+		    <ConnectAttemptInterval>30000</ConnectAttemptInterval>
+		</System>
+	</MessagingSystemsInfo>
+	<DestinationMappings>
+		<Destination>
+			<Rmt2Name>JMS_DEST_CONTACT_QUEUE</Rmt2Name>
+			<JndiName>Contacts</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+		<Destination>
+			<Rmt2Name>JMS_DEST_ACCOUNTING_QUEUE</Rmt2Name>
+			<JndiName>Accounting</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+		<Destination>
+			<Rmt2Name>JMS_DEST_PROJECTTRACKER_QUEUE</Rmt2Name>
+			<JndiName>ProjectTracker</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+ </DestinationMappings>
+ <ServiceRegistry>
+		<Service>
+			<Name>User Login</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>authentication</application>
+			<module>users</module>
+			<transaction>login</transaction>
+			<destination>queue.Authentication</destination>
+			<description>Functions to log user into system</description>
+			<secure>false</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>Get Business Records</Name>
+			<ServiceType>HTTP</ServiceType>
+			<application>addressbook</application>
+			<module>businesscontacts</module>
+			<transaction>getBusiness</transaction>
+			<destination>contacts/unsecureRequestProcessor/Services</destination>
+			<description>Retrieves Business Contact data by long name, tax id, and/or main phone number</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>Get Image Content</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>media</application>
+			<module>document</module>
+			<transaction>getContent</transaction>
+			<destination>multimedia</destination>
+			<description>Fetches images of documents from the MIME database</description>
+			<secure>false</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host>RMTDALDB01:8080</host>
+		</Service>
+		<Service>
+			<Name>Save Image Content</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>media</application>
+			<module>document</module>
+			<transaction>saveContent</transaction>
+			<destination>multimedia</destination>
+			<description>Saves image content to the MIME database</description>
+			<secure>false</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host>RMTDALDB01:8080</host>
+		</Service>
+	</ServiceRegistry>	
+</AppServerConfig>
