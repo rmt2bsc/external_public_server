@@ -23,6 +23,7 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
 import com.api.messaging.MessageRoutingException;
+import com.api.messaging.MessageRoutingInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,13 +48,14 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
-        req.setHeader(this.getHeader());
+        MessageRoutingInfo routeInfo = this.msgRouterHelper
+                .getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
+        req.setHeader(this.getHeader(routeInfo));
 
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -82,8 +84,8 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(businessId), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
-        req.setHeader(this.getHeader());
+        MessageRoutingInfo routeInfo = this.msgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
+        req.setHeader(this.getHeader(routeInfo));
 
         // Validations
         if (businessId <= 0) {
@@ -103,7 +105,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -148,8 +150,9 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(usinessContactCriteria), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        this.getHeader().setTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
-        req.setHeader(this.getHeader());
+        MessageRoutingInfo routeInfo = this.msgRouterHelper
+                .getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
+        req.setHeader(this.getHeader(routeInfo));
 
         // Setup business contact criteria. At least one criteria item is
         // required.
@@ -219,7 +222,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }

@@ -10,6 +10,7 @@ import org.powermock.core.MockRepository;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.api.messaging.MessageRoutingInfo;
 import com.api.messaging.webservice.router.MessageRouterHelper;
 
 @RunWith(PowerMockRunner.class)
@@ -17,9 +18,26 @@ import com.api.messaging.webservice.router.MessageRouterHelper;
 public class BaseRestServiceTest {
 
     protected MessageRouterHelper mockMsgRouterHelper;
+    protected MessageRoutingInfo mockMessageRoutingInfo;
+    // protected MessageRouterHelper msgRouterHelper;
 
     @Before
     public void setUp() throws Exception {
+        // /Users/royterrell/work/External_WebServices_Server
+        // String curDir = RMT2File.getCurrentDirectory();
+        // String configFile = curDir +
+        // "/src/test/resources/config/TestAppServerConfig.xml";
+        // SystemConfigurator sysConfig = new SystemConfigurator();
+        // try {
+        // sysConfig.start(configFile);
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+        //
+        // // This will force the Service Registry to be setup.
+        // msgRouterHelper = new MessageRouterHelper();
+
+        // Setup common mocks
         this.setupMocks();
     }
 
@@ -29,6 +47,7 @@ public class BaseRestServiceTest {
 
     private void setupMocks() {
         this.mockMsgRouterHelper = Mockito.mock(MessageRouterHelper.class);
+        this.mockMessageRoutingInfo = Mockito.mock(MessageRoutingInfo.class);
         try {
             whenNew(MessageRouterHelper.class).withNoArguments().thenReturn(this.mockMsgRouterHelper);
         } catch (Exception e) {

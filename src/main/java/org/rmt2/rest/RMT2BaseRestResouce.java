@@ -5,6 +5,7 @@ import org.rmt2.jaxb.HeaderType;
 import org.rmt2.jaxb.ObjectFactory;
 
 import com.RMT2Base;
+import com.api.messaging.MessageRoutingInfo;
 import com.api.messaging.webservice.router.MessageRouterHelper;
 
 /**
@@ -33,16 +34,23 @@ public class RMT2BaseRestResouce extends RMT2Base {
         logger.info("Contacting web service for: [Application ->" + app + ", Module->" + module + "]");
     }
 
+
     /**
      * Creates the header with application, module, and transaction values.
      * 
+     * @param routeInfo
+     *            instance of {@link MessageRoutingInfo}
      * @return {@link HeaderType}
      */
-    protected HeaderType getHeader() {
+    protected HeaderType getHeader(MessageRoutingInfo routeInfo) {
         ObjectFactory f = new ObjectFactory();
         HeaderType header = f.createHeaderType();
         header.setApplication(this.application);
         header.setModule(this.module);
+        if (routeInfo != null) {
+            header.setTransaction(routeInfo.getMessageId());
+            header.setRouting(routeInfo.getDestination());
+        }
         return header;
     }
 }

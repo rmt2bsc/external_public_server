@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.rmt2.constants.ApiTransactionCodes;
 import org.rmt2.jaxb.MimeContentType;
 import org.rmt2.jaxb.MultimediaRequest;
 import org.rmt2.jaxb.MultimediaResponse;
@@ -23,6 +24,7 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.BaseRestServiceTest;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
+import com.api.messaging.MessageRoutingInfo;
 import com.util.RMT2Base64Encoder;
 import com.util.RMT2File;
 
@@ -76,7 +78,13 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
+        // when(mockMsgRouterHelper.routeJsonMessage(any(String.class),
+        // any(MultimediaRequest.class)))
+        // .thenReturn(mockResponse);
+
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT))
+                .thenReturn(this.mockMessageRoutingInfo);
+        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource();
@@ -100,10 +108,10 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetContentBusinessServerUnavailable() {
-        this.cancelMessageRouterHelperMock();
         DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = null;
         try {
+            this.cancelMessageRouterHelperMock();
             srvc.fetchImageContent(TEST_CONTENT_ID);
         } catch (WebApplicationException e) {
             resp = e.getResponse();
@@ -120,9 +128,15 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(String.class), any(MultimediaRequest.class)))
+        // when(mockMsgRouterHelper.routeJsonMessage(any(String.class),
+        // any(MultimediaRequest.class)))
+        // .thenReturn(mockResponse);
+
+        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_SAVE_CONTENT))
+                .thenReturn(this.mockMessageRoutingInfo);
         DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = srvc.saveImageContent(contentTypeParm);
@@ -187,10 +201,10 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testSaveContentBusinessServerUnavailable() {
-        this.cancelMessageRouterHelperMock();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = null;
         DocumentMediaResource srvc = new DocumentMediaResource();
+        this.cancelMessageRouterHelperMock();
         try {
             resp = srvc.saveImageContent(contentTypeParm);
         } catch (WebApplicationException e) {

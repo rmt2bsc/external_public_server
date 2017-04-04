@@ -22,6 +22,7 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
 import com.api.messaging.MessageRoutingException;
+import com.api.messaging.MessageRoutingInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.util.RMT2String2;
@@ -59,15 +60,15 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "contentId" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        this.getHeader().setTransaction(ApiTransactionCodes.MEDIA_GET_CONTENT);
-        req.setHeader(this.getHeader());
+        MessageRoutingInfo routeInfo = this.msgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT);
+        req.setHeader(this.getHeader(routeInfo));
         req.setContentId(BigInteger.valueOf(contentId));
 
         // Route message to business server
         MultimediaResponse r = null;
 
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_GET_CONTENT, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
@@ -125,14 +126,14 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        this.getHeader().setTransaction(ApiTransactionCodes.MEDIA_SAVE_CONTENT);
-        req.setHeader(this.getHeader());
+        MessageRoutingInfo routeInfo = this.msgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_SAVE_CONTENT);
+        req.setHeader(this.getHeader(routeInfo));
         req.getContent().add(content);
 
         // Route message to business server
         MultimediaResponse r = null;
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_SAVE_CONTENT, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
