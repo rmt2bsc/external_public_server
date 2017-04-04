@@ -15,11 +15,13 @@ import com.util.RMT2String2;
  *
  */
 public class AppServerConfigurationTest {
-    protected static String APP_CONFIG_FILENAME = "/tmp/AppServer/config/RMT2AppServerConfig.xml";
+    protected static String APP_CONFIG_FILENAME;
 
     @Before
     public void setUp() throws Exception {
-
+        // /Users/royterrell/work/External_WebServices_Server
+        String curDir = RMT2File.getCurrentDirectory();
+        APP_CONFIG_FILENAME = curDir + "/src/test/resources/config/TestAppServerConfig.xml";
     }
 
     @After
