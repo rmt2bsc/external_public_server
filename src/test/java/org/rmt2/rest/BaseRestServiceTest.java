@@ -66,6 +66,24 @@ public class BaseRestServiceTest {
         MockRepository.remove(MessageRouterHelper.class);
     }
 
+    /**
+     * 
+     * @param appId
+     * @param moduleId
+     * @param transactionId
+     * @return
+     */
+    protected MessageRoutingInfo buildMockMessageRoutingInfo(String appId, String moduleId, String transactionId) {
+        MessageRoutingInfo mockMessageRoutingInfo = new MessageRoutingInfo();
+        mockMessageRoutingInfo.setApplicatoinId(appId);
+        mockMessageRoutingInfo.setModuleId(moduleId);
+        mockMessageRoutingInfo.setMessageId(transactionId);
+        mockMessageRoutingInfo.setDeliveryMode("SYNC");
+        mockMessageRoutingInfo.setDestination("TEST_QUEUE");
+        mockMessageRoutingInfo.setRouterType("JMS");
+        return mockMessageRoutingInfo;
+    }
+
     @Test
     public void dummyTest() {
 
