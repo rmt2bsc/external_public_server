@@ -112,11 +112,14 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("media", "document",
+                ApiTransactionCodes.MEDIA_SAVE_CONTENT);
+
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_SAVE_CONTENT))
-                .thenReturn(this.mockMessageRoutingInfo);
+                .thenReturn(mockRouteInfo);
         DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = srvc.saveImageContent(contentTypeParm);

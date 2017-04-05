@@ -163,15 +163,12 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetAllBusinessContactsSuccess() {
-        // MessageRoutingInfo routeInfo = this.msgRouterHelper
-        // .getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
-
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL))
-                .thenReturn(this.mockMessageRoutingInfo);
+                .thenReturn(mockRouteInfo);
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class),
                 any(AddressBookRequest.class))).thenReturn(this.mockAllResponse);
-        // when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL),
-        // any(AddressBookRequest.class))).thenReturn(this.mockAllResponse);
 
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact();
@@ -181,11 +178,10 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetSingleBusinessContactsSuccess() {
-        // when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET),
-        // any(AddressBookRequest.class))).thenReturn(this.mockSingleResponse);
-
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_GET);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET))
-                .thenReturn(this.mockMessageRoutingInfo);
+                .thenReturn(mockRouteInfo);
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
                 .thenReturn(this.mockSingleResponse);
         ContactProfileResource srvc = new ContactProfileResource();
@@ -196,11 +192,10 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
 
     @Test
     public void testGetBusinessContactsUsingCriteriaSuccess() {
-        // when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA),
-        // any(AddressBookRequest.class))).thenReturn(this.mockCriteriaResponse);
-
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA))
-                .thenReturn(this.mockMessageRoutingInfo);
+                .thenReturn(mockRouteInfo);
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
                 .thenReturn(this.mockCriteriaResponse);
         ContactProfileResource srvc = new ContactProfileResource();
