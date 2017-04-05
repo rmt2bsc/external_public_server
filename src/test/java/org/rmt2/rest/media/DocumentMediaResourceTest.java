@@ -78,8 +78,10 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 "/tmp/somefilepath/");
         mockResponse.setContent(content);
 
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("media", "document",
+                ApiTransactionCodes.MEDIA_GET_CONTENT);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT))
-                .thenReturn(this.mockMessageRoutingInfo);
+                .thenReturn(mockRouteInfo);
         when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
