@@ -11,8 +11,8 @@ import org.powermock.core.MockRepository;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.api.messaging.MessageRoutingInfo;
 import com.api.messaging.webservice.router.MessageRouterHelper;
+import com.api.messaging.webservice.router.MessageRoutingInfo;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ RMT2BaseRestResouce.class })

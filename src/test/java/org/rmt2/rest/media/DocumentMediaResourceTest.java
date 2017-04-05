@@ -24,7 +24,7 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.BaseRestServiceTest;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
-import com.api.messaging.MessageRoutingInfo;
+import com.api.messaging.webservice.router.MessageRoutingInfo;
 import com.util.RMT2Base64Encoder;
 import com.util.RMT2File;
 

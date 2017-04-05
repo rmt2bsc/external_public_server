@@ -28,7 +28,7 @@ import org.rmt2.util.addressbook.AddressTypeBuilder;
 import org.rmt2.util.addressbook.BusinessTypeBuilder;
 import org.rmt2.util.addressbook.ZipcodeTypeBuilder;
 
-import com.api.messaging.MessageRoutingInfo;
+import com.api.messaging.webservice.router.MessageRoutingInfo;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ RMT2BaseRestResouce.class })

@@ -22,8 +22,8 @@ import org.rmt2.jaxb.ContactCriteriaGroup;
 import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
-import com.api.messaging.MessageRoutingException;
-import com.api.messaging.MessageRoutingInfo;
+import com.api.messaging.webservice.router.MessageRoutingException;
+import com.api.messaging.webservice.router.MessageRoutingInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -48,20 +48,27 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = this.msgRouterHelper
-                .getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
+        MessageRoutingInfo routeInfo = null;
+        try {
+            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
+        } catch (MessageRoutingException e) {
+            this.msg = e.getMessage();
+            LOGGER.error("Unable to obtain routing information for all business contact request", e);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
         req.setHeader(this.getHeader(routeInfo));
 
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
+            Object response = this.routeMessage(routeInfo, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Unable to route /contacts/entity//business to its destination",
+            LOGGER.error("Server error routing all business contact request to its destination",
                     e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
@@ -84,7 +91,15 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(businessId), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = this.msgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
+        MessageRoutingInfo routeInfo = null;
+        try {
+            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
+        } catch (MessageRoutingException e) {
+            this.msg = e.getMessage();
+            LOGGER.error("Unable to obtain routing information for single business contact request", e);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
         req.setHeader(this.getHeader(routeInfo));
 
         // Validations
@@ -105,13 +120,13 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
+            Object response = this.routeMessage(routeInfo, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Unable to route /contacts/entity/business/" + businessId + " to its destination", e);
+            LOGGER.error("Server error routing single business contact request to its destination", e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
@@ -150,8 +165,15 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(usinessContactCriteria), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = this.msgRouterHelper
-                .getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
+        MessageRoutingInfo routeInfo = null;
+        try {
+            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
+        } catch (MessageRoutingException e) {
+            this.msg = e.getMessage();
+            LOGGER.error("Unable to obtain routing information for business contact request with selection criteria", e);
+            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
+                    .entity(this.msg).build());
+        }
         req.setHeader(this.getHeader(routeInfo));
 
         // Setup business contact criteria. At least one criteria item is
@@ -222,13 +244,13 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(routeInfo, req);
+            Object responseMsg = this.routeMessage(routeInfo, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Unable to route /contacts/entity/business/criteria to its destination", e);
+            LOGGER.error("Server error for business contact request with selectin criteria", e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
