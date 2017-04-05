@@ -1,5 +1,7 @@
 package org.rmt2.rest;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.rmt2.jaxb.HeaderType;
 import org.rmt2.jaxb.ObjectFactory;
@@ -7,6 +9,7 @@ import org.rmt2.jaxb.ObjectFactory;
 import com.RMT2Base;
 import com.api.messaging.MessageRoutingInfo;
 import com.api.messaging.webservice.router.MessageRouterHelper;
+import com.util.RMT2Date;
 
 /**
  * Common REST resource processor which functions to identify and setup
@@ -47,9 +50,13 @@ public class RMT2BaseRestResouce extends RMT2Base {
         HeaderType header = f.createHeaderType();
         header.setApplication(this.application);
         header.setModule(this.module);
+        header.setMessageMode("REQUEST");
+        header.setDeliveryDate(RMT2Date.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
         if (routeInfo != null) {
             header.setTransaction(routeInfo.getMessageId());
-            header.setRouting(routeInfo.getDestination());
+            header.setRouting(routeInfo.getRouterType() + ": " + routeInfo.getDestination());
+            header.setDeliveryMode(routeInfo.getDeliveryMode());
+
         }
         return header;
     }
