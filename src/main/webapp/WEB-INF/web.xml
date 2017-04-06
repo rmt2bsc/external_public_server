@@ -27,7 +27,7 @@
 		</init-param>
 		<init-param>
 			<param-name>AppServerConfigSource</param-name>
-			<param-value>/tmp/AppServer/config/RMT2AppServerConfig.xml</param-value>
+			<param-value>/AppServer/config/RMT2AppServerConfig.xml</param-value>
 		</init-param>
 		<init-param>
 			<param-name>JmsProviderUrl</param-name>
