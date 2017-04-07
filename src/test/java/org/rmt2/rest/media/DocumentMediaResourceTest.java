@@ -8,6 +8,7 @@ import java.math.BigInteger;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -87,6 +88,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
 
         DocumentMediaResource srvc = new DocumentMediaResource();
         Response resp = srvc.fetchImageContent(TEST_CONTENT_ID);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -100,6 +102,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         } catch (WebApplicationException e) {
             resp = e.getResponse();
         }
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -123,6 +126,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");
         Response resp = srvc.saveImageContent(contentTypeParm);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -136,6 +140,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         } catch (WebApplicationException e) {
             resp = e.getResponse();
         }
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -150,6 +155,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         } catch (WebApplicationException e) {
             resp = e.getResponse();
         }
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -164,6 +170,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         } catch (WebApplicationException e) {
             resp = e.getResponse();
         }
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -178,6 +185,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         } catch (WebApplicationException e) {
             resp = e.getResponse();
         }
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
