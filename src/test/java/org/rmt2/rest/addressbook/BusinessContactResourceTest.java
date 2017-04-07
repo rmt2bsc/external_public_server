@@ -160,6 +160,92 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         return mockResponse;
     }
 
+    private AddressBookResponse createBusinessContactAddResponse() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_ADD).withUserId("jfoster").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        BusinessType bus = this.createAddBusinessContactType();
+        contactGrp.getBusinessContacts().add(bus);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
+    }
+
+    private AddressBookResponse createBusinessContactDeleteResponse() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE).withUserId("jfoster").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        BusinessType bus = this.createDeleteBusinessContactType();
+        contactGrp.getBusinessContacts().add(bus);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
+    }
+
+    private AddressBookResponse createBusinessContactUpdateResponse() {
+        ObjectFactory f = new ObjectFactory();
+        AddressBookResponse mockResponse = f.createAddressBookResponse();
+        HeaderType header = HeaderTypeBuilder.Builder.create().withApplication("contacts").withModule("profile")
+                .withTransaction(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE).withUserId("jfoster").build();
+        mockResponse.setHeader(header);
+
+        ContactDetailGroup contactGrp = f.createContactDetailGroup();
+
+        // Contact #1
+        BusinessType bus = this.createUpdateBusinessContactType();
+        contactGrp.getBusinessContacts().add(bus);
+
+        mockResponse.setProfile(contactGrp);
+        return mockResponse;
+    }
+
+    private BusinessType createAddBusinessContactType() {
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddressLine1("84394 Allan Ave")
+                .withZipcode(zipcode).withPhoneMain("3186871234").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withLongname("ABC Rentals").withContactFirstname("roy")
+                .withContactLastname("terrell").withTaxId("777777777").withContactEmail("royterrell@gte.net")
+                .withContactPhone("3189999999").withAddress(address).build();
+        return bus;
+    }
+
+    private BusinessType createDeleteBusinessContactType() {
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(71106).withZipcode(71106)
+                .withCity("Shreveport").withState("LA").withAreaCode("318").withCountyName("Caddo").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddrId(1234).withAddressLine1("84394 Allan Ave")
+                .withBusinessId(BUSINESS_ID_1).withZipcode(zipcode).withPhoneMain("3186871234").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withBusinessId(BUSINESS_ID_1).withLongname("ABC Rentals").withContactFirstname("roy")
+                .withContactLastname("terrell").withTaxId("777777777").withContactEmail("royterrell@gte.net")
+                .withContactPhone("3189999999").withAddress(address).build();
+        return bus;
+    }
+
+    private BusinessType createUpdateBusinessContactType() {
+        ZipcodeType zipcode = ZipcodeTypeBuilder.Builder.create().withZipId(75028).withZipcode(75028).withCity("Dallas")
+                .withState("TX").withAreaCode("214").withCountyName("Dallas").build();
+        AddressType address = AddressTypeBuilder.Builder.create().withAddrId(1234).withAddressLine1("84394 Allan Ave")
+                .withBusinessId(BUSINESS_ID_1).withZipcode(zipcode).withPhoneMain("2149999999").build();
+        BusinessTypeBuilder.Builder builder = BusinessTypeBuilder.Builder.create();
+        BusinessType bus = builder.withBusinessId(BUSINESS_ID_1).withLongname("RMT2 Business Systems Corp")
+                .withContactFirstname("roy").withContactLastname("terrell").withTaxId("12-3456789")
+                .withContactEmail("royterrell@gte.net").withContactPhone("2149999999").withAddress(address).build();
+        return bus;
+    }
 
     @Test
     public void testGetAllBusinessContactsSuccess() {
@@ -201,6 +287,52 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact(null, null, null, null, null, null, null, null, null, null, null,
                 "71106");
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testAddBusinessContactSuccess() {
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_ADD);
+        AddressBookResponse mockAddResponse = this.createBusinessContactAddResponse();
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_ADD)).thenReturn(mockRouteInfo);
+        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+                .thenReturn(mockAddResponse);
+        ContactProfileResource srvc = new ContactProfileResource();
+        BusinessType mockProfile = this.createAddBusinessContactType();
+        Response resp = srvc.addBusinessContact(mockProfile);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testUpdateBusinessContactSuccess() {
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE);
+        AddressBookResponse mockAddResponse = this.createBusinessContactUpdateResponse();
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE))
+                .thenReturn(mockRouteInfo);
+        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+                .thenReturn(mockAddResponse);
+        ContactProfileResource srvc = new ContactProfileResource();
+        BusinessType mockProfile = this.createUpdateBusinessContactType();
+        Response resp = srvc.updateBusinessContact(BUSINESS_ID_1, mockProfile);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testDeleteBusinessContactSuccess() {
+        MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("contacts", "profile",
+                ApiTransactionCodes.CONTACTS_BUSINESS_DELETE);
+        AddressBookResponse mockAddResponse = this.createBusinessContactDeleteResponse();
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE))
+                .thenReturn(mockRouteInfo);
+        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+                .thenReturn(mockAddResponse);
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = srvc.deleteBusinessContact(BUSINESS_ID_1);
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
