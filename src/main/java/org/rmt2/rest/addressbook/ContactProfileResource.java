@@ -42,12 +42,12 @@ import com.util.assistants.VerifyException;
  * @author Roy Terrell
  *
  */
-@Path("/contacts/profile")
+@Path("/addressbook/profile")
 public class ContactProfileResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger.getLogger(ContactProfileResource.class);
 
     public ContactProfileResource() {
-        super("contacts", "profile");
+        super("addressbook", "profile");
     }
 
     /**
