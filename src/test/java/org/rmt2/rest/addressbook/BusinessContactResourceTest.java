@@ -3,7 +3,9 @@ package org.rmt2.rest.addressbook;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -258,6 +260,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
 
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact();
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -272,6 +275,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 .thenReturn(this.mockSingleResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact(BUSINESS_ID_1);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -287,6 +291,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact(null, null, null, null, null, null, null, null, null, null, null,
                 "71106");
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
     }
@@ -302,8 +307,25 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         ContactProfileResource srvc = new ContactProfileResource();
         BusinessType mockProfile = this.createAddBusinessContactType();
         Response resp = srvc.addBusinessContact(mockProfile);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testAddBusinessContactWithNullProfile() {
+        ContactProfileResource srvc = new ContactProfileResource();
+        BusinessType mockProfile = null;
+        Response resp = null;
+        try {
+            srvc.addBusinessContact(mockProfile);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Assert.assertNotNull(resp);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
     }
 
     @Test
@@ -318,8 +340,39 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         ContactProfileResource srvc = new ContactProfileResource();
         BusinessType mockProfile = this.createUpdateBusinessContactType();
         Response resp = srvc.updateBusinessContact(BUSINESS_ID_1, mockProfile);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testUpdateBusinessContactWithInvalidBusinessId() {
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = null;
+        try {
+            srvc.updateBusinessContact(0, null);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Assert.assertNotNull(resp);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
+    }
+
+    @Test
+    public void testUpdateBusinessContactWithNullProfile() {
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = null;
+        try {
+            srvc.updateBusinessContact(BUSINESS_ID_1, null);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Assert.assertNotNull(resp);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
     }
 
     @Test
@@ -333,7 +386,23 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 .thenReturn(mockAddResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.deleteBusinessContact(BUSINESS_ID_1);
+        Assert.assertEquals(Status.OK.getStatusCode(), resp.getStatus());
         Object obj = resp.getEntity();
         Assert.assertNotNull(obj);
+    }
+
+    @Test
+    public void testDeleteBusinessContactwithInvalidBusinessId() {
+        ContactProfileResource srvc = new ContactProfileResource();
+        Response resp = null;
+        try {
+            srvc.deleteBusinessContact(0);
+        } catch (WebApplicationException e) {
+            resp = e.getResponse();
+        }
+        Assert.assertNotNull(resp);
+        Object obj = resp.getEntity();
+        Assert.assertNotNull(obj);
+        Assert.assertEquals(Status.BAD_REQUEST.getStatusCode(), resp.getStatus());
     }
 }
