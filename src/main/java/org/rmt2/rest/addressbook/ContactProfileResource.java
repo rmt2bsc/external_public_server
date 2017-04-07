@@ -453,7 +453,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookRequest req = f.createAddressBookRequest();
         MessageRoutingInfo routeInfo = null;
         try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE);
+            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE);
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
             LOGGER.error("Unable to obtain routing information for business contact DELETE request", e);
