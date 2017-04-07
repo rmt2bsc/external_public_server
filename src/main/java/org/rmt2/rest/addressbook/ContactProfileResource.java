@@ -387,6 +387,10 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
                     .entity(this.msg).build());
         }
 
+        // Ensure that business id assoicated with "profile" is the same as the
+        // path param, business id.
+        profile.setBusinessId(BigInteger.valueOf(businessId));
+
         // Build request
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
