@@ -77,68 +77,131 @@
 		    <ConnectAttemptInterval>30000</ConnectAttemptInterval>
 		</System>
 	</MessagingSystemsInfo>
-	<DestinationMappings>
+  <DestinationMappings>
 		<Destination>
-			<Rmt2Name>JMS_DEST_CONTACT_QUEUE</Rmt2Name>
-			<JndiName>Contacts</JndiName>
+			<Rmt2Name>JMS_P2P_ADDRESSBOOK_DEST</Rmt2Name>
+			<JndiName>addressbook-p2p-dest</JndiName>
 			<ContainSuffix>false</ContainSuffix>
 		</Destination>
 		<Destination>
-			<Rmt2Name>JMS_DEST_ACCOUNTING_QUEUE</Rmt2Name>
-			<JndiName>Accounting</JndiName>
+			<Rmt2Name>JMS_PUBSUB_ADDRESSBOOK_DEST</Rmt2Name>
+			<JndiName>addressbook-pubsub-dest</JndiName>
 			<ContainSuffix>false</ContainSuffix>
 		</Destination>
 		<Destination>
-			<Rmt2Name>JMS_DEST_PROJECTTRACKER_QUEUE</Rmt2Name>
-			<JndiName>ProjectTracker</JndiName>
+			<Rmt2Name>JMS_P2P_ACCOUNTING_DEST</Rmt2Name>
+			<JndiName>accounting-p2p-dest</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+		<Destination>
+			<Rmt2Name>JMS_P2P_PROJECTTRACKER_DEST</Rmt2Name>
+			<JndiName>projecttracker-p2p-dest</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+		<Destination>
+			<Rmt2Name>JMS_P2P_MEDIA_DEST</Rmt2Name>
+			<JndiName>media-p2p-dest</JndiName>
+			<ContainSuffix>false</ContainSuffix>
+		</Destination>
+		<Destination>
+			<Rmt2Name>JMS_P2P_SECURITY_DEST</Rmt2Name>
+			<JndiName>security-p2p-dest</JndiName>
 			<ContainSuffix>false</ContainSuffix>
 		</Destination>
  </DestinationMappings>
  <ServiceRegistry>
 		<Service>
-			<Name>User Login</Name>
+			<Name>get-all-business-contacts</Name>
 			<ServiceType>JMS</ServiceType>
-			<application>authentication</application>
-			<module>users</module>
-			<transaction>login</transaction>
-			<destination>queue.Authentication</destination>
-			<description>Functions to log user into system</description>
-			<secure>false</secure>
-			<deliveryMode>SYNC</deliveryMode>
-			<host></host>
-		</Service>
-		<Service>
-			<Name>Get Business Records</Name>
-			<ServiceType>HTTP</ServiceType>
 			<application>addressbook</application>
-			<module>businesscontacts</module>
-			<transaction>getBusiness</transaction>
-			<destination>contacts/unsecureRequestProcessor/Services</destination>
-			<description>Retrieves Business Contact data by long name, tax id, and/or main phone number</description>
+			<module>profile</module>
+			<transaction>GET_ALL_BUSINESS_CONTACTS</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Retrieves all Business Contact profiles</description>
 			<secure>true</secure>
 			<deliveryMode>SYNC</deliveryMode>
 			<host></host>
 		</Service>
 		<Service>
-			<Name>Get Image Content</Name>
+			<Name>get-single-business-contacts</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>addressbook</application>
+			<module>profile</module>
+			<transaction>GET_BUSINESS_CONTACT</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Retrieves a single Business Contact profile</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>get-business-contacts-by-criteria</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>addressbook</application>
+			<module>profile</module>
+			<transaction>GET_BUSINESS_CONTACTS_USING_CRITERIA</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Retrieves Business Contact profile(s) using one or more selection criteria</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>add-business-contact</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>addressbook</application>
+			<module>profile</module>
+			<transaction>ADD_BUSINESS_CONTACT</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Adds a business contact profile</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>update-business-contact</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>addressbook</application>
+			<module>profile</module>
+			<transaction>UPDATE_BUSINESS_CONTACT</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Update a business contact profile</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>delete-business-contact</Name>
+			<ServiceType>JMS</ServiceType>
+			<application>addressbook</application>
+			<module>profile</module>
+			<transaction>DELETE_BUSINESS_CONTACT</transaction>
+			<destination>JMS_P2P_ADDRESSBOOK_DEST</destination>
+			<description>Delete a business contact profile</description>
+			<secure>true</secure>
+			<deliveryMode>SYNC</deliveryMode>
+			<host></host>
+		</Service>
+		<Service>
+			<Name>get-document-content</Name>
 			<ServiceType>JMS</ServiceType>
 			<application>media</application>
 			<module>document</module>
-			<transaction>getContent</transaction>
-			<destination>multimedia</destination>
-			<description>Fetches images of documents from the MIME database</description>
+			<transaction>GET_CONTENT_ATTACHMENT</transaction>
+			<destination>JMS_P2P_MEDIA_DEST</destination>
+			<description>Fetches the content of a single document</description>
 			<secure>false</secure>
 			<deliveryMode>SYNC</deliveryMode>
 			<host>RMTDALDB01:8080</host>
 		</Service>
 		<Service>
-			<Name>Save Image Content</Name>
+			<Name>save-document-content</Name>
 			<ServiceType>JMS</ServiceType>
 			<application>media</application>
 			<module>document</module>
-			<transaction>saveContent</transaction>
-			<destination>multimedia</destination>
-			<description>Saves image content to the MIME database</description>
+			<transaction>SAVE_CONTENT_ATTACHMENT</transaction>
+			<destination>JMS_DEST_MEDIA_DEST</destination>
+			<description>Save the content of a single document</description>
 			<secure>false</secure>
 			<deliveryMode>SYNC</deliveryMode>
 			<host>RMTDALDB01:8080</host>
