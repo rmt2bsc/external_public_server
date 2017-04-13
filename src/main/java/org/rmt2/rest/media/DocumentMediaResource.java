@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.util.RMT2String2;
 
-@Path("/media/document/{transaction}")
+@Path("/media/document")
 public class DocumentMediaResource extends RMT2BaseRestResouce {
     private static final Logger LOGGER = Logger.getLogger(DocumentMediaResource.class);
 
