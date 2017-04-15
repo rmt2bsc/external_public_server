@@ -1,8 +1,6 @@
 # Web Services Public Server
 The application server providing public access to RMT2 system.  This server currently supports SOAP and REST bases web services. Currently, the web services are deployed to a Tomcat servlet container which is bound to Servlet 3.0 specification.  The SOAP engine is based off a RMT2 custom implementation.  The REST services uses Jersey 2.25 implementation of JAX-RS.
 
-This application is required to be deployed to *Apache Tomcat* 7.0 or greater container.
-
 **Application Configuration**
 
 1. Web Application Configurator
