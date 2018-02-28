@@ -22,7 +22,6 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
 import com.api.messaging.webservice.router.MessageRoutingException;
-import com.api.messaging.webservice.router.MessageRoutingInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.util.RMT2String2;
@@ -60,23 +59,14 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "contentId" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.MEDIA_GET_CONTENT);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for single attachment content fetch request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
         req.setContentId(BigInteger.valueOf(contentId));
 
         // Route message to business server
         MultimediaResponse r = null;
 
         try {
-            Object response = this.routeMessage(routeInfo, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_GET_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
@@ -133,22 +123,13 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.MEDIA_SAVE_CONTENT);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for single attachment content save request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
         req.getContent().add(content);
 
         // Route message to business server
         MultimediaResponse r = null;
         try {
-            Object response = this.routeMessage(routeInfo, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_SAVE_CONTENT, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }

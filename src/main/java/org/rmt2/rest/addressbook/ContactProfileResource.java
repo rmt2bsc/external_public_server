@@ -30,7 +30,6 @@ import org.rmt2.rest.RMT2BaseRestResouce;
 import org.rmt2.util.addressbook.BusinessTypeBuilder;
 
 import com.api.messaging.webservice.router.MessageRoutingException;
-import com.api.messaging.webservice.router.MessageRoutingInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.util.assistants.Verifier;
@@ -63,21 +62,12 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for all business contact request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.routeMessage(routeInfo, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -108,16 +98,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact(businessId), was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for single business contact request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         // Validations
         if (businessId <= 0) {
@@ -137,7 +118,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.routeMessage(routeInfo, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -196,16 +177,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         LOGGER.info("REST method, fetchBusinessContact with selection criteria was called");
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for business contact request with selection criteria", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         // Setup business contact criteria. At least one criteria item is
         // required.
@@ -275,7 +247,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.routeMessage(routeInfo, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -318,16 +290,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         // Build request
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_ADD);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for business contact ADD request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         ContactDetailGroup contactGrp = f.createContactDetailGroup();
         contactGrp.getBusinessContacts().add(profile);
@@ -336,7 +299,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.routeMessage(routeInfo, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_ADD, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -394,16 +357,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         // Build request
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for business contact UPDATE request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         ContactDetailGroup contactGrp = f.createContactDetailGroup();
         contactGrp.getBusinessContacts().add(profile);
@@ -412,7 +366,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.routeMessage(routeInfo, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -455,16 +409,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         // Build request
         ObjectFactory f = new ObjectFactory();
         AddressBookRequest req = f.createAddressBookRequest();
-        MessageRoutingInfo routeInfo = null;
-        try {
-            routeInfo = this.getRouting(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE);
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Unable to obtain routing information for business contact DELETE request", e);
-            throw new WebApplicationException(Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE)
-                    .entity(this.msg).build());
-        }
-        req.setHeader(this.getHeader(routeInfo));
+        req.setHeader(this.getHeader());
 
         BusinessType profile = BusinessTypeBuilder.Builder.create().withBusinessId(Long.valueOf(businessId).intValue())
                 .build();
@@ -475,7 +420,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.routeMessage(routeInfo, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
