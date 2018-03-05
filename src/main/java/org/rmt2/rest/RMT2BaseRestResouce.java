@@ -3,12 +3,12 @@ package org.rmt2.rest;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+import org.rmt2.constants.ApiHeaderNames;
 import org.rmt2.jaxb.HeaderType;
-import org.rmt2.jaxb.ObjectFactory;
+import org.rmt2.util.HeaderTypeBuilder;
 
 import com.RMT2Base;
 import com.api.messaging.webservice.router.MessageRouterHelper;
-import com.util.RMT2Date;
 
 /**
  * Common REST resource processor which functions to identify and setup
@@ -43,18 +43,17 @@ public class RMT2BaseRestResouce extends RMT2Base {
      * @return {@link HeaderType}
      */
     protected HeaderType getHeader() {
-        ObjectFactory f = new ObjectFactory();
-        HeaderType header = f.createHeaderType();
-        header.setApplication(this.application);
-        header.setModule(this.module);
-        header.setMessageMode("REQUEST");
-        header.setDeliveryDate(RMT2Date.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return HeaderTypeBuilder.Builder.create()
+                .withApplication(this.application)
+                .withModule(this.module)
+                .withMessageMode(ApiHeaderNames.MESSAGE_MODE_REQUEST)
+                .withDeliveryDate(new Date())
+                
+                // Set these header elements with dummy values in order to be properly assigned later.
+                .withTransaction(ApiHeaderNames.DUMMY_HEADER_VALUE)
+                .withRouting(ApiHeaderNames.DUMMY_HEADER_VALUE)
+                .withDeliveryMode(ApiHeaderNames.DUMMY_HEADER_VALUE).build();
         
-        // Set these header elements with dummy values in order to be properly assigned later.
-        header.setTransaction("xxxxxxx");
-        header.setRouting("xxxxxxx");
-        header.setDeliveryMode("xxxxxxx");
-        return header;
     }
     
 }
