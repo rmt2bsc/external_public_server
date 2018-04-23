@@ -56,7 +56,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         ct.setFilepath(filePath);
         // Set binary content
         String imgContent = this.getImageContentTypeAsBase64String(fileName);
-        ct.setBinaryData(imgContent);
+        ct.setBinaryData("ImageData".getBytes());
         return ct;
     }
 

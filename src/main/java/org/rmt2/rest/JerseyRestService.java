@@ -10,11 +10,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.rmt2.jaxb.AddressBookRequest;
-import org.rmt2.jaxb.BusinessContactCriteria;
-import org.rmt2.jaxb.ContactCriteriaGroup;
-import org.rmt2.jaxb.HeaderType;
-import org.rmt2.jaxb.ObjectFactory;
+import org.rmt2.jaxbtest.AddressBookRequest;
+import org.rmt2.jaxbtest.BusinessContactCriteria;
+import org.rmt2.jaxbtest.ContactCriteriaGroup;
+import org.rmt2.jaxbtest.HeaderType;
+import org.rmt2.jaxbtest.ObjectFactory;
 
 @Path("/jsonServices")
 public class JerseyRestService {

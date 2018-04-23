@@ -24,7 +24,8 @@ import org.rmt2.rest.RMT2BaseRestResouce;
 import com.api.messaging.webservice.router.MessageRoutingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.util.RMT2String2;
+import com.util.assistants.Verifier;
+import com.util.assistants.VerifyException;
 
 @Path("/media/document")
 public class DocumentMediaResource extends RMT2BaseRestResouce {
@@ -114,12 +115,16 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
             throw new WebApplicationException(
                     Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
-        if (content.getBinaryData() == null || RMT2String2.isEmpty(content.getBinaryData())) {
+        try {
+            Verifier.verifyNotEmpty(content.getBinaryData());
+        }
+        catch (VerifyException e) {
             this.msg = "Binary content is required";
             LOGGER.error(this.msg);
             throw new WebApplicationException(
                     Response.status(Status.BAD_REQUEST).type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
+
         // Create multimedia request object with "content" param
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
