@@ -1,6 +1,7 @@
 package org.rmt2.rest.media;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
@@ -55,7 +56,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         ct.setFilepath(filePath);
         // Set binary content
         String imgContent = this.getImageContentTypeAsBase64String(fileName);
-        ct.setBinaryData(imgContent);
+        ct.setBinaryData("ImageData".getBytes());
         return ct;
     }
 
@@ -83,7 +84,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
                 ApiTransactionCodes.MEDIA_GET_CONTENT);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_GET_CONTENT), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource();
@@ -118,7 +119,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("media", "document",
                 ApiTransactionCodes.MEDIA_SAVE_CONTENT);
 
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(MultimediaRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_SAVE_CONTENT), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_SAVE_CONTENT))

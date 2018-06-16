@@ -1,6 +1,7 @@
 package org.rmt2.rest.addressbook;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 import javax.ws.rs.WebApplicationException;
@@ -255,7 +256,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class),
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL),
                 any(AddressBookRequest.class))).thenReturn(this.mockAllResponse);
 
         ContactProfileResource srvc = new ContactProfileResource();
@@ -271,7 +272,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 ApiTransactionCodes.CONTACTS_BUSINESS_GET);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET), any(AddressBookRequest.class)))
                 .thenReturn(this.mockSingleResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact(BUSINESS_ID_1);
@@ -286,7 +287,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA);
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA), any(AddressBookRequest.class)))
                 .thenReturn(this.mockCriteriaResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.fetchBusinessContact(null, null, null, null, null, null, null, null, null, null, null,
@@ -302,7 +303,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
                 ApiTransactionCodes.CONTACTS_BUSINESS_ADD);
         AddressBookResponse mockAddResponse = this.createBusinessContactAddResponse();
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_ADD)).thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_ADD), any(AddressBookRequest.class)))
                 .thenReturn(mockAddResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         BusinessType mockProfile = this.createAddBusinessContactType();
@@ -335,7 +336,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         AddressBookResponse mockAddResponse = this.createBusinessContactUpdateResponse();
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE), any(AddressBookRequest.class)))
                 .thenReturn(mockAddResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         BusinessType mockProfile = this.createUpdateBusinessContactType();
@@ -382,7 +383,7 @@ public class BusinessContactResourceTest extends BaseRestServiceTest {
         AddressBookResponse mockAddResponse = this.createBusinessContactDeleteResponse();
         when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(any(MessageRoutingInfo.class), any(AddressBookRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE), any(AddressBookRequest.class)))
                 .thenReturn(mockAddResponse);
         ContactProfileResource srvc = new ContactProfileResource();
         Response resp = srvc.deleteBusinessContact(BUSINESS_ID_1);
