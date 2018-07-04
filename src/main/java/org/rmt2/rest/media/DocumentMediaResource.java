@@ -22,10 +22,10 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
 import com.api.messaging.webservice.router.MessageRoutingException;
+import com.api.util.assistants.Verifier;
+import com.api.util.assistants.VerifyException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.util.assistants.Verifier;
-import com.util.assistants.VerifyException;
 
 @Path("/media/document")
 public class DocumentMediaResource extends RMT2BaseRestResouce {

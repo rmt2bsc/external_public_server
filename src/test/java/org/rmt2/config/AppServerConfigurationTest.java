@@ -5,8 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.util.RMT2File;
-import com.util.RMT2String2;
+import com.api.util.RMT2File;
+import com.api.util.RMT2String2;
 
 /**
  * Tests the availability and functionality of application configuration.

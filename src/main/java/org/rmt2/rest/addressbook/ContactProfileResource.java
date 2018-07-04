@@ -30,10 +30,10 @@ import org.rmt2.rest.RMT2BaseRestResouce;
 import org.rmt2.util.addressbook.BusinessTypeBuilder;
 
 import com.api.messaging.webservice.router.MessageRoutingException;
+import com.api.util.assistants.Verifier;
+import com.api.util.assistants.VerifyException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.util.assistants.Verifier;
-import com.util.assistants.VerifyException;
 
 /**
  * REST service for common, personal, and business contact profiles
@@ -67,7 +67,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_ALL, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_GET, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -118,7 +118,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse r = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET, req);
+            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_GET, req);
             if (response != null && response instanceof AddressBookResponse) {
                 r = (AddressBookResponse) response;
             }
@@ -247,7 +247,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_GET_CRITERIA, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_GET, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -299,7 +299,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_ADD, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_UPDATE, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -366,7 +366,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_UPDATE, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_UPDATE, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }
@@ -420,7 +420,7 @@ public class ContactProfileResource extends RMT2BaseRestResouce {
         AddressBookResponse respnose = f.createAddressBookResponse();
         // Route message to business server
         try {
-            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_BUSINESS_DELETE, req);
+            Object responseMsg = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.CONTACTS_DELETE, req);
             if (responseMsg != null && responseMsg instanceof AddressBookResponse) {
                 respnose = (AddressBookResponse) responseMsg;
             }

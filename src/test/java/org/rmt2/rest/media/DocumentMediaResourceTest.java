@@ -27,8 +27,8 @@ import org.rmt2.rest.BaseRestServiceTest;
 import org.rmt2.rest.RMT2BaseRestResouce;
 
 import com.api.messaging.webservice.router.MessageRoutingInfo;
-import com.util.RMT2Base64Encoder;
-import com.util.RMT2File;
+import com.api.util.RMT2Base64Encoder;
+import com.api.util.RMT2File;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ RMT2BaseRestResouce.class })
