@@ -35,8 +35,8 @@ public class AccountingEntityResource {
                 .createAccountingGeneralLedgerResponse();
         GlAccounttypeType acctType = f.createGlAccounttypeType();
         GlDetailGroup g = f.createGlDetailGroup();
-        g.getAccountTypes().add(acctType);
-        r.getProfile().add(g);
+        g.getAccountType().add(acctType);
+        // r.getProfile().add(g);
         // Marshal to JSON
         final Gson gson = new GsonBuilder().create();
         return Response.status(Status.OK).type(MediaType.APPLICATION_JSON_TYPE)

@@ -5,7 +5,6 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
-import java.math.BigInteger;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -51,7 +50,7 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         ObjectFactory f = new ObjectFactory();
         MimeContentType ct = f.createMimeContentType();
         ct.setAppCode(appCode);
-        ct.setContentId(contentId == null ? null : BigInteger.valueOf(contentId));
+        ct.setContentId(contentId == null ? null : contentId.intValue());
         ct.setFilename(fileName);
         ct.setFilepath(filePath);
         // Set binary content
@@ -78,13 +77,13 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_CONTENT_ID, "ACCT", TEST_FILENAME,
                 "/tmp/somefilepath/");
-        mockResponse.setContent(content);
+        mockResponse.getProfile().setAudioVideoContent(content);
 
         MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("media", "document",
-                ApiTransactionCodes.MEDIA_GET_CONTENT);
-        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_GET_CONTENT))
+                ApiTransactionCodes.MEDIA_CONTENT_GET);
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_CONTENT_GET))
                 .thenReturn(mockRouteInfo);
-        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_GET_CONTENT), any(MultimediaRequest.class)))
+        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_CONTENT_GET), any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
         DocumentMediaResource srvc = new DocumentMediaResource();
@@ -114,15 +113,17 @@ public class DocumentMediaResourceTest extends BaseRestServiceTest {
         MultimediaResponse mockResponse = f.createMultimediaResponse();
         MimeContentType content = this.createMockContentType(TEST_NEW_CONTENT_ID, "ACCT", TEST_FILENAME,
                 "/tmp/somefilepath/");
-        mockResponse.setContent(content);
+        mockResponse.getProfile().setAudioVideoContent(content);
 
         MessageRoutingInfo mockRouteInfo = this.buildMockMessageRoutingInfo("media", "document",
-                ApiTransactionCodes.MEDIA_SAVE_CONTENT);
+                ApiTransactionCodes.MEDIA_MANUAL_UPLOAD_CONTENT);
 
-        when(mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_SAVE_CONTENT), any(MultimediaRequest.class)))
+        when(
+                mockMsgRouterHelper.routeJsonMessage(eq(ApiTransactionCodes.MEDIA_MANUAL_UPLOAD_CONTENT),
+                        any(MultimediaRequest.class)))
                 .thenReturn(mockResponse);
 
-        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_SAVE_CONTENT))
+        when(mockMsgRouterHelper.getRoutingInfo(ApiTransactionCodes.MEDIA_MANUAL_UPLOAD_CONTENT))
                 .thenReturn(mockRouteInfo);
         DocumentMediaResource srvc = new DocumentMediaResource();
         MimeContentType contentTypeParm = this.createMockContentType(0L, "ACCT", TEST_FILENAME, "/tmp/somefilepath/");

@@ -1,7 +1,5 @@
 package org.rmt2.rest.media;
 
-import java.math.BigInteger;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -61,19 +59,21 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
         req.setHeader(this.getHeader());
-        req.setContentId(BigInteger.valueOf(contentId));
+        // req.setContentId(BigInteger.valueOf(contentId));
 
         // Route message to business server
         MultimediaResponse r = null;
 
         try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_GET_CONTENT, req);
+            Object response =
+                    this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_CONTENT_GET, req);
             if (response != null && response instanceof MultimediaResponse) {
                 r = (MultimediaResponse) response;
             }
         } catch (MessageRoutingException e) {
             this.msg = e.getMessage();
-            LOGGER.error("Server error routing single attachment content fetch request", e);
+            LOGGER.error("Server error routing single attachment content fetch request",
+                    e);
             throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
                     .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
         }
@@ -129,24 +129,28 @@ public class DocumentMediaResource extends RMT2BaseRestResouce {
         ObjectFactory f = new ObjectFactory();
         MultimediaRequest req = f.createMultimediaRequest();
         req.setHeader(this.getHeader());
-        req.getContent().add(content);
+        // req.getContent().add(content);
 
         // Route message to business server
         MultimediaResponse r = null;
-        try {
-            Object response = this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_SAVE_CONTENT, req);
-            if (response != null && response instanceof MultimediaResponse) {
-                r = (MultimediaResponse) response;
-            }
-        } catch (MessageRoutingException e) {
-            this.msg = e.getMessage();
-            LOGGER.error("Server error for single attachment content save request", e);
-            throw new WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
-                    .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
-        }
+        // try {
+        // Object response =
+        // this.msgRouterHelper.routeJsonMessage(ApiTransactionCodes.MEDIA_SAVE_CONTENT,
+        // req);
+        // if (response != null && response instanceof MultimediaResponse) {
+        // r = (MultimediaResponse) response;
+        // }
+        // } catch (MessageRoutingException e) {
+        // this.msg = e.getMessage();
+        // LOGGER.error("Server error for single attachment content save request",
+        // e);
+        // throw new
+        // WebApplicationException(Response.status(Status.INTERNAL_SERVER_ERROR)
+        // .type(MediaType.TEXT_PLAIN_TYPE).entity(this.msg).build());
+        // }
 
         // Exclude binary data for save. Only include metadata.
-        r.getContent().setBinaryData(null);
+        // r.getContent().setBinaryData(null);
 
         // Marshal to JSON
         final Gson gson = new GsonBuilder().create();
