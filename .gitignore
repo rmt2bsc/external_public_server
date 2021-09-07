@@ -9,6 +9,7 @@ bin
 *.iml
 *.ipr
 *.iws
+*.xsd
 *.patch
 .fbprefs
 *.orig
