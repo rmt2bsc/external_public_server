@@ -1,4 +1,4 @@
-package org.rmt2.soap.accounting;
+package org.rmt2.soap.accounting.sales;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
