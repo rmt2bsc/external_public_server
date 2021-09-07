@@ -59,7 +59,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RMT2SoapEngine</servlet-name>
-		<url-pattern>/services/web/*</url-pattern>
+		<url-pattern>/services/soap/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
