@@ -1,4 +1,4 @@
-package org.rmt2.soap;
+package org.rmt2.soap.accounting;
 
 import java.math.BigInteger;
 import java.util.Date;
@@ -64,12 +64,12 @@ public class TransactionCodeSoapRequestBuilderTest {
         req.setCriteria(criteriaGroup);
         req.setHeader(head);
         
-        String xml = null;
+        String soapXml = null;
         String bodyXml = jaxb.marshalJsonMessage(req);
         System.out.println(bodyXml);
         SoapMessageHelper soap = new SoapMessageHelper();
-        xml = soap.createRequest(bodyXml);
-        Assert.assertNotNull(xml);
-        Assert.assertTrue(xml.contains(ApiTransactionCodes.ACCOUNTING_TRANSACTION_CODE_GET));
+        soapXml = soap.createRequest(bodyXml);
+        Assert.assertNotNull(soapXml);
+        Assert.assertTrue(soapXml.contains(ApiTransactionCodes.ACCOUNTING_TRANSACTION_CODE_GET));
     }
   }
