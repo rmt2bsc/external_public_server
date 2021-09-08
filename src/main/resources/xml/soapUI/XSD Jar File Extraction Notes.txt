@@ -9,5 +9,6 @@ To capture the latest XSD updates contained in the messaging dto model project, 
 
 Other Links about unpacking resources from external jar files
 ===================================================================
+https://maven.apache.org/plugins/maven-dependency-plugin/examples/unpacking-artifacts.html
 https://stackoverflow.com/questions/17691746/how-to-refer-xsd-schemalocation-inside-a-jar-file
 https://www.oxygenxml.com/forum/topic1677.html
