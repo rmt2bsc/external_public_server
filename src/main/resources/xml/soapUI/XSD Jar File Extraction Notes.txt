@@ -1,0 +1,8 @@
+In order to pull in the latest version of the XML schema files from the messaging DTO Model jar, 
+navigate to the where the root folder of the external API server project from the command line 
+and execute the following maven command:   
+           
+           mvn dependency:unpack
+           
+This command will extract all .xsd files under the src/main/resources directory. 
+To capture the latest XSD updates contained in the messaging dto model project, execute the above command. 
