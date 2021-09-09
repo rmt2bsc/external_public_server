@@ -1,0 +1,87 @@
+<settings>
+  <offline>false</offline>
+  <activeProfiles>
+    <activeProfile>pegsdev</activeProfile>
+  </activeProfiles>
+  <profiles>  
+    <profile>
+      <id>pegsdev</id>
+      <repositories>
+        <!-- Override and disable super-pom Central repository, With the 
+          Nexus composite repository structure which includes the maven central repo, 
+          your maven client doesn't need to search all over the internet for dependencies. -->
+        <repository>
+          <id>central</id>
+          <name>Maven Repository Switchboard</name>
+          <url>http://repo1.maven.org/maven2</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+
+        <repository>
+          <id>nexus-pegs-dev</id>
+          <name>Pegasus Maven Nexus Repository</name>
+          <url>http://repo.pegs.com:8081/nexus/content/groups/public/
+          </url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+
+      </repositories>
+
+      <pluginRepositories>
+        <!-- Override and disable super-pom Central repository -->
+        <pluginRepository>
+          <id>central</id>
+          <name>Maven Plugin Repository</name>
+          <url>http://repo1.maven.org/maven2</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+
+        <pluginRepository>
+          <id>nexus-pegs</id>
+          <name>Pegasus Nexus Repository</name>
+          <url>http://repo.pegs.com:8081/nexus/content/groups/public/
+          </url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <servers>
+    <server>
+      <id>nexus-pegs-dev</id>
+      <username>deployment</username>
+      <password>deployment123</password>
+    </server>
+    <server>
+      <id>nexus-pegs-releases</id>
+      <username>deployment</username>
+      <password>deployment123</password>
+    </server>
+    <server>
+      <id>pegs-sites</id>
+      <username>deployment</username>
+      <password>deployment123</password>
+    </server>
+  </servers>
+</settings>
