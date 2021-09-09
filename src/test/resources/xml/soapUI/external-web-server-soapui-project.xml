@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="external_web_server" resourceRoot="" soapui-version="3.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AuthenticateLoginSoapHttpBinding" type="wsdl" bindingName="AuthenticateLoginSoapHttpBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Authentication_Login.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Authentication_Login.wsdl"><con:part><con:url>file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Authentication_Login.wsdl</con:url><con:content><![CDATA[<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:include schemaLocation="../schemas/AuthenticationRequest.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:include schemaLocation="../schemas/AuthenticationResponse.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InMessage">
+    <wsdl:part name="InMessageRequest" element="AuthenticationRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OutMessage">
+    <wsdl:part name="OutMessageResponse" element="AuthenticationResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="AuthenticateLoginInterface">
+    <wsdl:operation name="AuthenticateLogin">
+      <wsdl:input message="InMessage"/>
+      <wsdl:output message="OutMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuthenticateLoginSoapHttpBinding" type="AuthenticateLoginInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="AuthenticateLogin">
+      <soap:operation style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuthenticateLoginService">
+    <wsdl:port name="AuthenticateLoginEndpoint" binding="AuthenticateLoginSoapHttpBinding">
+      <!--<soap:address location="http://rmt2.net/ServiceDispatch/soapRouter"/>-->
+      <soap:address location="http://localhost:8080/server-external-api/services/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\AuthenticationRequest.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>Web Service Message for User profile request selection criteria</xsd:documentation>
+  </xsd:annotation>
+  <xsd:include schemaLocation="RMT2_Message_Header_Type.xsd"/>
+  <xsd:include schemaLocation="authentication/Authentication_Type.xsd"/>
+  <xsd:element name="AuthenticationRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="header" type="header_type" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="criteria" type="auth_criteria_group_type" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>The selection criteria</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="profile" type="auth_profile_group_type" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>The various authentication detail types</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\RMT2_Message_Header_Type.xsd</con:url><con:content><![CDATA[<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="header_type" mixed="false" abstract="false">
+    <xsd:sequence>
+      <xsd:element name="routing" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Represents the destination for this message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="application" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="module" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application module name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="transaction" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application module name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="delivery_mode" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">How MOM is supposed deliver the message...Asynchronous or Synchronous</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="delivery_mode_type">
+            <xsd:enumeration value="ASYNC"/>
+            <xsd:enumeration value="SYNC"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="message_mode" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if message is a request or response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="message_mode_type">
+            <xsd:enumeration value="REQUEST"/>
+            <xsd:enumeration value="RESPONSE"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="delivery_date" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The date and time this message was sent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The session id used to verify user authenticity and accessibility</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Id of the user requesting the service</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\authentication\Authentication_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="../misc/Misc_Types_Type.xsd"/>
+  <xsd:complexType name="auth_criteria_group_type">
+    <xsd:sequence>
+      <xsd:element name="user_criteria" type="user_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User profile selection criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_app_roles_criteria" type="user_app_roles_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User application roles criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resource_criteria" type="resource_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Resource selection criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_criteria_type">
+    <xsd:annotation>
+      <xsd:documentation>The selection criteria for user profile search</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="login_id" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's Primary Key value to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's login id to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="first_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's first name to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's last name to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's email address to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dob" type="xsd:date" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>Date of birth of the user to search by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ssn" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>The user's social security number to search by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="start_date" type="xsd:date" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>The date and time user's security profile was created to search by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="term_date" type="xsd:date" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>The date and time the user's security profile was terminated to search by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="active" type="xsd:boolean" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether user's security profile is currently active to search by.  A value of true equals user is active.   An inactive user status will equal false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="group_id" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User group id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="group_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User group name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_app_roles_criteria_type">
+    <xsd:sequence>
+      <xsd:element name="user_app_role_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique id of the user's application role id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="login_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's login id as search criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The user's login id to obtain application roles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="first_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The user's first name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The user's last name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The code name of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_active" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A flag to indicate whether or not an application is active.   1=true and 0=false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the user's role.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the user's role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the user's role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the application role.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the application role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the application role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the application role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="resource_criteria_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user resource, resource type and resource sub type elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="rsrc_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource unique id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource description</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the name of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_subtype_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_subtype_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the name of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_subtype_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the description of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="secured" type="xsd:int" minOccurs="0" maxOccurs="1" default="0">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether or not the user resource is secured</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rsrc_access_id" type="xsd:int" minOccurs="0" maxOccurs="1" default="0">
+        <xsd:annotation>
+          <xsd:documentation>Resource access id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="login_id" type="xsd:int" minOccurs="1" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User's Primary Key value to search by</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="group_id" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="false">
+        <xsd:annotation>
+          <xsd:documentation>User group id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="auth_profile_group_type">
+    <xsd:sequence>
+      <xsd:element name="application_info" type="application_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Manages application data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_info" type="role_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>The user's granted and revoked roles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_info" type="app_role_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Manages application roles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_group_info" type="user_group_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Manages user groups.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_app_role_info" type="user_app_role_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Manages user application roles.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_info" type="user_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>Manages users.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resources_info" type="resources_info_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Manages user resources, user resource type, and user resource sub type datat.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="application_access_info" type="application_access_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Manages a list of the user's application access configuration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="resources_info_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user resource, resource type and resource sub type elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="resource" type="resource_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource unique id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resourcetype" type="resourcetype_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resourcesubtype" type="resourcesubtype_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="resource_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user resource objects.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource unique id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource code</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the user resource description</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="subtype_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="url" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The URL used to invoke the user resource</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="host" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The host where the user resource lives</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="secured" type="xsd:int" minOccurs="0" maxOccurs="1" default="0">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether or not the user resource is secured</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="resourcetype_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user resource type objects.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the name of the resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="resourcesubtype_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user resource sub type objects.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resource_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the id of the assoicated resource type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the name of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the description of the resource sub type</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="role_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages roles.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="role_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the user's role.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the user's role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the user's role</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="application_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages application data.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="app_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The code name of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="active" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Status of the application.  Active equals true and Inactive equals false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="app_role_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages application roles.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="app_role_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The application role id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_info" type="application_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The base application id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="role_info" type="role_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The base application id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The application role code</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The application role name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_desc" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The application role description</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_group_type">
+    <xsd:sequence>
+      <xsd:element name="grp_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>An id that uniquely identifies a user group.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The description of the user group</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_type">
+    <xsd:annotation>
+      <xsd:documentation>The profile of a user</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="login_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's Primary Key value</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="group_info" type="user_group_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's group data</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's login id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="first_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's first name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="last_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's last name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="short_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's name in the format: [last name, first name]</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User's email address</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="logged_in" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether user is currently logged into the system.  A value of true equals user is logged in.   Otherwise, the indicator will equal false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dob" type="xsd:date" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Date of birth of the user.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_logons" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total number of times the user has successfully logged into the system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ssn" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's social security number.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="start_date" type="xsd:date" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time user's security profile was created.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="term_date" type="xsd:date" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time the user's security profile was terminated.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="active" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether user's security profile is currently active.  A value of true equals user is active.   An inactive user status will equal false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A description of the user's profile.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="password" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's password.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id or security token.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="granted_app_roles" type="user_app_roles_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is a list of application roles that have been granted to said user</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="revoked_app_roles" type="user_app_roles_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is a list of application roles that have been revoked from the said user.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="granted_resources" type="user_resource_access_list_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is a list of resources that have been granted to said user</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="revoked_resources" type="user_resource_access_list_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is a list of resources that have been revoked from the said user.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_resource_access_list_type">
+    <xsd:sequence>
+      <xsd:element name="user_resource_access" type="user_resource_access_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>list of user resource access types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_resource_access_type">
+    <xsd:sequence>
+      <xsd:element name="user_rsrc_access_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>An id that uniquely identifies a user's resourcde access profile.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_info" type="user_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User Type Information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_group_info" type="user_group_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User group informaion</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="resource_info" type="resource_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Resource type informaion</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_app_roles_type">
+    <xsd:sequence>
+      <xsd:element name="user_app_role" type="user_app_role_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>One or more user application role type objects.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_app_role_type">
+    <xsd:sequence>
+      <xsd:element name="user_app_role_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>An id that uniquely identifies a user's application role.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_info" type="user_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User Type Information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_role_info" type="app_role_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Application role to associated with the user</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="application_access_type">
+    <xsd:sequence>
+      <xsd:element name="app_access_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>An id that uniquely identifies an application access entity.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_info" type="user_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User Type Information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_info" type="application_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Application data</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="logged_in" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A flag indicating whether or not the user is currently logged in.  1=yes, 0=no.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="login_date" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time the user logged into the system.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="last_login_date" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time of the user's last login.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id or security token.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_login_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user's  login credentials.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's login id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="pw" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's password.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The Application code name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_logout_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user's logout credentials.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:string" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's login id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_session_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages the user's session data.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="login_id" type="xsd:string" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's login id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ws_token" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A security token that is used by the user to access web services once successfully logged in.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="auth_session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The session id of the application performing authentication for the user.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="fname" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's first name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lname" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's last name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="access_level" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The access level</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="gateway_interface" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The gateway interface</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="remote_host" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The remote host the user received its authentication</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="remote_addr" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The remote host's IP address</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="remote_app_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The remote host's application code name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server_protocol" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The protocol used</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server_software" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The server software</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The server name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server_port" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The server port</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_agent" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>User agent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="local" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The local</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="accept" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>accept</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="accept_lang" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>accept language</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="accept_encoding" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>accept encoding</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="scheme" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The scheme</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server_info" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Server information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="servlet_context" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Servlet Context</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_create" type="xsd:long" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A long number representing the date and time the session was created</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_last_accessed" type="xsd:long" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A long number representing the date and time the session was last active.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_max" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates in seconds how long the session will last without any user activity before timing out</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="orig_app_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The original application code name</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="group_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The group the user belongs</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="roles" type="app_role_type" minOccurs="1" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>A list of the user's application roles</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="user_app_login_check_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that manages user's  login credentials.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="uid" type="xsd:string" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's login id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The Application code name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="signed_on" type="xsd:boolean" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the authentication status of a user.  true indicates that the user is already signed on.  Otherwise, the user is not signed on.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_token" type="user_session_type" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The user's session token.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\misc\Misc_Types_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="order_by_type">
+    <xsd:annotation>
+      <xsd:documentation>This type serves as a basis for specifying SQL order by types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="prop_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the property or column to sort by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="direction" minOccurs="1" maxOccurs="1" default="ASC">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if the order by direction is ascending or descending</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="direction_type">
+            <xsd:enumeration value="ASC"/>
+            <xsd:enumeration value="DESC"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagination_type">
+    <xsd:sequence>
+      <xsd:element name="page_no" type="xsd:integer" default="0"/>
+      <xsd:element name="page_row_count" type="xsd:integer"/>
+      <xsd:element name="page_count" type="xsd:double"/>
+      <xsd:element name="page_max_links" type="xsd:integer"/>
+      <xsd:element name="query_row_count" type="xsd:long"/>
+      <xsd:element name="pagination_query" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="record_tracking_type">
+    <xsd:sequence>
+      <xsd:element name="date_created" type="xsd:dateTime"/>
+      <xsd:element name="date_updated" type="xsd:dateTime"/>
+      <xsd:element name="user_id" type="xsd:string"/>
+      <xsd:element name="ip_created" type="xsd:string"/>
+      <xsd:element name="ip_updated" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="on_off_indicator_type">
+    <xsd:restriction base="xsd:short">
+      <xsd:enumeration value="1"/>
+      <xsd:enumeration value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="relational_operator_type">
+    <xsd:annotation>
+      <xsd:documentation>Identifies relational operators to be used in condition statements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT EQUAL"/>
+      <xsd:enumeration value="GREATER THAN"/>
+      <xsd:enumeration value="LESS THAN"/>
+      <xsd:enumeration value="LESS THAN OR EQUAL"/>
+      <xsd:enumeration value="GREATER THAN OR EQUAL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="string_search_pattern_type">
+    <xsd:annotation>
+      <xsd:documentation>Used to indicate a specified search pattern for String values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="BEGIN"/>
+      <xsd:enumeration value="END"/>
+      <xsd:enumeration value="CONTAIN"/>
+      <xsd:enumeration value="EXACT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="report_attachment_type">
+    <xsd:sequence>
+      <xsd:element name="report_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the report.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file path of the where the report was gathered.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_size" type="xsd:integer" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The size of the report content in bytes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mime_type" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Provides MIME type/sub type details.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="content" type="xsd:base64Binary" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The report data in binary form.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\AuthenticationResponse.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>Web service message for managing one or more user profiles</xsd:documentation>
+  </xsd:annotation>
+  <xsd:include schemaLocation="RMT2_Message_Header_Type.xsd"/>
+  <xsd:include schemaLocation="RMT2_Message_Reply_Status_Type.xsd"/>
+  <xsd:include schemaLocation="authentication/Authentication_Type.xsd"/>
+  <xsd:element name="AuthenticationResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="header" type="header_type" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="reply_status" type="reply_status_type" minOccurs="1" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">General information about the status of retrieving the user's application roles.  The return code should contain the number of roles found for the application the user is being verified.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="profile" type="auth_profile_group_type" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>The various authentication detail types</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\RMT2_Message_Reply_Status_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="reply_status_type" mixed="false" abstract="false">
+    <xsd:sequence>
+      <xsd:element name="return_status" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if the reply is successful or erroneous</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="return_status_type">
+            <xsd:enumeration value="SUCCESS"/>
+            <xsd:enumeration value="ERROR"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="message" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the message text</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ext_message" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This the long version of the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="return_code" minOccurs="1" maxOccurs="1" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The return code indicating success or failure</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="record_count" minOccurs="1" maxOccurs="1" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The total number of records returned</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="AuthenticateLogin" bindingOperationName="AuthenticateLogin" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+	    <header>
+		<routing>JMS:rmt2.queue.authentication</routing>
+		<application>authentication</application>
+		<module>auth</module>
+		<transaction>LOGIN_USER</transaction>
+		<delivery_mode>XXXXXXX</delivery_mode>
+		<message_mode>REQUEST</message_mode>
+		<delivery_date>08/03/2021 14:01:23</delivery_date>
+		<session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+	    </header>
+	    <profile>
+		<application_access_info>
+		    <user_info>
+			<user_name>testuser</user_name>
+			<password>drum7777</password>
+		    </user_info>
+		</application_access_info>
+	    </profile>
+	</AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateLoginRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/></con:soapui-project>
