@@ -1239,28 +1239,144 @@
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="AuthenticateLogin" bindingOperationName="AuthenticateLogin" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="AuthenticateUser" bindingOperationName="AuthenticateLogin" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="User Login"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
    <soapenv:Body>
       <AuthenticationRequest>
-	    <header>
-		<routing>JMS:rmt2.queue.authentication</routing>
-		<application>authentication</application>
-		<module>auth</module>
-		<transaction>LOGIN_USER</transaction>
-		<delivery_mode>XXXXXXX</delivery_mode>
-		<message_mode>REQUEST</message_mode>
-		<delivery_date>08/03/2021 14:01:23</delivery_date>
-		<session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
-	    </header>
-	    <profile>
-		<application_access_info>
-		    <user_info>
-			<user_name>testuser</user_name>
-			<password>drum7777</password>
-		    </user_info>
-		</application_access_info>
-	    </profile>
-	</AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>LOGIN_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>08/03/2021 14:01:23</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                      <password>drum7777</password>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateLoginRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateLoginRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="User SSO Login"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>SSO_LOGIN_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>09/04/2021 12:25:00</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateUserRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="User Logout"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>LOGOUT_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>09/03/2021 18:31:14</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="RMT2 Web Service TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AuthenticateSteps TestCase" searchProperties="true" id="e5a25a5b-45d6-4ab0-be4f-22a92321cd5c"><con:settings/><con:testStep type="request" name="User Login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticateLoginSoapHttpBinding</con:interface><con:operation>AuthenticateUser</con:operation><con:request name="User Login" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>LOGIN_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>08/03/2021 14:01:23</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                      <password>drum7777</password>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateLoginRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="User SSO Login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticateLoginSoapHttpBinding</con:interface><con:operation>AuthenticateUser</con:operation><con:request name="User SSO Login" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>SSO_LOGIN_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>09/04/2021 12:25:00</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateUserRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="User Logout"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticateLoginSoapHttpBinding</con:interface><con:operation>AuthenticateUser</con:operation><con:request name="User Logout" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AuthenticationRequest>
+          <header>
+              <routing>JMS:rmt2.queue.authentication</routing>
+              <application>authentication</application>
+              <module>auth</module>
+              <transaction>LOGOUT_USER</transaction>
+              <delivery_mode>XXXXXXX</delivery_mode>
+              <message_mode>REQUEST</message_mode>
+              <delivery_date>09/03/2021 18:31:14</delivery_date>
+              <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+          </header>
+          <profile>
+              <application_access_info>
+                  <user_info>
+                      <user_name>testuser</user_name>
+                  </user_info>
+              </application_access_info>
+          </profile>
+      </AuthenticationRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/AuthenticateUserRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest name="LoadTest 1"><con:settings/><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval><con:reportParameters/></con:loadTest><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>
