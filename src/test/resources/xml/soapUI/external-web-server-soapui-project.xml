@@ -3914,7 +3914,129 @@
         </AuthenticationRequest>
     </soapenv:Body>
 </soapenv:Envelope>
-]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Authentication User TestCase" searchProperties="true" id="6edb1b98-1b94-48b4-bab7-39ce37517056"><con:settings/><con:testStep type="request" name="User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Authentication User TestCase" searchProperties="true" id="6edb1b98-1b94-48b4-bab7-39ce37517056"><con:settings/><con:testStep type="request" name="Validate Missing Profile User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Profile User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AuthenticationRequest>
+            <header>
+                <routing>JMS:rmt2.queue.authentication</routing>
+                <application>authentication</application>
+                <module>admin</module>
+                <transaction>UPDATE_USER</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>04/24/2021 14:51:15</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+        </AuthenticationRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Validate Invalid Transaction Code User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Invalid Transaction Code User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AuthenticationRequest>
+            <header>
+                <routing>JMS:rmt2.queue.authentication</routing>
+                <application>authentication</application>
+                <module>admin</module>
+                <transaction>UPDATE_USER_1234</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>04/24/2021 14:51:15</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <user_info>
+                    <group_info>
+                        <grp_id>${#TestSuite#auth_user_group_id}</grp_id>
+                    </group_info>
+                    <user_name>ws_testing_user2</user_name>
+                    <first_name>john</first_name>
+                    <last_name>doe</last_name>
+                    <email>john.doe@hotmail.com</email>
+                    <logged_in>0</logged_in>
+                    <dob>1970-11-01</dob>
+                    <total_logons>0</total_logons>
+                    <ssn>123-99-9876</ssn>
+                    <start_date>2017-05-01-06:00</start_date>
+                    <term_date>2021-08-03-06:00</term_date>
+                    <active>0</active>
+                    <description>WS Testing User</description>
+                    <password>test1234</password>
+                </user_info>
+            </profile>
+        </AuthenticationRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Validate Missing User Section User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing User Section User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AuthenticationRequest>
+            <header>
+                <routing>JMS:rmt2.queue.authentication</routing>
+                <application>authentication</application>
+                <module>admin</module>
+                <transaction>UPDATE_USER</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>04/24/2021 14:51:15</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+        </AuthenticationRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Validate Too Many Records User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Too Many Records User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AuthenticationRequest>
+            <header>
+                <routing>JMS:rmt2.queue.authentication</routing>
+                <application>authentication</application>
+                <module>admin</module>
+                <transaction>UPDATE_USER</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>04/24/2021 14:51:15</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <user_info>
+                    <group_info>
+                        <grp_id>${#TestSuite#auth_user_group_id}</grp_id>
+                    </group_info>
+                    <user_name>ws_testing_user2</user_name>
+                    <first_name>john</first_name>
+                    <last_name>doe</last_name>
+                    <email>john.doe@hotmail.com</email>
+                    <logged_in>0</logged_in>
+                    <dob>1970-11-01</dob>
+                    <total_logons>0</total_logons>
+                    <ssn>123-99-9876</ssn>
+                    <start_date>2017-05-01-06:00</start_date>
+                    <term_date>2021-08-03-06:00</term_date>
+                    <active>0</active>
+                    <description>WS Testing User</description>
+                    <password>test1234</password>
+                </user_info>
+                <user_info>
+                    <group_info>
+                        <grp_id>${#TestSuite#auth_user_group_id}</grp_id>
+                    </group_info>
+                    <user_name>ws_testing_user2</user_name>
+                    <first_name>john</first_name>
+                    <last_name>doe</last_name>
+                    <email>john.doe@hotmail.com</email>
+                    <logged_in>0</logged_in>
+                    <dob>1970-11-01</dob>
+                    <total_logons>0</total_logons>
+                    <ssn>123-99-9876</ssn>
+                    <start_date>2017-05-01-06:00</start_date>
+                    <term_date>2021-08-03-06:00</term_date>
+                    <active>0</active>
+                    <description>WS Testing User</description>
+                    <password>test1234</password>
+                </user_info>
+            </profile>
+        </AuthenticationRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="User Create"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="User Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
         <AuthenticationRequest>
@@ -4210,13 +4332,12 @@
                 <delivery_date>04/28/2021 21:53:54</delivery_date>
                 <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
             </header>
-            <criteria>
+             <criteria>
                 <user_criteria/>
             </criteria>
         </AuthenticationRequest>
     </soapenv:Body>
-</soapenv:Envelope>
-]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="User Update Remove Termination Date"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="User Update Remove Termination Date" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AuthenticateLoginInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="User Update Remove Termination Date"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="User Update Remove Termination Date" outgoingWss="" incomingWss="" timeout="" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
         <AuthenticationRequest>
