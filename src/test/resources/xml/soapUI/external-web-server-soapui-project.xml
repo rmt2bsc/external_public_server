@@ -7816,14 +7816,14 @@
             </criteria>
         </AddressBookRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:testSuite name="Accounting GeneralLedger TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GL Account Type Maintenance TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="Query All GL Accounts"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query All GL Accounts"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:testSuite name="Accounting Web Service TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GL Account Type Maintenance TestCase" searchProperties="true" id="d11748ca-6d6c-46dd-9fb7-ccc68b521308"><con:settings/><con:testStep type="request" name="Validate Missing Criteria Query GL Accounts"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Criteria Query GL Accounts"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
         <AccountingGeneralLedgerRequest>
             <header>
                 <routing>XXXXXXX</routing>
                 <application>accounting</application>
-                <module>unknown</module>
+                <module>generalledger</module>
                 <transaction>GET_GL_ACCOUNT_TYPE</transaction>
                 <delivery_mode>XXXXXXX</delivery_mode>
                 <message_mode>REQUEST</message_mode>
@@ -7834,6 +7834,26 @@
             </criteria>
         </AccountingGeneralLedgerRequest>
     </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query All GL Accounts"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query All GL Accounts"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:30:31</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria>
+                    <acct_type/>
+                </gl_criteria>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Single GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Single GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
@@ -7841,7 +7861,130 @@
             <header>
                 <routing>XXXXXXX</routing>
                 <application>accounting</application>
-                <module>unknown</module>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:30:31</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria>
+                    <acct_type>
+                        <acct_type_id>${#TestSuite#acct_gl_accttype_id}</acct_type_id>
+                    </acct_type>
+                </gl_criteria>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GL Account Category Maintenance TestCase" searchProperties="true" id="f1f7cbce-5d4d-46d7-90c7-43c09d155e98"><con:settings/><con:testStep type="request" name="Validate Missing Update Profile GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Update Profile GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT_CATG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 14:52:36</delivery_date>
+            </header>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT_CATG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 14:52:36</delivery_date>
+            </header>
+            <profile>
+                <account_category>
+                    <acct_catg_id>0</acct_catg_id>
+                    <acct_type>
+                        <acct_type_id>${#TestSuite#acct_gl_accttype_id}</acct_type_id>
+                    </acct_type>
+                    <description>Test GL Account Category</description>
+                </account_category>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - GL Account Category"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewAccountCategoryID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create GL Account Category</con:sourceStep><con:sourcePath>//AccountingGeneralLedgerResponse[1]/profile[1]/account_category[1]/acct_catg_id[1]</con:sourcePath><con:targetType>acct_gl_acct_catg_id</con:targetType><con:targetStep>#TestSuite#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="request" name="Update GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Update GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT_CATG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 14:52:36</delivery_date>
+            </header>
+            <profile>
+                <account_category>
+                    <acct_catg_id>${#TestSuite#acct_gl_acct_catg_id}</acct_catg_id>
+                    <acct_type>
+                        <acct_type_id>${#TestSuite#acct_gl_accttype_id}</acct_type_id>
+                    </acct_type>
+                    <description>Test GL Account Category Updated</description>
+                </account_category>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Validate Missing Criteria Query GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Criteria Query GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:30:31</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria/>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query All GL Account Categories"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query All GL Account Categories"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:30:31</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria>
+                    <acct_type/>
+                </gl_criteria>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Single GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Single GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
                 <transaction>GET_GL_ACCOUNT_TYPE</transaction>
                 <delivery_mode>XXXXXXX</delivery_mode>
                 <message_mode>REQUEST</message_mode>
@@ -7856,4 +7999,179 @@
             </criteria>
         </AccountingGeneralLedgerRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GL Account Maintenance TestCase" searchProperties="true" id="1a62252a-e70b-4e4e-bf7f-552cc930a520"><con:settings/><con:testStep type="request" name="Validate Missing Update Profile GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Update Profile GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:20:55</delivery_date>
+            </header>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:20:55</delivery_date>
+            </header>
+            <profile>
+                <account>
+                    <acct_id>0</acct_id>
+                    <acct_type>
+                        <acct_type_id>${#TestSuite#acct_gl_accttype_id}</acct_type_id>
+                    </acct_type>
+                    <acct_catg>
+                        <acct_catg_id>${#TestSuite#acct_gl_acct_catg_id}</acct_catg_id>
+                    </acct_catg>
+                    <!-- Do not include account number...it is calculated on the backend -->
+                    <account_code>TESTACCTCODE</account_code>
+                    <account_name>Test GL Account Name</account_name>
+                    <account_description>Test GL ACcount Description</account_description>
+                    <balance_type>
+                        <account_baltype_id>1</account_baltype_id>
+                    </balance_type>
+                </account>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - GL Account"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewGLAccountID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create GL Account</con:sourceStep><con:sourcePath>//AccountingGeneralLedgerResponse[1]/profile[1]/account[1]/acct_id[1]</con:sourcePath><con:targetType>acct_gl_acct_id</con:targetType><con:targetStep>#TestSuite#</con:targetStep></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewAcctSeqNo</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create GL Account</con:sourceStep><con:sourcePath>//AccountingGeneralLedgerResponse[1]/profile[1]/account[1]/acct_seq[1]</con:sourcePath><con:targetType>acct_gl_acct_seq_no</con:targetType><con:targetStep>#TestSuite#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="request" name="Update GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Update GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>UPDATE_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:20:55</delivery_date>
+            </header>
+            <profile>
+                <account>
+                    <acct_id>${#TestSuite#acct_gl_acct_id}</acct_id>
+                    <acct_type>
+                        <acct_type_id>${#TestSuite#acct_gl_accttype_id}</acct_type_id>
+                    </acct_type>
+                    <acct_catg>
+                        <acct_catg_id>${#TestSuite#acct_gl_acct_catg_id}</acct_catg_id>
+                    </acct_catg>
+                    <acct_seq>${#TestSuite#acct_gl_acct_seq_no}</acct_seq>
+                    <account_code>TESTACCTCODE</account_code>
+                    <account_no>TestAcctNo</account_no>
+                    <account_name>Test GL Account Name Updated</account_name>
+                    <account_description>Test GL ACcount Description Updated</account_description>
+                    <balance_type>
+                        <account_baltype_id>1</account_baltype_id>
+                    </balance_type>
+                </account>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Validate Missing Criteria Query GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Criteria Query GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:30:31</delivery_date>
+            </header>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query All GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query All GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/18/2018 15:18:20</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria/>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Single GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Single GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>GET_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/18/2018 15:18:20</delivery_date>
+            </header>
+            <criteria>
+                <gl_criteria>
+                    <acct_id>${#TestSuite#acct_gl_acct_id}</acct_id>
+                </gl_criteria>
+            </criteria>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Accounting Clean Up TestCase" searchProperties="true" id="d916efa5-aeb6-4659-b727-1a194cf56f5a"><con:settings/><con:testStep type="request" name="Delete GL Account"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete GL Account"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>DELETE_GL_ACCOUNT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 13:22:52</delivery_date>
+            </header>
+            <profile>
+                <account>
+                    <acct_id>${#TestSuite#acct_gl_acct_id}</acct_id>
+                </account>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete GL Account Category"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingGeneralLedgerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete GL Account Category"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingGeneralLedgerRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>generalledger</module>
+                <transaction>DELETE_GL_ACCOUNT_CATG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>10/05/2021 15:30:55</delivery_date>
+            </header>
+            <profile>
+                <account_category>
+                    <acct_catg_id>${#TestSuite#acct_gl_acct_catg_id}</acct_catg_id>
+                </account_category>
+            </profile>
+        </AccountingGeneralLedgerRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>acct_gl_accttype_id</con:name><con:value>4</con:value></con:property><con:property><con:name>acct_gl_acct_catg_id</con:name><con:value>407</con:value></con:property><con:property><con:name>acct_gl_acct_id</con:name><con:value>103</con:value></con:property><con:property><con:name>acct_gl_acct_seq_no</con:name><con:value>1</con:value></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>
