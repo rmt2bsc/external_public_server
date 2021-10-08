@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/AccountingTransactionRequest.xsd"/>
+		</xsd:schema>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/AccountingTransactionResponse.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="InMessage">
+		<wsdl:part name="InMessageRequest" element="AccountingTransactionRequest"/>
+	</wsdl:message>
+	<wsdl:message name="OutMessage">
+		<wsdl:part name="OutMessageResponse" element="AccountingTransactionResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="AccountingTransactionInterface">
+		<wsdl:operation name="processMessage">
+			<wsdl:input message="InMessage"/>
+			<wsdl:output message="OutMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="AccountingTransactionSoapHttpBinding" type="AccountingTransactionInterface">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="processMessage">
+			<soap:operation style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AccountingTransactionService">
+		<wsdl:port name="AccountingTransactionEndpoint" binding="AccountingTransactionSoapHttpBinding">
+			<soap:address location="http://localhost:8080/server-external-api/services/soap"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>
