@@ -21159,95 +21159,79 @@
                        
                 </AccountingTransactionRequest>
         </soapenv:Body>
-</soapenv:Envelope>
-]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction Code request must contain a valid general criteria object</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Code Query All"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Code Query All"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-        <soapenv:Header/>
-        <soapenv:Body>
-                <AccountingTransactionRequest>
-                        <header>
-                                <routing>XXXXXXX</routing>
-                                <application>accounting</application>
-                                <module>transaction</module>
-                                <transaction>GET_TRANS_CODE</transaction>
-                                <delivery_mode>XXXXXXX</delivery_mode>
-                                <message_mode>REQUEST</message_mode>
-                                <delivery_date>01/18/2022 01:31:45</delivery_date>
-                        </header>
-                        <criteria>
-                                <xact_code_criteria>
-                                        <xact_code_id/>
-                                        <xact_code_grp>
-                                                <xact_code_grp_id/>
-                                        </xact_code_grp>
-                                </xact_code_criteria>
-                        </criteria>
-                </AccountingTransactionRequest>
-        </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Code Query Single"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Code Query Single"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-        <soapenv:Header/>
-        <soapenv:Body>
-                <AccountingTransactionRequest>
-                        <header>
-                                <routing>XXXXXXX</routing>
-                                <application>accounting</application>
-                                <module>transaction</module>
-                                <transaction>GET_TRANS_CODE</transaction>
-                                <delivery_mode>XXXXXXX</delivery_mode>
-                                <message_mode>REQUEST</message_mode>
-                                <delivery_date>01/18/2022 01:31:45</delivery_date>
-                        </header>
-                        <criteria>
-                                <xact_code_criteria>
-                                        <xact_code_id>${#TestSuite#xact_code_id}</xact_code_id>
-                                </xact_code_criteria>
-                        </criteria>
-                </AccountingTransactionRequest>
-        </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Code Query All Transaction Types"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Code Query All Transaction Types"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-        <soapenv:Header/>
-        <soapenv:Body>
-                <AccountingTransactionRequest>
-                        <header>
-                                <routing>XXXXXXX</routing>
-                                <application>accounting</application>
-                                <module>transaction</module>
-                                <transaction>GET_TRANS_CODE</transaction>
-                                <delivery_mode>XXXXXXX</delivery_mode>
-                                <message_mode>REQUEST</message_mode>
-                                <delivery_date>01/18/2022 01:31:45</delivery_date>
-                        </header>
-                        <criteria>
-                                <xact_code_criteria>
-                                        <xact_code_grp>
-                                                <xact_code_grp_id>1</xact_code_grp_id>
-                                        </xact_code_grp>
-                                </xact_code_criteria>
-                        </criteria>
-                </AccountingTransactionRequest>
-        </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Code Query All Transaction Tender Codes"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Code Query All Transaction Tender Codes"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-        <soapenv:Header/>
-        <soapenv:Body>
-                <AccountingTransactionRequest>
-                        <header>
-                                <routing>XXXXXXX</routing>
-                                <application>accounting</application>
-                                <module>transaction</module>
-                                <transaction>GET_TRANS_CODE</transaction>
-                                <delivery_mode>XXXXXXX</delivery_mode>
-                                <message_mode>REQUEST</message_mode>
-                                <delivery_date>01/18/2022 01:31:45</delivery_date>
-                        </header>
-                        <criteria>
-                                <xact_code_criteria>
-                                        <xact_code_grp>
-                                                <xact_code_grp_id>2</xact_code_grp_id>
-                                        </xact_code_grp>
-                                </xact_code_criteria>
-                        </criteria>
-                </AccountingTransactionRequest>
-        </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Accounting Clean Up TestCase" searchProperties="true" id="d916efa5-aeb6-4659-b727-1a194cf56f5a"><con:settings/><con:testStep type="request" name="Delete Vendor Items"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>InventorySoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Vendor Items"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction Code request must contain a valid general criteria object</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query FULL"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query FULL"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_TRANSACTION</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>FULL</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#common_xact_id}</xact_id>
+            </basic_criteria>
+            <custom_criteria/>
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - lineitems node"><con:configuration><token>lineitems</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - lineitem node"><con:configuration><token>lineitem</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query DETAILS (Not Supported)"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query DETAILS (Not Supported)"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_TRANSACTION</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>DETAILS</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#common_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction level "DETAILS" is not supported at this time</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query HEADER"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query HEADER"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_TRANSACTION</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>HEADER</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#common_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains - lineitems node"><con:configuration><token>lineitems</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains - lineitem node"><con:configuration><token>lineitem</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Accounting Clean Up TestCase" searchProperties="true" id="d916efa5-aeb6-4659-b727-1a194cf56f5a"><con:settings/><con:testStep type="request" name="Delete Vendor Items"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>InventorySoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Vendor Items"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
         <soapenv:Header/>
         <soapenv:Body>
                 <InventoryRequest>
