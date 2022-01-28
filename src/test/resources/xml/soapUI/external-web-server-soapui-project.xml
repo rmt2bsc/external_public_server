@@ -19714,6 +19714,7 @@
                     <contact_firstname>Allison</contact_firstname>
                     <contact_lastname>Weidinger</contact_lastname>
                     <contact_phone>6173220353</contact_phone>
+                    <contact_email>royterrell@hotmail.com</contact_email>
                     <address>
                         <addr1>239 Causeway Street</addr1>
                         <zip>
@@ -23566,6 +23567,467 @@
                         </criteria>
                 </AccountingTransactionRequest>
         </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>No accounting transaction record(s) were found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cash Receipts Transaction TestCase" searchProperties="true" id="9eef7bc8-6c0b-4a69-8814-224f4455f532"><con:settings/><con:testStep type="request" name="Create Cash Receipt Transaction Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Cash Receipt Transaction Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                        <customer_id>${#TestSuite#customer_id}</customer_id>
+                                </customer>
+                                <xact_amount>100.0</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a customer cash payment transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                <lineitems/>
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Transaction Type ID"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_type[1]/xact_type_id[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Transaction Amount"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_amount[1]</path><content>100.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Cash Receipt: Test creating a customer cash payment transaction via message handler</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - New Cash Receipts Transaction ID"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewXactID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Cash Receipt Transaction Success</con:sourceStep><con:sourcePath>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_id[1]</con:sourcePath><con:targetType>cash_receipts_xact_id</con:targetType><con:targetStep>#TestSuite#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Amount Not Numeric Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Amount Not Numeric Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                        <customer_id>${#TestSuite#customer_id}</customer_id>
+                                </customer>
+                                <xact_amount>ABCD</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a customer cash payment transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction amount is required and must be numeric</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Negative Customer ID Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Negative Customer ID Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                        <customer_id>-1000</customer_id>
+                                </customer>
+                                <xact_amount>90.00</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a cash receipt transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>-1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Failure to create Cash receipt transaction</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Customer Id must be a value greater than zero</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Customer Profile Missing Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Customer Profile Missing Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <xact_amount>90.00</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a cash receipt transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                <lineitems/>
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Customer profile is required when creating a cash receipt for a Customer</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Customer Missing Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Customer Missing Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                   <dummy_element/>
+                                </customer>
+                                <xact_amount>90.00</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a cash receipt transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>-1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Failure to create Cash receipt transaction</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Customer Id must be a value greater than zero</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Customer Not Exists Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Customer Not Exists Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                        <customer_id>99999999</customer_id>
+                                </customer>
+                                <xact_amount>90.00</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a cash receipt transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                <lineitems/>
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>-1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Failure to create Cash receipt transaction</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Unable to fetch customer details to perform cash receipts confirmation due to customer, 99999999, was not found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Cash Receipt Transaction Missing Tender Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Cash Receipt Transaction Missing Tender Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>0</xact_id>
+                                <customer>
+                                        <customer_id>${#TestSuite#customer_id}</customer_id>
+                                </customer>
+                                <xact_amount>100.0</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a customer cash payment transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <confirm_no>ADB-49384343</confirm_no>
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>-1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Failure to create Cash receipt transaction</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Transaction tender is required for cash receipt operation</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Transaction Xact Transaction Missing Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Transaction Xact Transaction Missing Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>CREATE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+             <dummy_element/>  
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction section is missing from the transaction profile</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query FULL"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query FULL"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>JMS:rmt2.queue.accounting</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_CASH_RECEIPT</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>FULL</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains -  lineitems"><con:configuration><token>lineitems</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains -  lineitem"><con:configuration><token>lineitem</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query DETAILS (Not Supported)"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query DETAILS (Not Supported)"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>JMS:rmt2.queue.accounting</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_CASH_RECEIPT</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>DETAILS</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:assertion type="XPath Match" name="XPath Match - Fault Code"><con:configuration><path>//faultcode[1]</path><content>SOAP-ENV:Server</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Fault String"><con:configuration><path>//faultstring[1]</path><content>Transaction level "DETAILS" is not supported at this time</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Transaction Query HEADER"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Transaction Query HEADER"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>JMS:rmt2.queue.accounting</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_CASH_RECEIPT</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>HEADER</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains - lineitems node"><con:configuration><token>lineitems</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple NotContains" name="Not Contains - lineitem node"><con:configuration><token>lineitem</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Reverse Creditor Purchases Transaction Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Reverse Creditor Purchases Transaction Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>REVERSE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+                                <customer>
+                                        <customer_id>${#TestSuite#customer_id}</customer_id>
+                                </customer>
+                                <xact_amount>100.0</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a customer cash payment transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Transaction Type ID"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_type[1]/xact_type_id[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Transaction Amount"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_amount[1]</path><content>-100.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Reverse Cash Receipts Xact ID"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>ReverseXactID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Reverse Creditor Purchases Transaction Success</con:sourceStep><con:sourcePath>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_id[1]</con:sourcePath><con:targetType>reverse_cash_receipts_xact_id</con:targetType><con:targetStep>#TestSuite#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="request" name="Verify Finalized Cash Receipts Transaction Query FULL"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Verify Finalized Cash Receipts Transaction Query FULL"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+ <soapenv:Header/>
+ <soapenv:Body>
+  <AccountingTransactionRequest>
+    <header>
+        <routing>JMS:rmt2.queue.accounting</routing>
+        <application>accounting</application>
+        <module>transaction</module>
+        <transaction>GET_CASH_RECEIPT</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>01/19/2022 01:03:39</delivery_date>
+    </header>
+    <criteria>
+        <xact_criteria>
+            <target_level>FULL</target_level>
+            <basic_criteria>
+                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+            </basic_criteria>
+            
+        </xact_criteria>
+    </criteria>
+  </AccountingTransactionRequest>
+ </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Verify Finalized Transaction"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/transactions[1]/transaction[1]/xact_subtype[1]/xact_type_id[1]</path><content>-100</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Reverse Finalized Transaction Error"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Reverse Finalized Transaction Error"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AccountingTransactionRequest>
+        <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>transaction</module>
+                <transaction>REVERSE_CASH_RECEIPT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/27/2022 11:30:27</delivery_date>
+        </header>
+        <profile>
+                <transactions>
+                        <transaction>
+                                <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+                                <customer>
+                                        <customer_id>${#TestSuite#customer_id}</customer_id>
+                                </customer>
+                                <xact_amount>100.0</xact_amount>
+                                <xact_date>2018-12-01-06:00</xact_date>
+                                <xact_reason>Test creating a customer cash payment transaction via message handler</xact_reason>
+                                <neg_instr_no>1111-1111-1111-1111</neg_instr_no>
+                                <tender_id>11</tender_id>
+                                <confirm_no>ADB-49384343</confirm_no>
+                                
+                        </transaction>
+                </transactions>
+        </profile>
+</AccountingTransactionRequest>
+
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>-1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Failure to reverse cash receipt transaction</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Unable to finalize target transaction.  The Sub type must be unassigned, reversed or cancelled</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Cash Receipts Transactions"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Cash Receipts Transactions"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+        <soapenv:Header/>
+        <soapenv:Body>
+                <AccountingTransactionRequest>
+                        <header>
+                                <routing>JMS:rmt2.queue.accounting</routing>
+                                <application>accounting</application>
+                                <module>transaction</module>
+                                <transaction>DELETE_TRANSACTION</transaction>
+                                <delivery_mode>XXXXXXX</delivery_mode>
+                                <message_mode>REQUEST</message_mode>
+                                <delivery_date>01/21/2022 11:42:55</delivery_date>
+                                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+                        </header>
+                        <criteria>
+                                <xact_criteria>
+                                        <target_level>HEADER</target_level>
+                                        <basic_criteria>
+                                                <xact_id_list>
+                                                        <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+                                                        <xact_id>${#TestSuite#reverse_cash_receipts_xact_id}</xact_id>
+                                                </xact_id_list>
+                                        </basic_criteria>
+                                </xact_criteria>
+                        </criteria>
+                </AccountingTransactionRequest>
+        </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" disabled="true"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Accounting transaction record(s) were deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Non Existing Cash Receipts Transactions"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Non Existing Cash Receipts Transactions"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+        <soapenv:Header/>
+        <soapenv:Body>
+                <AccountingTransactionRequest>
+                        <header>
+                                <routing>JMS:rmt2.queue.accounting</routing>
+                                <application>accounting</application>
+                                <module>transaction</module>
+                                <transaction>DELETE_TRANSACTION</transaction>
+                                <delivery_mode>XXXXXXX</delivery_mode>
+                                <message_mode>REQUEST</message_mode>
+                                <delivery_date>01/21/2022 11:42:55</delivery_date>
+                                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+                        </header>
+                        <criteria>
+                                <xact_criteria>
+                                        <target_level>HEADER</target_level>
+                                        <basic_criteria>
+                                                <xact_id_list>
+                                                        <xact_id>${#TestSuite#cash_receipts_xact_id}</xact_id>
+                                                        <xact_id>${#TestSuite#reverse_cash_receipts_xact_id}</xact_id>
+                                                </xact_id_list>
+                                        </basic_criteria>
+                                </xact_criteria>
+                        </criteria>
+                </AccountingTransactionRequest>
+        </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>No accounting transaction record(s) were found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Accounting Clean Up TestCase" searchProperties="true" id="d916efa5-aeb6-4659-b727-1a194cf56f5a"><con:settings/><con:testStep type="request" name="Delete Vendor Items"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>InventorySoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Vendor Items"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
         <soapenv:Header/>
         <soapenv:Body>
@@ -23733,4 +24195,4 @@
             </profile>
         </AccountingGeneralLedgerRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="890fa94f-0f29-4076-a2d6-560018a9e0e1"/><con:assertion type="XPath Match" name="XPath Match - Message" id="99ecf2ce-4675-4741-ac37-2b4c47e0268c"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/message[1]</path><content>GL Account Category was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="34208d55-007b-4463-882d-3422ae983a4c"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="8e9e2bcd-4a46-40f3-97a5-bcabd74d68c7"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>acct_gl_accttype_id</con:name><con:value>1</con:value></con:property><con:property><con:name>acct_gl_acct_catg_id</con:name><con:value>107</con:value></con:property><con:property><con:name>acct_gl_acct_id</con:name><con:value>119</con:value></con:property><con:property><con:name>acct_gl_acct_seq_no</con:name><con:value>1</con:value></con:property><con:property><con:name>business_contact_id</con:name><con:value>1569</con:value></con:property><con:property><con:name>address_id</con:name><con:value>2477</con:value></con:property><con:property><con:name>customer_id</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">85</con:value></con:property><con:property><con:name>creditor_type_id</con:name><con:value>2</con:value></con:property><con:property><con:name>creditor_type_id_dummy</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>creditor_id</con:name><con:value>53</con:value></con:property><con:property><con:name>inventory_item_status_id</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>inventory_item_type_id</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>inventory_merchandise_item_master_id_1</con:name><con:value>317</con:value></con:property><con:property><con:name>inventory_merchandise_item_master_id_2</con:name><con:value>481</con:value></con:property><con:property><con:name>inventory_merchandise_item_master_id_3</con:name><con:value>482</con:value></con:property><con:property><con:name>inventory_service_item_master_id</con:name><con:value>318</con:value></con:property><con:property><con:name>xact_code_grp_id</con:name><con:value>1</con:value></con:property><con:property><con:name>xact_code_id</con:name><con:value>3</con:value></con:property><con:property><con:name>xact_catg_id</con:name><con:value>3</con:value></con:property><con:property><con:name>tender_id_cash</con:name><con:value>11</con:value></con:property><con:property><con:name>tender_id_cash_disb</con:name><con:value>13</con:value></con:property><con:property><con:name>tender_id_bank_card</con:name><con:value>13</con:value></con:property><con:property><con:name>xact_type_id_fee</con:name><con:value>40</con:value></con:property><con:property><con:name>xact_type_id_cash_disb</con:name><con:value>60</con:value></con:property><con:property><con:name>xact_type_id_creditor_cash_disb</con:name><con:value>20</con:value></con:property><con:property><con:name>xact_type_id_creditor_purchases</con:name><con:value>180</con:value></con:property><con:property><con:name>inventory_item_type_id_merch</con:name><con:value>2</con:value></con:property><con:property><con:name>xact_item_type_id_food_exp</con:name><con:value>6</con:value></con:property><con:property><con:name>xact_item_type_id_entertainment_exp</con:name><con:value>11</con:value></con:property><con:property><con:name>xact_item_type_id_gas_exp</con:name><con:value>12</con:value></con:property><con:property><con:name>common_xact_id</con:name><con:value>44943</con:value></con:property><con:property><con:name>reverse_common_xact_id</con:name><con:value>44944</con:value></con:property><con:property><con:name>cash_disb_xact_id</con:name><con:value>45143</con:value></con:property><con:property><con:name>reverse_cash_disb_xact_id</con:name><con:value>45144</con:value></con:property><con:property><con:name>creditor_cash_disb_xact_id</con:name><con:value>45343</con:value></con:property><con:property><con:name>reverse_creditor_cash_disb_xact_id</con:name><con:value>45344</con:value></con:property><con:property><con:name>creditor_purchase_xact_id</con:name><con:value>46069</con:value></con:property><con:property><con:name>reverse_creditor_purchase_xact_id</con:name><con:value>46070</con:value></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="890fa94f-0f29-4076-a2d6-560018a9e0e1"/><con:assertion type="XPath Match" name="XPath Match - Message" id="99ecf2ce-4675-4741-ac37-2b4c47e0268c"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/message[1]</path><content>GL Account Category was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="34208d55-007b-4463-882d-3422ae983a4c"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="8e9e2bcd-4a46-40f3-97a5-bcabd74d68c7"><con:configuration><path>//AccountingGeneralLedgerResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="AccountingGeneralLedgerInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>acct_gl_accttype_id</con:name><con:value>1</con:value></con:property><con:property><con:name>acct_gl_acct_catg_id</con:name><con:value>107</con:value></con:property><con:property><con:name>acct_gl_acct_id</con:name><con:value>119</con:value></con:property><con:property><con:name>acct_gl_acct_seq_no</con:name><con:value>1</con:value></con:property><con:property><con:name>business_contact_id</con:name><con:value>1569</con:value></con:property><con:property><con:name>address_id</con:name><con:value>2477</con:value></con:property><con:property><con:name>customer_id</con:name><con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">85</con:value></con:property><con:property><con:name>creditor_type_id</con:name><con:value>2</con:value></con:property><con:property><con:name>creditor_type_id_dummy</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>creditor_id</con:name><con:value>53</con:value></con:property><con:property><con:name>inventory_item_status_id</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>inventory_item_type_id</con:name><con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:property><con:property><con:name>inventory_merchandise_item_master_id_1</con:name><con:value>317</con:value></con:property><con:property><con:name>inventory_merchandise_item_master_id_2</con:name><con:value>481</con:value></con:property><con:property><con:name>inventory_merchandise_item_master_id_3</con:name><con:value>482</con:value></con:property><con:property><con:name>inventory_service_item_master_id</con:name><con:value>318</con:value></con:property><con:property><con:name>xact_code_grp_id</con:name><con:value>1</con:value></con:property><con:property><con:name>xact_code_id</con:name><con:value>3</con:value></con:property><con:property><con:name>xact_catg_id</con:name><con:value>3</con:value></con:property><con:property><con:name>tender_id_cash</con:name><con:value>11</con:value></con:property><con:property><con:name>tender_id_cash_disb</con:name><con:value>13</con:value></con:property><con:property><con:name>tender_id_bank_card</con:name><con:value>13</con:value></con:property><con:property><con:name>xact_type_id_fee</con:name><con:value>40</con:value></con:property><con:property><con:name>xact_type_id_cash_disb</con:name><con:value>60</con:value></con:property><con:property><con:name>xact_type_id_creditor_cash_disb</con:name><con:value>20</con:value></con:property><con:property><con:name>xact_type_id_creditor_purchases</con:name><con:value>180</con:value></con:property><con:property><con:name>xact_type_id_cash_receipt</con:name><con:value>2</con:value></con:property><con:property><con:name>inventory_item_type_id_merch</con:name><con:value>2</con:value></con:property><con:property><con:name>xact_item_type_id_food_exp</con:name><con:value>6</con:value></con:property><con:property><con:name>xact_item_type_id_entertainment_exp</con:name><con:value>11</con:value></con:property><con:property><con:name>xact_item_type_id_gas_exp</con:name><con:value>12</con:value></con:property><con:property><con:name>common_xact_id</con:name><con:value>44943</con:value></con:property><con:property><con:name>reverse_common_xact_id</con:name><con:value>44944</con:value></con:property><con:property><con:name>cash_disb_xact_id</con:name><con:value>45143</con:value></con:property><con:property><con:name>reverse_cash_disb_xact_id</con:name><con:value>45144</con:value></con:property><con:property><con:name>creditor_cash_disb_xact_id</con:name><con:value>45343</con:value></con:property><con:property><con:name>reverse_creditor_cash_disb_xact_id</con:name><con:value>45344</con:value></con:property><con:property><con:name>creditor_purchase_xact_id</con:name><con:value>46069</con:value></con:property><con:property><con:name>reverse_creditor_purchase_xact_id</con:name><con:value>46070</con:value></con:property><con:property><con:name>cash_receipts_xact_id</con:name><con:value>50534</con:value></con:property><con:property><con:name>reverse_cash_receipts_xact_id</con:name><con:value>50535</con:value></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting></con:soapui-project>
