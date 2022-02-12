@@ -32443,4 +32443,158 @@ values of the SQL predicates match up with the target record ID's in order to bu
 	    </profile>
 	 </ProjectProfileRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b02e7b92-1abc-44ff-987b-859bc7f519ce"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>217</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>216</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>217</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b02e7b92-1abc-44ff-987b-859bc7f519ce"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest id="d0e922a7-4b18-4b23-802b-5fb171d7c7d3" name="LoadTest 1"><con:settings/><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/><con:reportParameters/></con:testCase><con:testCase id="dd7ab4a5-a3d7-4ecc-ac58-ed07b97539b2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Admin Client TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="Create Business Contact 1" id="aaa13c8f-32e7-4f02-a956-0f5e66163a59"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Business Contact 1" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="184977da-8d5c-4304-9c3a-2f26aecc6786"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>UPDATE_CONTACT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/21/2018 17:30:10</delivery_date>
+            </header>
+            <profile>
+                <business_contacts>
+                    <entity_type>
+                        <code_id>26</code_id>
+                        <longdesc>Corporation</longdesc>
+                    </entity_type>
+                    <service_type>
+                        <code_id>61</code_id>
+                        <longdesc>Computer - Contractor/Consultant</longdesc>
+                    </service_type>
+                    <long_name>Test Company 1</long_name>
+                    <contact_firstname>Harvey</contact_firstname>
+                    <contact_lastname>Mason</contact_lastname>
+                    <contact_phone>6173220353</contact_phone>
+                    <contact_email>royterrell@hotmail.com</contact_email>
+                    <address>
+                        <addr1>239 Causeway Street</addr1>
+                        <zip>
+                            <zip_id>61523</zip_id>
+                            <zipcode>75398</zipcode>
+                            <city>Dallas</city>
+                            <state>TX</state>
+                            <areaCode>214</areaCode>
+                            <cityAliasName>Dallas</cityAliasName>
+                            <countyName>Dallas</countyName>
+                        </zip>
+                        <zip_ext>0</zip_ext>
+                    </address>
+                </business_contacts>
+            </profile>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="82314ced-fe28-4645-8373-c085816c7c29"/><con:assertion type="XPath Match" id="b47adba5-6de2-4d2a-9390-8fd7fa4ddb2e"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_name[1]</path><content>Test Company 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="97eeaaed-f0d5-4d93-b148-24c0003ff192"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Business Contact 2" id="a774ddf7-084b-4264-8cd0-8d8c89fa4e12"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Business Contact 2" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="184977da-8d5c-4304-9c3a-2f26aecc6786"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>UPDATE_CONTACT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/21/2018 17:30:10</delivery_date>
+            </header>
+            <profile>
+                <business_contacts>
+                    <entity_type>
+                        <code_id>26</code_id>
+                        <longdesc>Corporation</longdesc>
+                    </entity_type>
+                    <service_type>
+                        <code_id>61</code_id>
+                        <longdesc>Computer - Contractor/Consultant</longdesc>
+                    </service_type>
+                    <long_name>Test Company 2</long_name>
+                    <contact_firstname>Dennis</contact_firstname>
+                    <contact_lastname>Chambers</contact_lastname>
+                    <contact_phone>6173220353</contact_phone>
+                    <contact_email>royterrell@hotmail.com</contact_email>
+                    <address>
+                        <addr1>239 Causeway Street</addr1>
+                        <zip>
+                            <zip_id>61523</zip_id>
+                            <zipcode>75398</zipcode>
+                            <city>Dallas</city>
+                            <state>TX</state>
+                            <areaCode>214</areaCode>
+                            <cityAliasName>Dallas</cityAliasName>
+                            <countyName>Dallas</countyName>
+                        </zip>
+                        <zip_ext>0</zip_ext>
+                    </address>
+                </business_contacts>
+            </profile>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="82314ced-fe28-4645-8373-c085816c7c29"/><con:assertion type="XPath Match" id="b47adba5-6de2-4d2a-9390-8fd7fa4ddb2e"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_name[1]</path><content>Test Company 2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="97eeaaed-f0d5-4d93-b148-24c0003ff192"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer -New Contacts" id="63736b61-20c5-4b66-b43b-28edbb2ba47a"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewContactID1</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Business Contact 1</con:sourceStep><con:sourcePath>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_id[1]</con:sourcePath><con:targetType>business_contact_id_1</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewContactID2</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Business Contact 2</con:sourceStep><con:sourcePath>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_id[1]</con:sourcePath><con:targetType>business_contact_id_2</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Create Customer 1" id="5b3e1efb-9a1e-4aab-afd2-e918ecb4805d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Customer 1" id="7ab2fcf0-6948-47d9-9624-96c047bbef2d"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingTransactionRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>subsidiary</module>
+                <transaction>UPDATE_CUSTOMER</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>08/23/2018 10:52:28</delivery_date>
+            </header>
+            <profile>
+                <customers>
+                    <customer>
+                        <customer_id>0</customer_id>
+                        <acct_id>10</acct_id>
+                        <business_contact_details>
+                            <business_id>${#TestCase#business_contact_id_1}</business_id>
+                        </business_contact_details>
+                        <account_no>U1109-20200331</account_no>
+                        <credit_limit>1234.55</credit_limit>
+                        <acct_description>Test ACCOUNT DESCRIPTION 1</acct_description>
+                        <balance>50000.0</balance>
+                        <active>1</active>
+                        
+                    </customer>
+                </customers>
+            </profile>
+        </AccountingTransactionRequest>
+     </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0ccf412c-2fda-454e-9ed3-48e19ac86388"/><con:assertion type="XPath Match" name="XPath Match - Account Desccription" id="57e6ddc5-2f07-46e0-b8bc-cd25c9c50808"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/customers[1]/customer[1]/acct_description[1]</path><content>Test ACCOUNT DESCRIPTION 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="dd9a0e60-af13-41ac-be76-e0b27991d086"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="75d1cdd3-d265-4845-b842-77446fdf9797"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Customer 2" id="c9db680b-7ef4-4d2e-a268-82fc607374fa"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Customer 2" id="7ab2fcf0-6948-47d9-9624-96c047bbef2d"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AccountingTransactionRequest>
+            <header>
+                <routing>JMS:rmt2.queue.accounting</routing>
+                <application>accounting</application>
+                <module>subsidiary</module>
+                <transaction>UPDATE_CUSTOMER</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>08/23/2018 10:52:28</delivery_date>
+            </header>
+            <profile>
+                <customers>
+                    <customer>
+                        <customer_id>0</customer_id>
+                        <acct_id>10</acct_id>
+                        <business_contact_details>
+                            <business_id>${#TestCase#business_contact_id_2}</business_id>
+                        </business_contact_details>
+                        <account_no>U1109-20200332</account_no>
+                        <credit_limit>1234.55</credit_limit>
+                        <acct_description>Test ACCOUNT DESCRIPTION 2</acct_description>
+                        <balance>50000.0</balance>
+                        <active>1</active>
+                        
+                    </customer>
+                </customers>
+            </profile>
+        </AccountingTransactionRequest>
+     </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0ccf412c-2fda-454e-9ed3-48e19ac86388"/><con:assertion type="XPath Match" name="XPath Match - Account Desccription" id="57e6ddc5-2f07-46e0-b8bc-cd25c9c50808"><con:configuration><path>//AccountingTransactionResponse[1]/profile[1]/customers[1]/customer[1]/acct_description[1]</path><content>Test ACCOUNT DESCRIPTION 2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="dd9a0e60-af13-41ac-be76-e0b27991d086"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="75d1cdd3-d265-4845-b842-77446fdf9797"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer -New Customers" id="2badf006-b98d-4441-b9ff-bc9499f57c3c"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewCustomerID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Customer 1</con:sourceStep><con:sourcePath>//AccountingTransactionResponse[1]/profile[1]/customers[1]/customer[1]/customer_id[1]</con:sourcePath><con:targetType>customer_id_1</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewCustomerID2</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Customer 2</con:sourceStep><con:sourcePath>//AccountingTransactionResponse[1]/profile[1]/customers[1]/customer[1]/customer_id[1]</con:sourcePath><con:targetType>customer_id_2</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:properties><con:property><con:name>business_contact_id_1</con:name><con:value>1519</con:value></con:property><con:property><con:name>business_contact_id_2</con:name><con:value>1520</con:value></con:property><con:property><con:name>customer_id_1</con:name><con:value>59</con:value></con:property><con:property><con:name>customer_id_2</con:name><con:value>60</con:value></con:property></con:properties></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>643</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>642</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>643</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
