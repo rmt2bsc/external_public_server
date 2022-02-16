@@ -32818,6 +32818,7 @@ values of the SQL predicates match up with the target record ID's in order to bu
                 <delivery_date>08/23/2018 15:51:35</delivery_date>
             </header>
             <criteria>
+            
                 <customer_criteria>
                     <customer>
                         <customer_id>${#TestCase#customer_id_3}</customer_id>
