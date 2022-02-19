@@ -32826,27 +32826,7 @@ values of the SQL predicates match up with the target record ID's in order to bu
             </criteria>
         </AccountingTransactionRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="36c3e1d8-bacc-4a98-bba1-534c3b20f2ab"/><con:assertion type="XPath Match" name="XPath Match - Message" id="3641851b-043d-491f-a7de-8a1e74829e0b"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Customer delete operation completed!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message" id="3c8fc758-7c16-4b96-82ed-2611e29661ef"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Total records deleted: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="ea14d312-a5c9-4886-a524-aa87fc57639e"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Total records deleted: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="2453cfb5-39c4-46cb-b727-6ed9461ca1d0"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete BusinessContact 1" id="499be8c4-c508-4edf-9d0c-733fbb52af1d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete BusinessContact 1" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-    <soapenv:Header/>
-    <soapenv:Body>
-        <AddressBookRequest>
-            <header>
-                <routing>JMS:rmt2.queue.addressbook</routing>
-                <application>addressbook</application>
-                <module>profile</module>
-                <transaction>DELETE_CONTACT</transaction>
-                <delivery_mode>SYNC</delivery_mode>
-                <message_mode>REQUEST</message_mode>
-                <delivery_date>2017-04-16 02:01:12</delivery_date>
-            </header>
-            <criteria>
-                <business_criteria>
-                    <contact_id>${#TestCase#business_contact_id_1}</contact_id>
-                </business_criteria>
-            </criteria>
-        </AddressBookRequest>
-    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="688fabfa-a3c4-43af-9f37-f6f7e4927bef"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete BusinessContact 2" id="468c77aa-17fd-4d2f-b860-69711adb6231"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete BusinessContact 2" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="36c3e1d8-bacc-4a98-bba1-534c3b20f2ab"/><con:assertion type="XPath Match" name="XPath Match - Message" id="3641851b-043d-491f-a7de-8a1e74829e0b"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/message[1]</path><content>Customer delete operation completed!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message" id="3c8fc758-7c16-4b96-82ed-2611e29661ef"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Total records deleted: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="ea14d312-a5c9-4886-a524-aa87fc57639e"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/ext_message[1]</path><content>Total records deleted: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="2453cfb5-39c4-46cb-b727-6ed9461ca1d0"><con:configuration><path>//AccountingTransactionResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete BusinessContact 2" id="468c77aa-17fd-4d2f-b860-69711adb6231"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete BusinessContact 2" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
         <AddressBookRequest>
@@ -33557,4 +33537,166 @@ values of the SQL predicates match up with the target record ID's in order to bu
 	    <criteria/>
 	</ProjectProfileRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="59c5e4d8-c119-4f49-a1d6-2997c5c6be78"/><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Status"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Code"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Message"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Employee Type record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="59c5e4d8-c119-4f49-a1d6-2997c5c6be78"/><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Status"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Code"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Message"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Employee Type record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get All Employees Success" id="aa30365d-0d41-4b46-8a74-e2518908addd"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Get All Employees Success" id="fa9b5388-1b13-492c-a595-2a83b9f4a93a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+	    <header>
+	        <routing>JMS:rmt2.queue.projecttracker</routing>
+	        <application>projecttracker</application>
+	        <module>employee</module>
+	        <transaction>GET_EMPLOYEE</transaction>
+	        <delivery_mode>XXXXXXX</delivery_mode>
+	        <message_mode>REQUEST</message_mode>
+	        <delivery_date>03/22/2020 15:51:04</delivery_date>
+	    </header>
+	    <criteria>
+	        <employee_criteria/>
+	    </criteria>
+	</ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="59c5e4d8-c119-4f49-a1d6-2997c5c6be78"/><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Status"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Code"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Message"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Employee record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:testCase id="e8698faf-001a-4b26-b5e1-a93c4d6345b2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Employee TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="Create Manager Success" id="20069684-201e-4ea1-874f-e1cdd08a78bc"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Manager Success" id="fa9b5388-1b13-492c-a595-2a83b9f4a93a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>projecttracker</application>
+        <module>employee</module>
+        <transaction>UPDATE_EMPLOYEE</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>02/18/2022 05:02:00</delivery_date>
+    </header>
+    <profile>
+        <employee>
+            <employee_id>0</employee_id>
+            <employee_type>
+                <employee_type_id>1</employee_type_id>
+            </employee_type>
+            <is_manager>true</is_manager>
+            <manager_id></manager_id>
+            <employee_title>
+                <employee_title_id>45</employee_title_id>
+            </employee_title>
+            <login_id>1234</login_id>
+            <login_name>test1234</login_name>
+            <contact_details>
+                <person_id>0</person_id>
+                <first_name>TestFn1</first_name>
+                <last_name>TestLn1</last_name>
+                <ssn>222222222</ssn>
+                <email>testfn1.testln1@gte.net</email>
+                <address>
+                    <addr_id>0</addr_id>
+                    <addr1>Address Line 1</addr1>
+                    <addr2>Address Line 2</addr2>
+                    <addr3>Address Line 3</addr3>
+                    <addr4>Address Line 4</addr4>
+                    <zip>
+                        <zipcode>75232</zipcode>
+                        <city>Dallas</city>
+                        <state>Tx</state>
+                    </zip>
+                    <phone_main>7777771234</phone_main>
+                </address>
+            </contact_details>
+            <start_date>2022-02-18-06:00</start_date>
+            <project_count>0</project_count>
+        </employee>
+    </profile>
+</ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="59c5e4d8-c119-4f49-a1d6-2997c5c6be78"/><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Status"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Code"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Message"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Employee was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Capture Manager Data" id="e1069c6c-27d0-44c3-97a8-3a97db32f09b"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewManagerID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Manager Success</con:sourceStep><con:sourcePath>//ProjectProfileResponse[1]/profile[1]/employee[1]/employee_id[1]</con:sourcePath><con:targetType>manager_id</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewMgrPersonID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Manager Success</con:sourceStep><con:sourcePath>//ProjectProfileResponse[1]/profile[1]/employee[1]/contact_details[1]/person_id[1]</con:sourcePath><con:targetType>manager_person_id</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Create Employee Success" id="bf3fec77-b715-4c9f-a9f6-7567413451c1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Employee Success" id="fa9b5388-1b13-492c-a595-2a83b9f4a93a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>projecttracker</application>
+        <module>employee</module>
+        <transaction>UPDATE_EMPLOYEE</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>02/18/2022 05:02:00</delivery_date>
+    </header>
+    <profile>
+        <employee>
+            <employee_id>0</employee_id>
+            <employee_type>
+                <employee_type_id>1</employee_type_id>
+            </employee_type>
+            <is_manager>false</is_manager>
+            <manager_id>${#TestCase#manager_id}</manager_id>
+            <employee_title>
+                <employee_title_id>44</employee_title_id>
+            </employee_title>
+            <login_id>5678</login_id>
+            <login_name>test5678</login_name>
+            <contact_details>
+                <person_id>0</person_id>
+                <first_name>TestFn2</first_name>
+                <last_name>TestLn2</last_name>
+                <ssn>222222222</ssn>
+                <email>testfn2.testln2@gte.net</email>
+                <address>
+                    <addr_id>0</addr_id>
+                    <addr1>Address Line 1</addr1>
+                    <addr2>Address Line 2</addr2>
+                    <addr3>Address Line 3</addr3>
+                    <addr4>Address Line 4</addr4>
+                    <zip>
+                        <zipcode>75232</zipcode>
+                        <city>Dallas</city>
+                        <state>Tx</state>
+                    </zip>
+                    <phone_main>7777775678</phone_main>
+                </address>
+            </contact_details>
+            <start_date>2022-02-18-06:00</start_date>
+            <project_count>0</project_count>
+        </employee>
+    </profile>
+</ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="59c5e4d8-c119-4f49-a1d6-2997c5c6be78"/><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Status"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Return Code"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="10ae937c-d399-4aa7-819f-9c2bc048b6e9" name="XPath Match - Message"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Employee was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Capture Employee DataD" id="0efe4bdf-abb9-48b6-b305-e0742c5976b2"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewEmployeeID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Employee Success</con:sourceStep><con:sourcePath>//ProjectProfileResponse[1]/profile[1]/employee[1]/employee_id[1]</con:sourcePath><con:targetType>employee_id</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewEmpPersonID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Employee Success</con:sourceStep><con:sourcePath>//ProjectProfileResponse[1]/profile[1]/employee[1]/contact_details[1]/person_id[1]</con:sourcePath><con:targetType>employee_person_id</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Delete Employee Contact" id="ae423e7b-cd01-4d93-b2b5-d91684fbe2e9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Employee Contact" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>DELETE_CONTACT</transaction>
+                <delivery_mode>SYNC</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>2017-04-16 02:01:12</delivery_date>
+            </header>
+            <criteria>
+                <person_criteria>
+                    <contact_id>${#TestCase#employee_person_id}</contact_id>
+                </person_criteria>
+            </criteria>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="688fabfa-a3c4-43af-9f37-f6f7e4927bef"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Manager Contact" id="499be8c4-c508-4edf-9d0c-733fbb52af1d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Manager Contact" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>DELETE_CONTACT</transaction>
+                <delivery_mode>SYNC</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>2017-04-16 02:01:12</delivery_date>
+            </header>
+            <criteria>
+                <person_criteria>
+                    <contact_id>${#TestCase#manager_person_id}</contact_id>
+                </person_criteria>
+            </criteria>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="688fabfa-a3c4-43af-9f37-f6f7e4927bef"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>manager_id</con:name><con:value>2056</con:value></con:property><con:property><con:name>employee_id</con:name><con:value>2057</con:value></con:property><con:property><con:name>manager_person_id</con:name><con:value>1041</con:value></con:property><con:property><con:name>employee_person_id</con:name><con:value>1042</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
