@@ -128,10 +128,10 @@ public class TimesheetUpdateSoapRequestBuilderTest {
                 .withClient(client)
                 .withEmployee(et)
                 .withStatus(tsst)
-                .addWorkLog(this.createProjectTaskType(1, 2, "About Objects", 10, "Analysis and Design"))
-                .addWorkLog(this.createProjectTaskType(2, 2, "About Objects", 20, "Development"))
-                .addWorkLog(this.createProjectTaskType(3, 2, "About Objects", 30, "Testing"))
-                .addWorkLog(this.createProjectTaskType(4, 2, "About Objects", 40, "Meetings"))
+                .addTimeEntry(this.createProjectTaskType(1, 2, "About Objects", 10, "Analysis and Design"))
+                .addTimeEntry(this.createProjectTaskType(2, 2, "About Objects", 20, "Development"))
+                .addTimeEntry(this.createProjectTaskType(3, 2, "About Objects", 30, "Testing"))
+                .addTimeEntry(this.createProjectTaskType(4, 2, "About Objects", 40, "Meetings"))
                 .build();
 
         ProjectDetailGroup profile = fact.createProjectDetailGroup();
