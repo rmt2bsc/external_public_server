@@ -34633,6 +34633,46 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
          </profile>
 	 </ProjectProfileRequest>
    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Verify Timesheet Billable Hours Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Verify Timesheet Billable Hours Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+	    <header>
+	        <routing>XXXXXXX</routing>
+	        <application>projecttracker</application>
+	        <module>timesheet</module>
+	        <transaction>GET_TIMESHEET</transaction>
+	        <delivery_mode>XXXXXXX</delivery_mode>
+	        <message_mode>REQUEST</message_mode>
+	        <delivery_date>02/24/2022 22:21:30</delivery_date>
+	    </header>
+	    <criteria>
+	        <timesheet_criteria>
+	            <timesheet_id>${#TestCase#timesheet_id_1}</timesheet_id>
+	        </timesheet_criteria>
+	    </criteria>
+	 </ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:assertion type="XPath Match"><con:configuration><path>//ProjectProfileResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match"><con:configuration><path>//ProjectProfileResponse/reply_status/return_code</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match"><con:configuration><path>//ProjectProfileResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match"><con:configuration><path>//ProjectProfileResponse[1]/profile[1]/timesheet[1]/billable_hours[1]</path><content>16.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Submit Timesheet Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Submit Timesheet Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>SUBMIT_TIMESHEET</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_1}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Customer 1" id="e3e57cd7-eba7-45e6-943d-06389ed82485" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Customer 1" id="226c2b3e-c5c5-472f-8e9b-c025b51e1ee5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
