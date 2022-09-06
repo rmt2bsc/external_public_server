@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/MultimediaRequest.xsd"/>
+		</xsd:schema>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="../schemas/MultimediaResponse.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="InMessage">
+		<wsdl:part name="InMessageRequest" element="MultimediaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="OutMessage">
+		<wsdl:part name="OutMessageResponse" element="MultimediaResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="MultimediaInterface">
+		<wsdl:operation name="processMessage">
+			<wsdl:input message="InMessage"/>
+			<wsdl:output message="OutMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="MultimediaSoapHttpBinding" type="MultimediaInterface">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="processMessage">
+			<soap:operation style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MultimediaService">
+		<wsdl:port name="MultimediaEndpoint" binding="MultimediaSoapHttpBinding">
+			<soap:address location="http://localhost:8080/server-external-api/services/soap"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>

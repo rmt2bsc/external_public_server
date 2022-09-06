@@ -22403,7 +22403,1377 @@
          </profile>
       </ProjectProfileRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProjectTrackerInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Security Web Service TestSuite" id="41601589-fbfa-4da2-a46e-9a47be6c9a92"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Application Maintenace TestCase" searchProperties="true" id="e5a25a5b-45d6-4ab0-be4f-22a92321cd5c"><con:settings/><con:testStep type="request" name="Validate Missing Profile Application Create" id="4315016a-fc0d-4bf6-921b-cf68a4776222"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Profile Application Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="d7980ee2-0d90-46d1-9285-be96faabe35d"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProjectTrackerInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MultimediaSoapHttpBinding" type="wsdl" bindingName="MultimediaSoapHttpBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Media.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Media.wsdl"><con:part><con:url>file:/C:/source/External_WebServices_Server/src/test/resources/xml/wsdl/Media.wsdl</con:url><con:content><![CDATA[<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:include schemaLocation="../schemas/MultimediaRequest.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:include schemaLocation="../schemas/MultimediaResponse.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InMessage">
+    <wsdl:part name="InMessageRequest" element="MultimediaRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OutMessage">
+    <wsdl:part name="OutMessageResponse" element="MultimediaResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="MultimediaInterface">
+    <wsdl:operation name="processMessage">
+      <wsdl:input message="InMessage"/>
+      <wsdl:output message="OutMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MultimediaSoapHttpBinding" type="MultimediaInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="processMessage">
+      <soap:operation style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MultimediaService">
+    <wsdl:port name="MultimediaEndpoint" binding="MultimediaSoapHttpBinding">
+      <soap:address location="http://localhost:8080/server-external-api/services/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\MultimediaRequest.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="RMT2_Message_Header_Type.xsd"/>
+  <xsd:include schemaLocation="mime/Mime_Content_Type.xsd"/>
+  <xsd:element name="MultimediaRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="header" type="header_type" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Known as the Web Service Header. This
+							element is to be used as part of the request data. Contains the data
+							needed to identify and route message to its property service
+							implementation.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="criteria" type="mime_criteria_group" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">A collection of media selection criteria
+							elements used for querying data.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="profile" type="mime_detail_group" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>A collection of audio/video meta and content data for
+							requests that modifies data.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\RMT2_Message_Header_Type.xsd</con:url><con:content><![CDATA[<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="header_type" mixed="false" abstract="false">
+    <xsd:sequence>
+      <xsd:element name="routing" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Represents the destination for this message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="application" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="module" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application module name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="transaction" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the application module name in which this message is targeted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="delivery_mode" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">How MOM is supposed deliver the message...Asynchronous or Synchronous</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="delivery_mode_type">
+            <xsd:enumeration value="ASYNC"/>
+            <xsd:enumeration value="SYNC"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="message_mode" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if message is a request or response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="message_mode_type">
+            <xsd:enumeration value="REQUEST"/>
+            <xsd:enumeration value="RESPONSE"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="delivery_date" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The date and time this message was sent</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="session_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The session id used to verify user authenticity and accessibility</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="user_id" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The Id of the user requesting the service</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\mime\Mime_Content_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Mime_Types_Type.xsd"/>
+  <xsd:include schemaLocation="../misc/Misc_Types_Type.xsd"/>
+  <xsd:simpleType name="mime_custom_criteria_target_type">
+    <xsd:annotation>
+      <xsd:documentation>Indicates the level in which data is loaded into the transaction structure such as base, line item, or full.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="HEADER">
+        <xsd:annotation>
+          <xsd:documentation>Retrieve only the level the client is searching.  Example, a client is requesting artist info:  HEADER would fetch on artist data.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="DETAILS">
+        <xsd:annotation>
+          <xsd:documentation>Retrieve the entire graph but include basic data only.  Example, a client is requesting artist info: DETAILS would fetch artist id and name, project id and name, and track id, track name, track no.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FULL">
+        <xsd:annotation>
+          <xsd:documentation>Retrieve the entire graph with verbose information.  Example, a client is requesting artist info: FULL would fetch the full graph - every piece of infomation under each section is fetched.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="mime_criteria_group">
+    <xsd:sequence>
+      <xsd:element name="content_criteria" type="content_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The audio video content selection criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="audio_video_criteria" type="audio_video_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The audio video selection criteria for retreiving
+						consolidated artis/project/track information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="audio_batch_import_criteria" type="audio_batch_import_criteria_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The audio batch import selection criteria</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mime_detail_group">
+    <xsd:sequence>
+      <xsd:element name="audio_video_content" type="mime_content_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Media content data</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="audio_video_details" type="audio_video_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Audio/Video media metadata information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="batch_import_results" type="batch_import_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Audio/Video media metadata information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_file_listener_details" type="media_file_listener_details_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Contains information relative to the media file listener</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genres" type="genres_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Genre information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mediatypes" type="media_types" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>media type information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="projecttypes" type="project_types" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>project type information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mimetypes" type="mime_types" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>MIME type information</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="media_link_group">
+    <xsd:sequence>
+      <xsd:element name="media_link_data" type="media_attachment_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Details for linking media with the home application</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="media_attachment_type">
+    <xsd:sequence>
+      <xsd:element name="attachment" type="media_attachment_details_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Contains information needed to link the home application with the media file content</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!---->
+  <!--Selection Criterai Types-->
+  <!---->
+  <xsd:complexType name="audio_batch_import_criteria_type">
+    <xsd:sequence>
+      <xsd:element name="server_name" type="xsd:string" maxOccurs="1" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>The server where the media files live.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="share_name" type="xsd:string" maxOccurs="1" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>Serves as the base directory to server name for locating media files.   For Windows systems, the share name should be suffixed with a "$".</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="root_path" type="xsd:string" maxOccurs="1" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>Can be used as the context part of the path.  If the share name is not used, then this will typically be a drive letter (including the colon) for Windows systems.  Otherwise, it is an additional segment of the path.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location" type="xsd:string" maxOccurs="1" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>The relative path where the media files live on the server.  Alternatively, this parameter could serve as the full path to where the media files live and ignores server_name, share_name, and root_path parameters.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="import_file_path" type="xsd:string" maxOccurs="1" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>The path to the external file containing the media metadata to import into the system.  All other paramters are ignored.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="content_criteria_type">
+    <xsd:sequence>
+      <xsd:element name="content_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the content to fetch.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Application code. This value can be cross referenced in the
+						Authentication application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="module_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The module of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="audio_video_criteria_type">
+    <xsd:sequence>
+      <xsd:element name="fetch_full" type="mime_custom_criteria_target_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates whether or not to fetch the entire object graph for each artist found.  Valid values FULL, DETAILS and HEADER</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="artist_id" type="xsd:int" default="0" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The artist's unique identifier.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="artist_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The artist's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the project.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_title" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The project's title.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="year" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The year the project was releases.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ripped" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Flag indicating whether or not the project was ripped.
+						1=true, 0= false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="track_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the track.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="track_title" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genre_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project's genre.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genre_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the project's genre.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project's media type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the project's media type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project type which represents either audio or
+						video.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the project type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mime_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project's MIME type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mime_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the project's MIME type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="search_term" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>A single criteria value used for consoldidated audio/video searches.  All other search criteria elements are ignored with the element is present.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!---->
+  <!--Data Profile Types-->
+  <!---->
+  <xsd:complexType name="mime_content_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that houses binary data and large text which the
+				data elements can be mapped to the content table from the mime database. The binary
+				data can be of any multimedia resource such as documents, images, audio, video, and
+				other binary forms of data.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="content_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>This is the primary key. Will default to zero when record is
+						new.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mime_type" type="mimetype_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Provides MIME type/sub type details.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="app_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Application code. This value can be cross referenced in the
+						Authentication application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="module_code" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The module of the application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="filename" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file name of the binary data at the time when persisted.
+						This should include the file extension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="filepath" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file path of the where the binary data was found at the
+						time when persisted.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="filesize" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The size of the binary data in bytes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="binary_data" type="xsd:base64Binary" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The data in binary code.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="text_data" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The data as text</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="attachment_details" type="media_attachment_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Contains the details needed to establish an assoication to the media content data with the home application.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="audio_video_type">
+    <xsd:sequence>
+      <xsd:element name="artist" type="artist_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>One or more artist data structures.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="artist_type">
+    <xsd:sequence>
+      <xsd:element name="artist_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the artist to fetch.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="artist_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The artist's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="projects" type="av_projects_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The artist's projects.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="av_projects_type">
+    <xsd:sequence>
+      <xsd:element name="project" type="av_project_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>A list of the artist's projects.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="av_project_type">
+    <xsd:sequence>
+      <xsd:element name="project_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the project.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="artist_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The artist's unique identifier.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project type which represents either audio or
+						video.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genre_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project's genre.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="content_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the media content.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the project's media type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The project's title.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="year" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The year the project was releases.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_time" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total time in minutes for an audio album or video.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="producer" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The project's producer, director, or composer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="master_dup_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates if the audio-video exist as multiple media types in
+						the system. 1 = true, and 0 = false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ripped" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Flag indicating whether or not the project was ripped.
+						1=true, 0= false.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="cost" type="xsd:double" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The amound paid for the audio-video asset.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="content_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file path to the content</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="content_filename" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The content's filename with extension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="art_work_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file path to the image that represents the project's art
+						work.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="art_work_filename" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>he filename of art work image with extension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The project's comments.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracks" type="tracks_type" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The project's tracks.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tracks_type">
+    <xsd:sequence>
+      <xsd:element name="track" type="track_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>A list of the project's tracks.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="track_type">
+    <xsd:sequence>
+      <xsd:element name="track_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the track.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the track's	project.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genre_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>An identifier pertaining to the track's genre.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="disc_number" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The disc number.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="track_number" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track number.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="track_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hours" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The hour component of the track duration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="minutes" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The minute component of the track duration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="seconds" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The second component of the track duration.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="artist" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Captures the artist of this track in cases where project/album contains various artists.  Otherwise, this value should be blank for single artist projects.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="producer" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track's producer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="composer" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track's composer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lyricist" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The track's lyricist.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location_servername" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The server name of the track's location.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location_sharename" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The share name of the track's location.  Thiis used typically if the track resides on a Windows OS platform.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location_root_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The root path where the track can be located.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The remaining path where the track can be located.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="location_filename" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file name of the track</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Any notes providing additional information about the track</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="tracking" type="record_tracking_type" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="genre_type">
+    <xsd:sequence>
+      <xsd:element name="genre_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the genre.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="genre_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The genre's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mediatype_type">
+    <xsd:sequence>
+      <xsd:element name="media_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the media type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The media type's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="projecttype_type">
+    <xsd:sequence>
+      <xsd:element name="project_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the project type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_type_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The media project's name.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mimetype_type">
+    <xsd:sequence>
+      <xsd:element name="mime_type_id" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The unique identifier of the MIME type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_ext" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The expected file extension for the media type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Indicates the Internet media type of the message content,
+						consisting of a type and subtype, for example: Content-Type:
+						text/plain.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="batch_import_type">
+    <xsd:sequence>
+      <xsd:element name="start_time" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time when the audio batch import began.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="end_time" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The date and time when the audio batch import ended.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="duration" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The amout of time it took for the process to complete.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_processed" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total number of files processed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_success" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total number of files successfully processed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_failure" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total number of files unsuccessfully processed.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="total_non_av_files" type="xsd:int" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The total number of non-audio files encountered during the batch import.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="media_file_listener_details_type">
+    <xsd:sequence>
+      <xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The status of the media file listener which should be populated with "Running" or "Stopped".</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="media_attachment_details_type">
+    <xsd:sequence>
+      <xsd:element name="content_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of media content that is to be linked to home applicaltion.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="project_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The name of the target project to link media content.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="module_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the project's module to link media content.  This is typically used to determine the datasource object that will house the media content id</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="property_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the column or property belonging to the datasource responsible for housing the media content id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="property_id" type="xsd:int" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The primary key value of the home application entity that will be associated with the content_id.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="genres_type">
+    <xsd:sequence>
+      <xsd:element name="genre" type="genre_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>List of genres.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="media_types">
+    <xsd:sequence>
+      <xsd:element name="media_type" type="mediatype_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>List of media types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="project_types">
+    <xsd:sequence>
+      <xsd:element name="project_type" type="projecttype_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>List of project types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="mime_types">
+    <xsd:sequence>
+      <xsd:element name="mime_type" type="mimetype_type" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>List of MIME types.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\mime\Mime_Types_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="mime_type">
+    <xsd:annotation>
+      <xsd:documentation>This is the document that tracks MIME Type information.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="mime_type_id" type="xsd:integer" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>MIME type id that serves as a foreign key value.  Default to zero when record is new.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_ext" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The filename extension that is associated with the MIME Type.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="media_type" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The Type/Sub Type notation of the MIME.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\misc\Misc_Types_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="order_by_type">
+    <xsd:annotation>
+      <xsd:documentation>This type serves as a basis for specifying SQL order by types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="prop_name" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The name of the property or column to sort by.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="direction" minOccurs="1" maxOccurs="1" default="ASC">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if the order by direction is ascending or descending</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="direction_type">
+            <xsd:enumeration value="ASC"/>
+            <xsd:enumeration value="DESC"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagination_type">
+    <xsd:sequence>
+      <xsd:element name="page_no" type="xsd:integer" default="0"/>
+      <xsd:element name="page_row_count" type="xsd:integer"/>
+      <xsd:element name="page_count" type="xsd:double"/>
+      <xsd:element name="page_max_links" type="xsd:integer"/>
+      <xsd:element name="query_row_count" type="xsd:long"/>
+      <xsd:element name="pagination_query" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="record_tracking_type">
+    <xsd:sequence>
+      <xsd:element name="date_created" type="xsd:dateTime"/>
+      <xsd:element name="date_updated" type="xsd:dateTime"/>
+      <xsd:element name="user_id" type="xsd:string"/>
+      <xsd:element name="ip_created" type="xsd:string"/>
+      <xsd:element name="ip_updated" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="on_off_indicator_type">
+    <xsd:restriction base="xsd:short">
+      <xsd:enumeration value="1"/>
+      <xsd:enumeration value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="relational_operator_type">
+    <xsd:annotation>
+      <xsd:documentation>Identifies relational operators to be used in condition statements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="EQUALS"/>
+      <xsd:enumeration value="NOT EQUAL"/>
+      <xsd:enumeration value="GREATER THAN"/>
+      <xsd:enumeration value="LESS THAN"/>
+      <xsd:enumeration value="LESS THAN OR EQUAL"/>
+      <xsd:enumeration value="GREATER THAN OR EQUAL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="string_search_pattern_type">
+    <xsd:annotation>
+      <xsd:documentation>Used to indicate a specified search pattern for String values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="BEGIN"/>
+      <xsd:enumeration value="END"/>
+      <xsd:enumeration value="CONTAIN"/>
+      <xsd:enumeration value="EXACT"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="report_attachment_type">
+    <xsd:sequence>
+      <xsd:element name="report_id" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The id of the report.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_path" type="xsd:string" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The file path of the where the report was gathered.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="file_size" type="xsd:integer" default="0" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The size of the report content in bytes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mime_type" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Provides MIME type/sub type details.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="content" type="xsd:base64Binary" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>The report data in binary form.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\MultimediaResponse.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="RMT2_Message_Header_Type.xsd"/>
+  <xsd:include schemaLocation="RMT2_Message_Reply_Status_Type.xsd"/>
+  <xsd:include schemaLocation="mime/Mime_Content_Type.xsd"/>
+  <xsd:element name="MultimediaResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="header" type="header_type" minOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Known as the Web Service Header.  This element is to be used as part of the request data.  Contains the data needed to identify and route message to its property service implementation.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="reply_status" type="reply_status_type" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The status of the content web service invocation.  The return code will be greater than or equal to zero indicating the total number of records retrieved.   Otherwise, a value less than zero is present when an error occurs.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="profile" type="mime_detail_group" minOccurs="0" maxOccurs="1">
+          <xsd:annotation>
+            <xsd:documentation>A collection of audio/video meta and content data that
+							serves as a response to queries and data modificationfor
+							requests.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\source\External_WebServices_Server\src\test\resources\xml\schemas\RMT2_Message_Reply_Status_Type.xsd</con:url><con:content><![CDATA[<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="reply_status_type" mixed="false" abstract="false">
+    <xsd:sequence>
+      <xsd:element name="return_status" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Indicates if the reply is successful or erroneous</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" id="return_status_type">
+            <xsd:enumeration value="SUCCESS"/>
+            <xsd:enumeration value="ERROR"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="message" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This is the message text</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ext_message" type="xsd:string" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">This the long version of the message</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="return_code" minOccurs="1" maxOccurs="1" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The return code indicating success or failure</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="record_count" minOccurs="1" maxOccurs="1" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The total number of records returned</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="processMessage" bindingOperationName="processMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <MultimediaRequest>
+         <header>
+            <routing>?</routing>
+            <!--Optional:-->
+            <application>?</application>
+            <!--Optional:-->
+            <module>?</module>
+            <!--Optional:-->
+            <transaction>?</transaction>
+            <!--Optional:-->
+            <delivery_mode>?</delivery_mode>
+            <message_mode>?</message_mode>
+            <delivery_date>?</delivery_date>
+            <!--Optional:-->
+            <session_id>?</session_id>
+            <!--Optional:-->
+            <user_id>?</user_id>
+         </header>
+         <!--Optional:-->
+         <criteria>
+            <!--Optional:-->
+            <content_criteria>
+               <!--Optional:-->
+               <content_id>?</content_id>
+               <!--Optional:-->
+               <app_code>?</app_code>
+               <!--Optional:-->
+               <module_code>?</module_code>
+            </content_criteria>
+            <!--Optional:-->
+            <audio_video_criteria>
+               <!--Optional:-->
+               <fetch_full>?</fetch_full>
+               <!--Optional:-->
+               <artist_id>0</artist_id>
+               <!--Optional:-->
+               <artist_name>?</artist_name>
+               <!--Optional:-->
+               <project_id>?</project_id>
+               <!--Optional:-->
+               <project_title>?</project_title>
+               <!--Optional:-->
+               <year>?</year>
+               <!--Optional:-->
+               <ripped>?</ripped>
+               <!--Optional:-->
+               <track_id>?</track_id>
+               <!--Optional:-->
+               <track_title>?</track_title>
+               <!--Optional:-->
+               <genre_id>?</genre_id>
+               <!--Optional:-->
+               <genre_name>?</genre_name>
+               <!--Optional:-->
+               <media_type_id>?</media_type_id>
+               <!--Optional:-->
+               <media_type_name>?</media_type_name>
+               <!--Optional:-->
+               <project_type_id>?</project_type_id>
+               <!--Optional:-->
+               <project_type_name>?</project_type_name>
+               <!--Optional:-->
+               <mime_type_id>?</mime_type_id>
+               <!--Optional:-->
+               <mime_type_name>?</mime_type_name>
+               <!--Optional:-->
+               <search_term>?</search_term>
+            </audio_video_criteria>
+            <!--Optional:-->
+            <audio_batch_import_criteria>
+               <!--Optional:-->
+               <server_name>?</server_name>
+               <!--Optional:-->
+               <share_name>?</share_name>
+               <!--Optional:-->
+               <root_path>?</root_path>
+               <!--Optional:-->
+               <location>?</location>
+               <!--Optional:-->
+               <import_file_path>?</import_file_path>
+            </audio_batch_import_criteria>
+         </criteria>
+         <!--Optional:-->
+         <profile>
+            <!--Optional:-->
+            <audio_video_content>
+               <!--Optional:-->
+               <content_id>?</content_id>
+               <!--Optional:-->
+               <mime_type>
+                  <!--Optional:-->
+                  <mime_type_id>?</mime_type_id>
+                  <!--Optional:-->
+                  <file_ext>?</file_ext>
+                  <!--Optional:-->
+                  <media_type>?</media_type>
+               </mime_type>
+               <!--Optional:-->
+               <app_code>?</app_code>
+               <!--Optional:-->
+               <module_code>?</module_code>
+               <!--Optional:-->
+               <filename>?</filename>
+               <!--Optional:-->
+               <filepath>?</filepath>
+               <!--Optional:-->
+               <filesize>?</filesize>
+               <!--Optional:-->
+               <binary_data>cid:782784151036</binary_data>
+               <!--Optional:-->
+               <text_data>?</text_data>
+               <!--Optional:-->
+               <attachment_details>
+                  <!--Optional:-->
+                  <attachment>
+                     <content_id>?</content_id>
+                     <project_name>?</project_name>
+                     <module_name>?</module_name>
+                     <property_name>?</property_name>
+                     <property_id>?</property_id>
+                  </attachment>
+               </attachment_details>
+            </audio_video_content>
+            <!--Optional:-->
+            <audio_video_details>
+               <!--Zero or more repetitions:-->
+               <artist>
+                  <!--Optional:-->
+                  <artist_id>?</artist_id>
+                  <!--Optional:-->
+                  <artist_name>?</artist_name>
+                  <!--Optional:-->
+                  <projects>
+                     <!--Zero or more repetitions:-->
+                     <project>
+                        <!--Optional:-->
+                        <project_id>?</project_id>
+                        <!--Optional:-->
+                        <artist_id>?</artist_id>
+                        <!--Optional:-->
+                        <project_type_id>?</project_type_id>
+                        <!--Optional:-->
+                        <genre_id>?</genre_id>
+                        <!--Optional:-->
+                        <content_id>?</content_id>
+                        <!--Optional:-->
+                        <media_type_id>?</media_type_id>
+                        <!--Optional:-->
+                        <title>?</title>
+                        <!--Optional:-->
+                        <year>?</year>
+                        <!--Optional:-->
+                        <total_time>?</total_time>
+                        <!--Optional:-->
+                        <producer>?</producer>
+                        <!--Optional:-->
+                        <master_dup_id>?</master_dup_id>
+                        <!--Optional:-->
+                        <ripped>?</ripped>
+                        <!--Optional:-->
+                        <cost>?</cost>
+                        <!--Optional:-->
+                        <content_path>?</content_path>
+                        <!--Optional:-->
+                        <content_filename>?</content_filename>
+                        <!--Optional:-->
+                        <art_work_path>?</art_work_path>
+                        <!--Optional:-->
+                        <art_work_filename>?</art_work_filename>
+                        <!--Optional:-->
+                        <comments>?</comments>
+                        <!--Optional:-->
+                        <tracks>
+                           <!--Zero or more repetitions:-->
+                           <track>
+                              <!--Optional:-->
+                              <track_id>?</track_id>
+                              <!--Optional:-->
+                              <project_id>?</project_id>
+                              <!--Optional:-->
+                              <genre_id>?</genre_id>
+                              <!--Optional:-->
+                              <disc_number>?</disc_number>
+                              <!--Optional:-->
+                              <track_number>?</track_number>
+                              <!--Optional:-->
+                              <track_name>?</track_name>
+                              <!--Optional:-->
+                              <hours>?</hours>
+                              <!--Optional:-->
+                              <minutes>?</minutes>
+                              <!--Optional:-->
+                              <seconds>?</seconds>
+                              <!--Optional:-->
+                              <artist>?</artist>
+                              <!--Optional:-->
+                              <producer>?</producer>
+                              <!--Optional:-->
+                              <composer>?</composer>
+                              <!--Optional:-->
+                              <lyricist>?</lyricist>
+                              <!--Optional:-->
+                              <location_servername>?</location_servername>
+                              <!--Optional:-->
+                              <location_sharename>?</location_sharename>
+                              <!--Optional:-->
+                              <location_root_path>?</location_root_path>
+                              <!--Optional:-->
+                              <location_path>?</location_path>
+                              <!--Optional:-->
+                              <location_filename>?</location_filename>
+                              <!--Optional:-->
+                              <comments>?</comments>
+                              <!--Optional:-->
+                              <tracking>
+                                 <date_created>?</date_created>
+                                 <date_updated>?</date_updated>
+                                 <user_id>?</user_id>
+                                 <ip_created>?</ip_created>
+                                 <ip_updated>?</ip_updated>
+                              </tracking>
+                           </track>
+                        </tracks>
+                        <!--Optional:-->
+                        <tracking>
+                           <date_created>?</date_created>
+                           <date_updated>?</date_updated>
+                           <user_id>?</user_id>
+                           <ip_created>?</ip_created>
+                           <ip_updated>?</ip_updated>
+                        </tracking>
+                     </project>
+                  </projects>
+               </artist>
+            </audio_video_details>
+            <!--Optional:-->
+            <batch_import_results>
+               <!--Optional:-->
+               <start_time>?</start_time>
+               <!--Optional:-->
+               <end_time>?</end_time>
+               <!--Optional:-->
+               <duration>?</duration>
+               <!--Optional:-->
+               <total_processed>?</total_processed>
+               <!--Optional:-->
+               <total_success>?</total_success>
+               <!--Optional:-->
+               <total_failure>?</total_failure>
+               <!--Optional:-->
+               <total_non_av_files>?</total_non_av_files>
+            </batch_import_results>
+            <!--Optional:-->
+            <media_file_listener_details>
+               <!--Optional:-->
+               <status>?</status>
+            </media_file_listener_details>
+            <!--Optional:-->
+            <genres>
+               <!--Zero or more repetitions:-->
+               <genre>
+                  <!--Optional:-->
+                  <genre_id>?</genre_id>
+                  <!--Optional:-->
+                  <genre_name>?</genre_name>
+               </genre>
+            </genres>
+            <!--Optional:-->
+            <mediatypes>
+               <!--Zero or more repetitions:-->
+               <media_type>
+                  <!--Optional:-->
+                  <media_type_id>?</media_type_id>
+                  <!--Optional:-->
+                  <media_type_name>?</media_type_name>
+               </media_type>
+            </mediatypes>
+            <!--Optional:-->
+            <projecttypes>
+               <!--Zero or more repetitions:-->
+               <project_type>
+                  <!--Optional:-->
+                  <project_type_id>?</project_type_id>
+                  <!--Optional:-->
+                  <project_type_name>?</project_type_name>
+               </project_type>
+            </projecttypes>
+            <!--Optional:-->
+            <mimetypes>
+               <!--Zero or more repetitions:-->
+               <mime_type>
+                  <!--Optional:-->
+                  <mime_type_id>?</mime_type_id>
+                  <!--Optional:-->
+                  <file_ext>?</file_ext>
+                  <!--Optional:-->
+                  <media_type>?</media_type>
+               </mime_type>
+            </mimetypes>
+         </profile>
+      </MultimediaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="MultimediaInterface/processMessageRequest"/></con:call></con:operation></con:interface><con:testSuite name="Security Web Service TestSuite" id="41601589-fbfa-4da2-a46e-9a47be6c9a92"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Application Maintenace TestCase" searchProperties="true" id="e5a25a5b-45d6-4ab0-be4f-22a92321cd5c"><con:settings/><con:testStep type="request" name="Validate Missing Profile Application Create" id="4315016a-fc0d-4bf6-921b-cf68a4776222"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AuthenticationSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Validate Missing Profile Application Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="d7980ee2-0d90-46d1-9285-be96faabe35d"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
         <AuthenticationRequest>
@@ -35100,4 +36470,309 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
 		    </criteria>
 	  </ProjectProfileRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Client record(s) were deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Status" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return COde" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>business_contact_id_1</con:name><con:value>2035</con:value></con:property><con:property><con:name>customer_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>client_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>proj_id_1</con:name><con:value>40</con:value></con:property><con:property><con:name>emp_id_1</con:name><con:value>2003</con:value></con:property><con:property><con:name>person_id_1</con:name><con:value>985</con:value></con:property><con:property><con:name>address_id_1</con:name><con:value>2945</con:value></con:property><con:property><con:name>emp_proj_id</con:name><con:value>33</con:value></con:property><con:property><con:name>timesheet_id_1</con:name><con:value>615</con:value></con:property><con:property><con:name>proj_task_id_1</con:name><con:value>1618</con:value></con:property><con:property><con:name>event_id_1</con:name><con:value>11320</con:value></con:property><con:property><con:name>event_id_2</con:name><con:value>11321</con:value></con:property><con:property><con:name>event_id_3</con:name><con:value>11322</con:value></con:property><con:property><con:name>event_id_4</con:name><con:value>11323</con:value></con:property><con:property><con:name>event_id_5</con:name><con:value>11324</con:value></con:property><con:property><con:name>event_id_6</con:name><con:value>11325</con:value></con:property><con:property><con:name>event_id_7</con:name><con:value>11326</con:value></con:property><con:property><con:name>timesheet_id_2</con:name><con:value>617</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Client record(s) were deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Status" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return COde" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>business_contact_id_1</con:name><con:value>2035</con:value></con:property><con:property><con:name>customer_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>client_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>proj_id_1</con:name><con:value>40</con:value></con:property><con:property><con:name>emp_id_1</con:name><con:value>2003</con:value></con:property><con:property><con:name>person_id_1</con:name><con:value>985</con:value></con:property><con:property><con:name>address_id_1</con:name><con:value>2945</con:value></con:property><con:property><con:name>emp_proj_id</con:name><con:value>33</con:value></con:property><con:property><con:name>timesheet_id_1</con:name><con:value>615</con:value></con:property><con:property><con:name>proj_task_id_1</con:name><con:value>1618</con:value></con:property><con:property><con:name>event_id_1</con:name><con:value>11320</con:value></con:property><con:property><con:name>event_id_2</con:name><con:value>11321</con:value></con:property><con:property><con:name>event_id_3</con:name><con:value>11322</con:value></con:property><con:property><con:name>event_id_4</con:name><con:value>11323</con:value></con:property><con:property><con:name>event_id_5</con:name><con:value>11324</con:value></con:property><con:property><con:name>event_id_6</con:name><con:value>11325</con:value></con:property><con:property><con:name>event_id_7</con:name><con:value>11326</con:value></con:property><con:property><con:name>timesheet_id_2</con:name><con:value>617</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:testSuite name="MultiMedia Web Service TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="processMessage TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="processMessage"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="processMessage"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <MultimediaRequest>
+         <header>
+            <routing>?</routing>
+            <!--Optional:-->
+            <application>?</application>
+            <!--Optional:-->
+            <module>?</module>
+            <!--Optional:-->
+            <transaction>?</transaction>
+            <!--Optional:-->
+            <delivery_mode>?</delivery_mode>
+            <message_mode>?</message_mode>
+            <delivery_date>?</delivery_date>
+            <!--Optional:-->
+            <session_id>?</session_id>
+            <!--Optional:-->
+            <user_id>?</user_id>
+         </header>
+         <!--Optional:-->
+         <criteria>
+            <!--Optional:-->
+            <content_criteria>
+               <!--Optional:-->
+               <content_id>?</content_id>
+               <!--Optional:-->
+               <app_code>?</app_code>
+               <!--Optional:-->
+               <module_code>?</module_code>
+            </content_criteria>
+            <!--Optional:-->
+            <audio_video_criteria>
+               <!--Optional:-->
+               <fetch_full>?</fetch_full>
+               <!--Optional:-->
+               <artist_id>0</artist_id>
+               <!--Optional:-->
+               <artist_name>?</artist_name>
+               <!--Optional:-->
+               <project_id>?</project_id>
+               <!--Optional:-->
+               <project_title>?</project_title>
+               <!--Optional:-->
+               <year>?</year>
+               <!--Optional:-->
+               <ripped>?</ripped>
+               <!--Optional:-->
+               <track_id>?</track_id>
+               <!--Optional:-->
+               <track_title>?</track_title>
+               <!--Optional:-->
+               <genre_id>?</genre_id>
+               <!--Optional:-->
+               <genre_name>?</genre_name>
+               <!--Optional:-->
+               <media_type_id>?</media_type_id>
+               <!--Optional:-->
+               <media_type_name>?</media_type_name>
+               <!--Optional:-->
+               <project_type_id>?</project_type_id>
+               <!--Optional:-->
+               <project_type_name>?</project_type_name>
+               <!--Optional:-->
+               <mime_type_id>?</mime_type_id>
+               <!--Optional:-->
+               <mime_type_name>?</mime_type_name>
+               <!--Optional:-->
+               <search_term>?</search_term>
+            </audio_video_criteria>
+            <!--Optional:-->
+            <audio_batch_import_criteria>
+               <!--Optional:-->
+               <server_name>?</server_name>
+               <!--Optional:-->
+               <share_name>?</share_name>
+               <!--Optional:-->
+               <root_path>?</root_path>
+               <!--Optional:-->
+               <location>?</location>
+               <!--Optional:-->
+               <import_file_path>?</import_file_path>
+            </audio_batch_import_criteria>
+         </criteria>
+         <!--Optional:-->
+         <profile>
+            <!--Optional:-->
+            <audio_video_content>
+               <!--Optional:-->
+               <content_id>?</content_id>
+               <!--Optional:-->
+               <mime_type>
+                  <!--Optional:-->
+                  <mime_type_id>?</mime_type_id>
+                  <!--Optional:-->
+                  <file_ext>?</file_ext>
+                  <!--Optional:-->
+                  <media_type>?</media_type>
+               </mime_type>
+               <!--Optional:-->
+               <app_code>?</app_code>
+               <!--Optional:-->
+               <module_code>?</module_code>
+               <!--Optional:-->
+               <filename>?</filename>
+               <!--Optional:-->
+               <filepath>?</filepath>
+               <!--Optional:-->
+               <filesize>?</filesize>
+               <!--Optional:-->
+               <binary_data>cid:378191650309</binary_data>
+               <!--Optional:-->
+               <text_data>?</text_data>
+               <!--Optional:-->
+               <attachment_details>
+                  <!--Optional:-->
+                  <attachment>
+                     <content_id>?</content_id>
+                     <project_name>?</project_name>
+                     <module_name>?</module_name>
+                     <property_name>?</property_name>
+                     <property_id>?</property_id>
+                  </attachment>
+               </attachment_details>
+            </audio_video_content>
+            <!--Optional:-->
+            <audio_video_details>
+               <!--Zero or more repetitions:-->
+               <artist>
+                  <!--Optional:-->
+                  <artist_id>?</artist_id>
+                  <!--Optional:-->
+                  <artist_name>?</artist_name>
+                  <!--Optional:-->
+                  <projects>
+                     <!--Zero or more repetitions:-->
+                     <project>
+                        <!--Optional:-->
+                        <project_id>?</project_id>
+                        <!--Optional:-->
+                        <artist_id>?</artist_id>
+                        <!--Optional:-->
+                        <project_type_id>?</project_type_id>
+                        <!--Optional:-->
+                        <genre_id>?</genre_id>
+                        <!--Optional:-->
+                        <content_id>?</content_id>
+                        <!--Optional:-->
+                        <media_type_id>?</media_type_id>
+                        <!--Optional:-->
+                        <title>?</title>
+                        <!--Optional:-->
+                        <year>?</year>
+                        <!--Optional:-->
+                        <total_time>?</total_time>
+                        <!--Optional:-->
+                        <producer>?</producer>
+                        <!--Optional:-->
+                        <master_dup_id>?</master_dup_id>
+                        <!--Optional:-->
+                        <ripped>?</ripped>
+                        <!--Optional:-->
+                        <cost>?</cost>
+                        <!--Optional:-->
+                        <content_path>?</content_path>
+                        <!--Optional:-->
+                        <content_filename>?</content_filename>
+                        <!--Optional:-->
+                        <art_work_path>?</art_work_path>
+                        <!--Optional:-->
+                        <art_work_filename>?</art_work_filename>
+                        <!--Optional:-->
+                        <comments>?</comments>
+                        <!--Optional:-->
+                        <tracks>
+                           <!--Zero or more repetitions:-->
+                           <track>
+                              <!--Optional:-->
+                              <track_id>?</track_id>
+                              <!--Optional:-->
+                              <project_id>?</project_id>
+                              <!--Optional:-->
+                              <genre_id>?</genre_id>
+                              <!--Optional:-->
+                              <disc_number>?</disc_number>
+                              <!--Optional:-->
+                              <track_number>?</track_number>
+                              <!--Optional:-->
+                              <track_name>?</track_name>
+                              <!--Optional:-->
+                              <hours>?</hours>
+                              <!--Optional:-->
+                              <minutes>?</minutes>
+                              <!--Optional:-->
+                              <seconds>?</seconds>
+                              <!--Optional:-->
+                              <artist>?</artist>
+                              <!--Optional:-->
+                              <producer>?</producer>
+                              <!--Optional:-->
+                              <composer>?</composer>
+                              <!--Optional:-->
+                              <lyricist>?</lyricist>
+                              <!--Optional:-->
+                              <location_servername>?</location_servername>
+                              <!--Optional:-->
+                              <location_sharename>?</location_sharename>
+                              <!--Optional:-->
+                              <location_root_path>?</location_root_path>
+                              <!--Optional:-->
+                              <location_path>?</location_path>
+                              <!--Optional:-->
+                              <location_filename>?</location_filename>
+                              <!--Optional:-->
+                              <comments>?</comments>
+                              <!--Optional:-->
+                              <tracking>
+                                 <date_created>?</date_created>
+                                 <date_updated>?</date_updated>
+                                 <user_id>?</user_id>
+                                 <ip_created>?</ip_created>
+                                 <ip_updated>?</ip_updated>
+                              </tracking>
+                           </track>
+                        </tracks>
+                        <!--Optional:-->
+                        <tracking>
+                           <date_created>?</date_created>
+                           <date_updated>?</date_updated>
+                           <user_id>?</user_id>
+                           <ip_created>?</ip_created>
+                           <ip_updated>?</ip_updated>
+                        </tracking>
+                     </project>
+                  </projects>
+               </artist>
+            </audio_video_details>
+            <!--Optional:-->
+            <batch_import_results>
+               <!--Optional:-->
+               <start_time>?</start_time>
+               <!--Optional:-->
+               <end_time>?</end_time>
+               <!--Optional:-->
+               <duration>?</duration>
+               <!--Optional:-->
+               <total_processed>?</total_processed>
+               <!--Optional:-->
+               <total_success>?</total_success>
+               <!--Optional:-->
+               <total_failure>?</total_failure>
+               <!--Optional:-->
+               <total_non_av_files>?</total_non_av_files>
+            </batch_import_results>
+            <!--Optional:-->
+            <media_file_listener_details>
+               <!--Optional:-->
+               <status>?</status>
+            </media_file_listener_details>
+            <!--Optional:-->
+            <genres>
+               <!--Zero or more repetitions:-->
+               <genre>
+                  <!--Optional:-->
+                  <genre_id>?</genre_id>
+                  <!--Optional:-->
+                  <genre_name>?</genre_name>
+               </genre>
+            </genres>
+            <!--Optional:-->
+            <mediatypes>
+               <!--Zero or more repetitions:-->
+               <media_type>
+                  <!--Optional:-->
+                  <media_type_id>?</media_type_id>
+                  <!--Optional:-->
+                  <media_type_name>?</media_type_name>
+               </media_type>
+            </mediatypes>
+            <!--Optional:-->
+            <projecttypes>
+               <!--Zero or more repetitions:-->
+               <project_type>
+                  <!--Optional:-->
+                  <project_type_id>?</project_type_id>
+                  <!--Optional:-->
+                  <project_type_name>?</project_type_name>
+               </project_type>
+            </projecttypes>
+            <!--Optional:-->
+            <mimetypes>
+               <!--Zero or more repetitions:-->
+               <mime_type>
+                  <!--Optional:-->
+                  <mime_type_id>?</mime_type_id>
+                  <!--Optional:-->
+                  <file_ext>?</file_ext>
+                  <!--Optional:-->
+                  <media_type>?</media_type>
+               </mime_type>
+            </mimetypes>
+         </profile>
+      </MultimediaRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
