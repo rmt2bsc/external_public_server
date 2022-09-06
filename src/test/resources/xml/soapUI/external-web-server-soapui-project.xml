@@ -34581,7 +34581,7 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
                </employee>
                <hourly_rate>80.0</hourly_rate>
                <overtime_hourly_rate>80.0</overtime_hourly_rate>
-               <period_end>2020-03-21-05:00</period_end>
+               <period_end>2022-08-13-05:00</period_end>
                <external_ref_no>TestTimesheet</external_ref_no>
                <document_id>0</document_id>
                <comments>Updated comments Test</comments>
@@ -34713,6 +34713,311 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
             </criteria>
         </ProjectProfileRequest>
     </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Print Summary Timesheet Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Print Summary Timesheet Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>PRINT_TIMESHEET_SUMMARY</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_1}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Print Details Timesheet Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Print Details Timesheet Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>PRINT_TIMESHEET_WORKLOG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_1}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Timesheet With Multiple Tasks Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Timesheet With Multiple Tasks Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+	    <header>
+	        <routing>XXXXXXX</routing>
+	        <application>projecttracker</application>
+	        <module>timesheet</module>
+	        <transaction>UPDATE_TIMESHEET</transaction>
+	        <delivery_mode>XXXXXXX</delivery_mode>
+	        <message_mode>REQUEST</message_mode>
+	        <delivery_date>02/24/2022 22:21:30</delivery_date>
+	    </header>
+	    <profile>
+            <timesheet>
+               <timesheet_id>0</timesheet_id>
+               <proj_id>${#TestCase#proj_id_1}</proj_id>
+               <client>
+                  <client_id>${#TestCase#client_id_1}</client_id>
+               </client>
+               <employee>
+                  <employee_id>${#TestCase#emp_id_1}</employee_id>
+               </employee>
+               <hourly_rate>80.0</hourly_rate>
+               <overtime_hourly_rate>80.0</overtime_hourly_rate>
+               <period_end>2022-08-20-05:00</period_end>
+               <external_ref_no>TestTimesheet</external_ref_no>
+               <document_id>0</document_id>
+               <comments>Test timesheet with multiple project teaks</comments>
+               <billable_hours>0.0</billable_hours>
+               <non_billable_hours>0.0</non_billable_hours>
+               <work_log>
+                  <time_entry>
+                     <project_task_id>0</project_task_id>
+                     <project_id>${#TestCase#proj_id_1}</project_id>
+                     <task_id>14</task_id>
+                     <delete_project_task>false</delete_project_task>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-14T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-15T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-16T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-17T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-18T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-19T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-20T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                  </time_entry>
+                  <time_entry>
+                     <project_task_id>0</project_task_id>
+                     <project_id>${#TestCase#proj_id_1}</project_id>
+                     <task_id>15</task_id>
+                     <delete_project_task>false</delete_project_task>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-14T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-15T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-16T00:00:00.000-05:00</event_date>
+                        <hours>3.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-17T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-18T00:00:00.000-05:00</event_date>
+                        <hours>4.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-19T00:00:00.000-05:00</event_date>
+                        <hours>3.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-20T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                  </time_entry>
+                  <time_entry>
+                     <project_task_id>0</project_task_id>
+                     <project_id>${#TestCase#proj_id_1}</project_id>
+                     <task_id>20</task_id>
+                     <delete_project_task>false</delete_project_task>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-14T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-15T00:00:00.000-05:00</event_date>
+                        <hours>1.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-16T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-17T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-18T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-19T00:00:00.000-05:00</event_date>
+                        <hours>1.0</hours>
+                     </daily_hours>
+                     <daily_hours>
+                        <event_id>0</event_id>
+                        <event_date>2022-08-20T00:00:00.000-05:00</event_date>
+                        <hours>0.0</hours>
+                     </daily_hours>
+                  </time_entry>
+               </work_log>
+               
+            </timesheet>
+         </profile>
+	 </ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Capture Timesheet ID 2"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>NewTimesheetId</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Timesheet With Multiple Tasks Success</con:sourceStep><con:sourcePath>//ProjectProfileResponse[1]/profile[1]/timesheet[1]/timesheet_id[1]</con:sourcePath><con:targetType>timesheet_id_2</con:targetType><con:targetStep>#TestCase#</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Query Full Timesheet with Multiple Tasks Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Full Timesheet with Multiple Tasks Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ProjectProfileRequest>
+	    <header>
+	        <routing>XXXXXXX</routing>
+	        <application>projecttracker</application>
+	        <module>timesheet</module>
+	        <transaction>GET_FULL_GRAPH_TIMESHEET</transaction>
+	        <delivery_mode>XXXXXXX</delivery_mode>
+	        <message_mode>REQUEST</message_mode>
+	        <delivery_date>02/24/2022 22:21:30</delivery_date>
+	    </header>
+	    <criteria>
+	        <timesheet_criteria>
+	            <timesheet_id>${#TestCase#timesheet_id_2}</timesheet_id>
+	        </timesheet_criteria>
+	    </criteria>
+	 </ProjectProfileRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Print Summary Timesheet with Multiple Tasks Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Print Summary Timesheet with Multiple Tasks Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>PRINT_TIMESHEET_SUMMARY</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_2}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Print Details Timesheet with Multiple Tasks Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Print Details Timesheet with Multiple Tasks Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>PRINT_TIMESHEET_WORKLOG</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_2}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Submit Timesheet with Multiple Tasks Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Submit Timesheet with Multiple Tasks Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>SUBMIT_TIMESHEET</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_2}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Decline Timesheet Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ProjectTrackerSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Decline Timesheet Success" id="37dbf5ca-e2c9-4f63-b76f-68127ad885db"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ProjectProfileRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>projecttracker</application>
+                <module>timesheet</module>
+                <transaction>DECLINE_TIMESHEET</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>02/24/2022 22:21:30</delivery_date>
+            </header>
+            <profile>
+                <timesheet>
+                    <timesheet_id>${#TestCase#timesheet_id_2}</timesheet_id>
+                </timesheet>
+            </profile>
+        </ProjectProfileRequest>
+    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="24bd88e3-f9f1-44a7-87af-7996d4a05619"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Customer 1" id="e3e57cd7-eba7-45e6-943d-06389ed82485" disabled="true"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AccountingTransactionSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Delete Customer 1" id="226c2b3e-c5c5-472f-8e9b-c025b51e1ee5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header/>
     <soapenv:Body>
@@ -34795,4 +35100,4 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
 		    </criteria>
 	  </ProjectProfileRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Client record(s) were deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Status" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return COde" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>business_contact_id_1</con:name><con:value>2035</con:value></con:property><con:property><con:name>customer_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>client_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>proj_id_1</con:name><con:value>40</con:value></con:property><con:property><con:name>emp_id_1</con:name><con:value>2003</con:value></con:property><con:property><con:name>person_id_1</con:name><con:value>985</con:value></con:property><con:property><con:name>address_id_1</con:name><con:value>2945</con:value></con:property><con:property><con:name>emp_proj_id</con:name><con:value>33</con:value></con:property><con:property><con:name>timesheet_id_1</con:name><con:value>615</con:value></con:property><con:property><con:name>proj_task_id_1</con:name><con:value>1618</con:value></con:property><con:property><con:name>event_id_1</con:name><con:value>11320</con:value></con:property><con:property><con:name>event_id_2</con:name><con:value>11321</con:value></con:property><con:property><con:name>event_id_3</con:name><con:value>11322</con:value></con:property><con:property><con:name>event_id_4</con:name><con:value>11323</con:value></con:property><con:property><con:name>event_id_5</con:name><con:value>11324</con:value></con:property><con:property><con:name>event_id_6</con:name><con:value>11325</con:value></con:property><con:property><con:name>event_id_7</con:name><con:value>11326</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6421370f-8a9a-4f64-bf19-2e990278dfd4"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/message[1]</path><content>Client record(s) were deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Status" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_status[1]</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return COde" id="dc066249-74e6-42ef-8449-18cdad067939"><con:configuration><path>//ProjectProfileResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>business_contact_id_1</con:name><con:value>2035</con:value></con:property><con:property><con:name>customer_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>client_id_1</con:name><con:value>252</con:value></con:property><con:property><con:name>proj_id_1</con:name><con:value>40</con:value></con:property><con:property><con:name>emp_id_1</con:name><con:value>2003</con:value></con:property><con:property><con:name>person_id_1</con:name><con:value>985</con:value></con:property><con:property><con:name>address_id_1</con:name><con:value>2945</con:value></con:property><con:property><con:name>emp_proj_id</con:name><con:value>33</con:value></con:property><con:property><con:name>timesheet_id_1</con:name><con:value>615</con:value></con:property><con:property><con:name>proj_task_id_1</con:name><con:value>1618</con:value></con:property><con:property><con:name>event_id_1</con:name><con:value>11320</con:value></con:property><con:property><con:name>event_id_2</con:name><con:value>11321</con:value></con:property><con:property><con:name>event_id_3</con:name><con:value>11322</con:value></con:property><con:property><con:name>event_id_4</con:name><con:value>11323</con:value></con:property><con:property><con:name>event_id_5</con:name><con:value>11324</con:value></con:property><con:property><con:name>event_id_6</con:name><con:value>11325</con:value></con:property><con:property><con:name>event_id_7</con:name><con:value>11326</con:value></con:property><con:property><con:name>timesheet_id_2</con:name><con:value>617</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:testCase id="be1fd165-e853-462b-87b2-a5e63bb19286" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTracker Clean Up TestCase" searchProperties="true" disabled="true"><con:settings/><con:properties/><con:reportParameters/></con:testCase><con:properties><con:property><con:name>task_id_1</con:name><con:value>646</con:value></con:property><con:property><con:name>task_id_2</con:name><con:value>645</con:value></con:property><con:property><con:name>task_id_3</con:name><con:value>646</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value/></con:property><con:property><con:name>project_id_2</con:name><con:value/></con:property><con:property><con:name>client_id_1</con:name><con:value/></con:property><con:property><con:name>client_id_2</con:name><con:value/></con:property></con:properties><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
