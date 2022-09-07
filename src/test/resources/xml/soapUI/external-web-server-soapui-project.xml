@@ -36709,4 +36709,136 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
             </profile>
         </MultimediaRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Artist was updated successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Artist Name"><con:configuration><path>//MultimediaResponse/profile[1]/audio_video_details[1]/artist[1]/artist_name</path><content>Test Artist Name 1 Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>artist_id_1</con:name><con:value>1377</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Artist was updated successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Artist Name"><con:configuration><path>//MultimediaResponse/profile[1]/audio_video_details[1]/artist[1]/artist_name</path><content>Test Artist Name 1 Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Single Artist Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Single Artist Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+       <MultimediaRequest>
+    <header>
+        <routing>XXXXXXX</routing>
+        <application>media</application>
+        <module>maint</module>
+        <transaction>GET_ARTIST</transaction>
+        <delivery_mode>XXXXXXX</delivery_mode>
+        <message_mode>REQUEST</message_mode>
+        <delivery_date>08/13/2020 15:14:33</delivery_date>
+    </header>
+    <criteria>
+        <audio_video_criteria>
+            <fetch_full>FULL</fetch_full>
+            <artist_id>${#TestCase#artist_id_1}</artist_id>
+        </audio_video_criteria>
+    </criteria>
+</MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Artist data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Artist Name"><con:configuration><path>//MultimediaResponse/profile[1]/audio_video_details[1]/artist[1]/artist_name</path><content>Test Artist Name 1 Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Artist Project Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Create Artist Project Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>maint</module>
+                <transaction>UPDATE_ARTIST_PROJECT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/01/2021 13:09:07</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <audio_video_details>
+                    <artist>
+                        <projects>
+                            <project>
+                                <project_id>0</project_id>
+                                <artist_id>${#TestCase#artist_id_1}</artist_id>
+                                <project_type_id>1</project_type_id>
+                                <genre_id>13</genre_id>
+                                <content_id></content_id>
+                                <media_type_id>1</media_type_id>
+                                <title>Test Artist Project Album</title>
+                                <year>1984</year>
+                                <total_time>16</total_time>
+                                <producer>Producer #1</producer>
+                                <master_dup_id>0</master_dup_id>
+                                <ripped>1</ripped>
+                                <cost>12.99</cost>
+                                <content_path>/multimedia/audio/ripped/artists/Test Roy Terrell Album</content_path>
+                                <art_work_path>/multimedia/audio/ripped/artists/Test Roy Terrell Album</art_work_path>
+                                <art_work_filename>folder.jpg</art_work_filename>
+                                <comments>Test insert operation</comments>
+                                <tracks/>
+                            </project>
+                        </projects>
+                    </artist>
+                </audio_video_details>
+            </profile>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>New artist project was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Artist Name"><con:configuration><path>//MultimediaResponse/profile[1]/audio_video_details[1]/artist[1]/artist_name</path><content>Test Artist Name 1 Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - Capture New Project ID"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewProjectID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Create Artist Project Success</con:sourceStep><con:sourcePath>//MultimediaResponse[1]/profile[1]/audio_video_details[1]/artist[1]/projects[1]/project[1]/project_id[1]</con:sourcePath><con:targetType>project_id_1</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="request" name="Modify Artist Project Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Modify Artist Project Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>maint</module>
+                <transaction>UPDATE_ARTIST_PROJECT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>01/01/2021 13:09:07</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <profile>
+                <audio_video_details>
+                    <artist>
+                        <projects>
+                            <project>
+                                <project_id>${#TestCase#project_id_1}</project_id>
+                                <artist_id>${#TestCase#artist_id_1}</artist_id>
+                                <project_type_id>1</project_type_id>
+                                <genre_id>13</genre_id>
+                                
+                                <media_type_id>1</media_type_id>
+                                <title>Test Artist Project Album Updated</title>
+                                <year>1984</year>
+                                <total_time>16</total_time>
+                                <producer>Producer #1</producer>
+                                <master_dup_id>0</master_dup_id>
+                                <ripped>1</ripped>
+                                <cost>12.99</cost>
+                                <content_path>/multimedia/audio/ripped/artists/Test Roy Terrell Album</content_path>
+                                <art_work_path>/multimedia/audio/ripped/artists/Test Roy Terrell Album</art_work_path>
+                                <art_work_filename>folder.jpg</art_work_filename>
+                                <comments>Test insert operation</comments>
+                                
+                            </project>
+                        </projects>
+                    </artist>
+                </audio_video_details>
+            </profile>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Artist project was updated successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Project Title"><con:configuration><path>//MultimediaResponse[1]/profile[1]/audio_video_details[1]/artist[1]/projects[1]/project[1]/title[1]</path><content>Test Artist Project Album Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Single Artist Project Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Single Artist Project Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>maint</module>
+                <transaction>GET_ARTIST_PROJECT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>12/30/2020 15:42:12</delivery_date>
+                <session_id>ABCDEFGHIJKLMNOPQRSTUVWXYZ</session_id>
+            </header>
+            <criteria>
+                <audio_video_criteria>
+                    <fetch_full>FULL</fetch_full>
+                    <project_id>${#TestCase#project_id_1}</project_id>
+                    <artist_id>${#TestCase#artist_id_1}</artist_id>
+                </audio_video_criteria>
+            </criteria>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Artist project data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Artist Name"><con:configuration><path>//MultimediaResponse[1]/profile[1]/audio_video_details[1]/artist[1]/projects[1]/project[1]/title[1]</path><content>Test Artist Project Album Updated</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties><con:property><con:name>artist_id_1</con:name><con:value>1377</con:value></con:property><con:property><con:name>project_id_1</con:name><con:value>3478</con:value></con:property></con:properties><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
