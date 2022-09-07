@@ -36605,4 +36605,62 @@ PROJ_CLIENT</con:description><con:settings/><con:testStep type="request" name="C
             </header>
         </MultimediaRequest>
     </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Audio/Video Lookup data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Audio/Video Lookup data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Media Type by ID Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Media Type by ID Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>lookup</module>
+                <transaction>GET_MEDIA_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>09/6/2022 15:14:33</delivery_date>
+            </header>
+            <criteria>
+                <audio_video_criteria>
+                    <media_type_id>2</media_type_id>
+                </audio_video_criteria>
+            </criteria>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Audio/Video Media Type data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Genre ID"><con:configuration><path>//MultimediaResponse/profile[1]/mediatypes[1]/media_type[1]/media_type_id</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query Media Type by Name Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query Media Type by Name Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>lookup</module>
+                <transaction>GET_MEDIA_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>09/6/2022 15:14:33</delivery_date>
+            </header>
+            <criteria>
+                <audio_video_criteria>
+                    <media_type_name>Digital Video Disc (DVD)</media_type_name>
+                </audio_video_criteria>
+            </criteria>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Audio/Video Media Type data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count"><con:configuration><path>//MultimediaResponse/reply_status/record_count</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Genre ID"><con:configuration><path>//MultimediaResponse/profile[1]/mediatypes[1]/media_type[1]/media_type_id</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Query All Media Types Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MultimediaSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Query All Media Types Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <MultimediaRequest>
+            <header>
+                <routing>XXXXXXX</routing>
+                <application>media</application>
+                <module>lookup</module>
+                <transaction>GET_MEDIA_TYPE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>09/6/2022 15:14:33</delivery_date>
+            </header>
+            <criteria>
+                <audio_video_criteria/>
+            </criteria>
+        </MultimediaRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match - Return Status"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code"><con:configuration><path>//MultimediaResponse/reply_status/return_status</path><content>200</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Message"><con:configuration><path>//MultimediaResponse/reply_status/message</path><content>Audio/Video Media Type data found!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="MultimediaInterface/processMessageRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
