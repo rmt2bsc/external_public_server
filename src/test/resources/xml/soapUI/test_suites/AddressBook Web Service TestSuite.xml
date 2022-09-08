@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite name="AddressBook Web Service TestSuite" id="53fa370e-dd9a-4922-91a2-3877aab5c143" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Addressbook Postal WS TestCase" searchProperties="true" id="272a848d-09ea-43e7-83a9-db1b522fc6ee"><con:settings/><con:testStep type="request" name="Country Query All" id="ee65261e-8dd2-4eb9-9cec-1dbbe8074395"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Country Query All" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="a4cf3672-f43b-4a9c-bf6b-a75ad76a627e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_COUNTRY</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/03/2018 15:51:43</delivery_date>
+            </header>
+            <postal_criteria>
+                <country>
+                  <countyName>U</countyName>
+                </country>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="276ec0a5-0465-4428-a4b1-3fc87f665f54"/><con:assertion type="XPath Match" id="1b2e778d-3868-416c-b2c5-00d8d010b974"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>Country record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="585c11d7-aefb-452e-a08a-c79dc62b19e1"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" id="984247a6-bced-4e6f-b78d-827ac27e1cd7"><con:configuration><token>United States</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="IP Info Query Single" id="a78eaba7-894d-40b7-be2d-1af909151991"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="IP Info Query Single" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="3206ddcf-b4a4-42cb-9243-b3e68265b79b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_IP_INFO</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/09/2018 19:03:49</delivery_date>
+            </header>
+            <postal_criteria>
+                <ip_addr>
+                    <ip_standard>99.203.23.232</ip_standard>
+                </ip_addr>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f01c3401-5eaf-48d0-a3d1-ff93130bd530"/><con:assertion type="XPath Match" id="775e0541-393b-4fd7-b47a-7ea5d7a1c75c"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>IP record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="d03f7391-c06e-4b90-bfc0-3f1c96421bff"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="3bdaccd1-b99a-499c-8123-5f0cafc5c3c3"><con:configuration><path>//PostalResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="f4a062ae-9124-41c8-8f5b-7f9aaea02bf7"><con:configuration><path>//PostalResponse[1]/ip_data[1]/country_name[1]</path><content>UNITED STATES</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="808ba529-1a79-44eb-ad8a-0c7e53b914fd"><con:configuration><path>//PostalResponse[1]/ip_data[1]/region[1]</path><content>CALIFORNIA</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Region Query All US States" id="17f9d867-5e73-4a17-97e3-ecc6c2c579e8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Region Query All US States" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="13bc0f6a-f1db-4d57-a103-8e43cfc71d0c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_REGION</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/03/2018 15:57:16</delivery_date>
+            </header>
+            <postal_criteria>
+                <province>
+                    <country_id>1</country_id>
+                </province>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4c37ac0c-1c6d-4126-9c53-87b3c9dab7a0"/><con:assertion type="XPath Match" id="1a86b881-9b10-4218-b6c4-a2b12b9f9515"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>Region/State/Province record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="95be563c-3163-4773-82ea-327c89940b75"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Timezone Query All" id="c55826b6-1e4f-4c71-9a1e-02931b7454e6"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Timezone Query All" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="66360bee-3e58-49ef-a687-645d20959691"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_TIMEZONE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>07/11/2018 17:25:17</delivery_date>
+            </header>
+            <postal_criteria>
+                <timezone/>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6cfcc4d6-47dc-4c1b-bb00-9e0306edc805"/><con:assertion type="XPath Match" id="e802a977-b716-4ec1-97d9-1903d914372d"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>Timezone record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="4d96efb0-083f-4dee-a3e6-a41568a3c426"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="ZipCode Query Full" id="f52063e3-fd13-40cc-9344-3b0fd1981725"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="ZipCode Query Full" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="65735d51-c0ee-42b1-ad23-ad1777bba27f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_ZIPCODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/27/2018 11:36:51</delivery_date>
+            </header>
+            <postal_criteria>
+                <zipcode>
+                    <areaCode>214</areaCode>
+                    <result_format>FULL</result_format>
+                </zipcode>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6aafd80b-13b1-4051-98b4-2597f9455ac0"/><con:assertion type="XPath Match" id="6ee95df1-cb5e-4d59-bc2d-3e6f6e42443e"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>Zipcode record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="ac0483a1-9291-431b-97ac-32f83278dedc"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" id="0fffbe3d-2675-4e82-bf6d-82f1fe47008c"><con:configuration><token>zip_full</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="ZipCode Query Short" id="616f06eb-2dc0-40ca-86df-1e54fb7791fb"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PostalSearchSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="ZipCode Query Short" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="0687c129-68c4-4334-ae12-6e973c5c8bf7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PostalRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>postal</module>
+                <transaction>GET_ZIPCODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/27/2018 11:36:51</delivery_date>
+            </header>
+            <postal_criteria>
+                <zipcode>
+                    <areaCode>214</areaCode>
+                    <result_format>SHORT</result_format>
+                </zipcode>
+            </postal_criteria>
+        </PostalRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="80393d31-bd63-4615-b722-fe191421f001"/><con:assertion type="XPath Match" id="b752c128-20c6-4cf9-a6cb-0adf2380657e"><con:configuration><path>//PostalResponse[1]/reply_status[1]/message[1]</path><content>Zipcode record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" id="4c063aa2-8e3b-42d7-b63e-9ac86a9b4f85"><con:configuration><path>//PostalResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" id="ef6198a3-eb01-411a-a422-b5ce5e7e6851"><con:configuration><token>zip_short</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="PostalSearchInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Addressbook Lookup Codes Maintenance WS TestCase" searchProperties="true" id="522da864-b96d-4a00-8ef9-c490340da5dc"><con:settings/><con:testStep type="request" name="Lookup Group - Query All" id="b994b3e6-2bb8-4be6-90f8-1868b3068b52"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Group - Query All" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4319004e-6e96-4f1a-becb-c56d2fe08c00"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>GET_LOOKUP_GROUP</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <criteria>
+                <all>true</all>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" id="6b7c1d53-0e3a-4b42-97ca-f153c6179e38"/><con:assertion type="XPath Match" name="XPath Match - Message" id="13885e48-a665-4fc0-beed-a6b090be194f"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Group Lookup record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - return Code" id="0088caa2-67d2-403d-9d6e-7c97b0b01272"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains Group ID elelement" id="46359542-0f7d-4863-a121-88fc1294769f"><con:configuration><token>group_codes</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="Local Properties - Lookup Codes" id="9433cb75-0e04-4ead-b386-68d8c0412d8f"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>LookupGroupID</con:name><con:value>301</con:value></con:property><con:property><con:name>LookupCodeID</con:name><con:value>514</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="Lookup Group - Create" id="8f941255-d033-4993-aaf3-2b217413a4bd"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Group - Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4319004e-6e96-4f1a-becb-c56d2fe08c00"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>UPDATE_LOOKUP_GROUP</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <group_codes>
+                <group_desc>Test Lookup Group</group_desc>
+            </group_codes>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6b7c1d53-0e3a-4b42-97ca-f153c6179e38"/><con:assertion type="XPath Match" name="XPath Match - Message" id="243a45d4-547f-48cc-9733-a29a7c342dd4"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Group was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - return Code" id="4c6684c0-8fcf-48e6-a356-a278778b6785"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains Group ID elelement" id="a9f033ba-8f57-4350-b0ce-d9a576c74ed0"><con:configuration><token>group_id</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group Descripton" id="e0931fff-b2dd-43f0-bf5c-4caec1fd45b7"><con:configuration><path>//LookupCodesResponse[1]/group_codes[1]/group_desc[1]</path><content>Test Lookup Group</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="6ffb8207-3ccb-4086-9346-560ab0e2947b"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - New Group ID" id="70fac04a-49aa-4cd6-86ec-121c2c327b28"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>TransferGroupId</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Lookup Group - Create</con:sourceStep><con:sourcePath>//LookupCodesResponse[1]/group_codes[1]/group_id[1]</con:sourcePath><con:targetType>LookupGroupID</con:targetType><con:targetStep>Local Properties - Lookup Codes</con:targetStep><con:targetPath/><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Lookup Group - Update" id="70637c94-106b-47b6-ab7a-3edca7e2a2a8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Group - Update" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="acabf254-de2a-4302-875f-806fab678469"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>UPDATE_LOOKUP_GROUP</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <group_codes>
+                <group_id>${LookupGroupID}</group_id>
+                <group_desc>Test Lookup Group Update</group_desc>
+            </group_codes>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fd61737b-1697-480f-b881-71dddfaf6be1"/><con:assertion type="XPath Match" name="XPath Match - Message" id="73dfaf98-fd52-4a5c-9005-a9c22590571d"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Group was modified successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message" id="e643f43e-75f9-4597-9869-a8aed35c5dfa"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/ext_message[1]</path><content>Total number of rows modified: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="7906686d-421e-47c7-bba9-4837a5e632b9"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="a3c530f4-a064-4181-ac67-6d77d072ee11"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group ID" id="35e89d23-2429-4929-9609-15401fce9cff"><con:configuration><path>//LookupCodesResponse[1]/group_codes[1]/group_id[1]</path><content>${Local Properties - Lookup Codes#LookupGroupID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Group - Query Update" id="4af7de2f-cc7f-4bbd-b074-8e4cd2fd3659"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Group - Query Update" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4319004e-6e96-4f1a-becb-c56d2fe08c00"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>GET_LOOKUP_GROUP</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <criteria>
+                <group>${Local Properties - Lookup Codes#LookupGroupID}</group>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6b7c1d53-0e3a-4b42-97ca-f153c6179e38"/><con:assertion type="XPath Match" name="XPath Match - Message" id="b5b1211e-e121-47ea-b8a1-4bd98c17590c"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Group Lookup record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - return Code" id="ae620628-e626-4ef4-ad90-33816ca9448d"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="dbbc647d-2671-4f7c-b2e1-4f28711db7de"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group ID" id="b7143def-f6c7-47e9-a250-1699dd33e755"><con:configuration><path>//LookupCodesResponse[1]/group_codes[1]/group_id[1]</path><content>${Local Properties - Lookup Codes#LookupGroupID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group Description" id="303ff6d4-d44b-4fc3-b309-d67165c10d50"><con:configuration><path>//LookupCodesResponse[1]/group_codes[1]/group_desc[1]</path><content>Test Lookup Group Update</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Code - Query All" id="2a9132c9-9b8e-433b-8690-805da5921c88"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Code - Query All" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4319004e-6e96-4f1a-becb-c56d2fe08c00"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>GET_LOOKUP_CODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <criteria>
+                <all>true</all>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6b7c1d53-0e3a-4b42-97ca-f153c6179e38"/><con:assertion type="XPath Match" name="XPath Match - Message" id="388148ac-4493-4564-99f4-7e46c1880596"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Code Detail Lookup record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - return Code" id="390c795f-813b-4e03-be45-7fc45b264f89"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains Group ID elelement" id="50fa6183-52fb-4484-942c-72489aced659"><con:configuration><token>detail_codes</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Code - Create" id="fda40f73-c18a-4895-ac5a-a1b7dc53d6d9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Code - Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="c07b9945-6be4-4125-929e-c3a24785387e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>UPDATE_LOOKUP_CODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:33</delivery_date>
+            </header>
+            <detail_codes label="Label Test">
+                <group_id>${LookupGroupID}</group_id>
+                <shortdesc>LCTEST</shortdesc>
+                <longdesc>Lookup Code Description Test</longdesc>
+            </detail_codes>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9d603b26-7123-4593-9a7c-508e2643488f"/><con:assertion type="XPath Match" name="XPath Match -Message" id="21c0c0af-c9b4-4ad7-91ae-71546f7724cc"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Code was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Return Code" id="d372099d-28a4-439d-8fcb-9e38aea957d3"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Record Count" id="d6417e33-f64c-46d3-a907-cb45565837b2"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains _Code ID Element" id="0722f7af-a0de-4b7a-bff1-166238d6e0e1"><con:configuration><token>code_id</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Group ID" id="5ff66b38-a68f-4365-a4ea-27f1d511b60c"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/group_id[1]</path><content>${Local Properties - Lookup Codes#LookupGroupID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Short Description" id="d30fa859-40ba-4260-ad44-b1118409c787"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/shortdesc[1]</path><content>LCTEST</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Long Description" id="e5b9d605-c301-4647-8e7c-b74333cc2d67"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/longdesc[1]</path><content>Lookup Code Description Test</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer - New Code ID" id="41f23e27-7dd5-4078-a9ec-13a362dde449"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" entitize="false" transferToAll="false" ignoreEmpty="false" useXQuery="false" transferChildNodes="false"><con:name>TransferCodeId</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Lookup Code - Create</con:sourceStep><con:sourcePath>//LookupCodesResponse[1]/detail_codes[1]/code_id[1]</con:sourcePath><con:targetType>LookupCodeID</con:targetType><con:targetStep>Local Properties - Lookup Codes</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="Lookup Code - Update" id="d8944fd1-55f1-47f8-aafd-120eea54aa7b"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Code - Update" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4687cd29-a335-4514-804e-78d03e720d32"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>UPDATE_LOOKUP_CODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:33</delivery_date>
+            </header>
+            <detail_codes label="Label Test">
+                <code_id>${LookupCodeID}</code_id>
+                <group_id>${LookupGroupID}</group_id>
+                <shortdesc>LCTEST</shortdesc>
+                <longdesc>Lookup Code Description Test Update</longdesc>
+            </detail_codes>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9720f85f-4d42-4437-9a28-a467bb43e96e"/><con:assertion type="XPath Match" name="XPath Match - Message" id="6e405b2c-a353-4459-9065-b87f8af95768"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Code was modified successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message" id="3d0df4d2-c07f-4bc3-b295-89763011deff"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/ext_message[1]</path><content>Total number of rows modified: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="e7a33ca7-a48b-4a7e-b0e5-482115e293d2"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="ea7ff175-f9e5-4c34-a488-02281046279a"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Code ID" id="0b215fe9-40ba-46ff-a9ef-5191ecd49be8"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/code_id[1]</path><content>${Local Properties - Lookup Codes#LookupCodeID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group ID" id="599bd1ef-13a7-419d-acfc-b57dcb674689"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/group_id[1]</path><content>${Local Properties - Lookup Codes#LookupGroupID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Long Description Update" id="4732bc36-a0d4-48b2-b759-4065d933e2b6"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/longdesc[1]</path><content>Lookup Code Description Test Update</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Code - Query Update" id="28dc4fc7-fbf0-4993-8970-209a1a4e1ef7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Code - Query Update" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4319004e-6e96-4f1a-becb-c56d2fe08c00"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>GET_LOOKUP_CODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <criteria>
+                <code>${Local Properties - Lookup Codes#LookupCodeID}</code>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6b7c1d53-0e3a-4b42-97ca-f153c6179e38"/><con:assertion type="XPath Match" name="XPath Match - Message" id="7b65b321-f0f4-4236-9791-bdaf44ec4d47"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Code Detail Lookup record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - return Code" id="e34279d4-c1b7-4e69-a34b-a74e3c2eaa09"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="f6214454-b19b-4335-9643-445fd683a01d"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Code ID" id="9816a2af-6f58-402e-9a73-8003fa61b6c8"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/code_id[1]</path><content>${Local Properties - Lookup Codes#LookupCodeID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Group ID" id="e17146f1-9b44-48f7-b224-a5fd0b454af5"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/group_id[1]</path><content>${Local Properties - Lookup Codes#LookupGroupID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Code Description" id="ad9cb93c-a1c4-40ed-bdca-c9b4f90202a3"><con:configuration><path>//LookupCodesResponse[1]/detail_codes[1]/longdesc[1]</path><content>Lookup Code Description Test Update</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Code - Delete" id="c20e2486-b569-4025-84d9-b650139f0342"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Code - Delete" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="5dac22fb-6c05-4884-97c2-1ed82f161cca"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>DELETE_LOOKUP_CODE</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/25/2018 15:36:24</delivery_date>
+            </header>
+            <criteria>
+                <code>${LookupCodeID}</code>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a855a7e5-8276-4d5f-bfb1-5ace9c24d4cb"/><con:assertion type="XPath Match" name="XPath Match -MEssage" id="f3025841-1651-4c14-b663-8f742243330f"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Code was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Return Code" id="8d1254e1-5e3a-40f1-bb89-f2a804fea855"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -Record Count" id="dd00a8d0-8e9b-4307-9f75-1022cd289d76"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple NotContains" id="dbdadd2a-a792-4b48-8c73-6a27985d1406"><con:configuration><token>detail_codes</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Lookup Group - Delete" id="dffd4170-a8d5-40e3-a33e-6571f6d1d1c5"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupCodesSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="Lookup Group - Delete" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="39bf81a3-5543-4ede-804e-d4535347b96c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <LookupCodesRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>lookup</module>
+                <transaction>DELETE_LOOKUP_GROUP</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/22/2018 15:51:32</delivery_date>
+            </header>
+            <criteria>
+                <group>${LookupGroupID}</group>
+            </criteria>
+        </LookupCodesRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="17da89ec-e0a0-4635-97e4-6009c79fee20"/><con:assertion type="XPath Match" name="XPath Match - Message" id="095c24bd-32a9-470d-ac4c-3140b7fdc3fa"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/message[1]</path><content>Lookup Group was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="395534ba-91b1-44f9-a246-9b3116b83590"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="d476e906-1137-4745-b55c-df16b43c18f1"><con:configuration><path>//LookupCodesResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple NotContains" id="b446d899-b9d9-450a-958b-5d922ce77a83"><con:configuration><token>group_codes</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LookupCodesInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Addressbook Business Contact Maintenance WS TestCase" searchProperties="true" id="11f863fb-bcb3-489f-95f7-21ed1c8ab3c9"><con:settings/><con:testStep type="properties" name="Local Properties - Contact Related" id="8b2f012d-f11f-4fd5-b68d-fc469e38d335"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>BusinessContactID</con:name><con:value>2014</con:value></con:property><con:property><con:name>AddressID</con:name><con:value>2922</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="BusinessContact-Create" id="53b0f910-f65b-4d76-9702-e05c8d7e76af"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="BusinessContact-Create" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="184977da-8d5c-4304-9c3a-2f26aecc6786"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>UPDATE_CONTACT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/21/2018 17:30:10</delivery_date>
+            </header>
+            <profile>
+                <business_contacts>
+                    <entity_type>
+                        <code_id>26</code_id>
+                        <longdesc>Corporation</longdesc>
+                    </entity_type>
+                    <service_type>
+                        <code_id>61</code_id>
+                        <longdesc>Computer - Contractor/Consultant</longdesc>
+                    </service_type>
+                    <long_name>Test Company</long_name>
+                    <contact_firstname>Allison</contact_firstname>
+                    <contact_lastname>Weidinger</contact_lastname>
+                    <contact_phone>6173220353</contact_phone>
+                    <address>
+                        <addr1>239 Causeway Street</addr1>
+                        <zip>
+                            <zip_id>61523</zip_id>
+                            <zipcode>75398</zipcode>
+                            <city>Dallas</city>
+                            <state>TX</state>
+                            <areaCode>214</areaCode>
+                            <cityAliasName>Dallas</cityAliasName>
+                            <countyName>Dallas</countyName>
+                        </zip>
+                        <zip_ext>0</zip_ext>
+                    </address>
+                </business_contacts>
+            </profile>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4e3d421f-5aee-433c-a688-e2d8fd4891a8"/><con:assertion type="XPath Match" name="XPath Match - Message" id="ccaa1a12-348f-4b4c-9112-8ceb0a22e406"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was created successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="9972c986-5d5e-485d-96b6-c07849865f41"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="f98a1c2d-0d27-464d-bb42-f1d26d43e85f"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Contact Type" id="9ba3d0b3-da77-4645-8a48-dd7062f11f26"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_type[1]</path><content>bus</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Contact Name" id="8000e09c-99c6-4b0c-99a9-b5405ef317cb"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_name[1]</path><content>Test Company</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - Contact_ID Element" id="4e7b5168-26fd-4295-a998-d1121d62e935"><con:configuration><token>contact_id</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - Address_ID Element" id="20ad3b16-049d-40dc-aff2-2962e640112f"><con:configuration><token>addr_id</token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer Business Contact Data" id="ef99f066-1a27-481e-bcc8-493a7acc12f1"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>NewBusinessContactID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>BusinessContact-Create</con:sourceStep><con:sourcePath>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_id[1]</con:sourcePath><con:targetType>BusinessContactID</con:targetType><con:targetStep>Local Properties - Contact Related</con:targetStep><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" entitize="false" transferToAll="false" ignoreEmpty="false" useXQuery="false" transferChildNodes="false"><con:name>NewAddressID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>BusinessContact-Create</con:sourceStep><con:sourcePath>//AddressBookResponse[1]/profile[1]/common_contacts[1]/address[1]/addr_id[1]</con:sourcePath><con:targetType>AddressID</con:targetType><con:targetStep>Local Properties - Contact Related</con:targetStep><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" name="BusinessContact-Update" id="9d1c0511-2857-4fa9-a138-c115140aa935"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="BusinessContact-Update" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="c1cc733c-c8d4-41cf-bdab-fb457bb8b0c2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>UPDATE_CONTACT</transaction>
+                <delivery_mode>XXXXXXX</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>06/21/2018 17:30:10</delivery_date>
+            </header>
+            <profile>
+                <business_contacts>
+                    <business_id>${BusinessContactID}</business_id>
+                    <entity_type>
+                        <code_id>26</code_id>
+                    </entity_type>
+                    <service_type>
+                        <code_id>61</code_id>
+                    </service_type>
+                    <long_name>Test Company Update</long_name>
+                    <contact_firstname>Roy</contact_firstname>
+                    <contact_lastname>Terrell</contact_lastname>
+                    <contact_phone>2149998888</contact_phone>
+                    <address>
+                        <addr_id>${AddressID}</addr_id>
+                        <addr1>7777 Hall Ave</addr1>
+                        <zip>
+                            <zip_id>74450</zip_id>
+                            <zipcode>95720</zipcode>
+                        </zip>
+                        <zip_ext>0</zip_ext>
+                    </address>
+                </business_contacts>
+            </profile>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="cab6f89d-df88-4f41-8a74-08a2872da3a7"/><con:assertion type="XPath Match" name="XPath Match - Message" id="f19488af-e8ba-4108-bde0-deca83b21912"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was modified successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Ext Message" id="6d896a3d-43ff-4168-9929-5eeb8c3d4faa"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/ext_message[1]</path><content>Total number of contacts modified: 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="8f427f9b-288a-4ec1-b808-3537b63f5a13"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="abf6f9d3-ffa8-4366-bea2-8e2fb8d52664"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Contact ID" id="53b113ed-eb18-47f5-b305-e28bd262b015"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_id[1]</path><content>${Local Properties - Contact Related#BusinessContactID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Contact Name UPdate" id="a3bcc9b5-c32a-43c7-8037-a895e11d39f4"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/contact_name[1]</path><content>Test Company Update</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Address ID" id="71d9aaf0-ebe3-4583-920c-7309378ed3fd"><con:configuration><path>//AddressBookResponse[1]/profile[1]/common_contacts[1]/address[1]/addr_id[1]</path><content>${Local Properties - Contact Related#AddressID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="BusinessContactSimpleQuery" id="67e5035c-d9a6-4cbe-88e3-6a490e4fd2bb"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="BusinessContactSimpleQuery" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="ca9f0741-9a24-4ee2-8726-231f54092751"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>GET_CONTACT</transaction>
+                <delivery_mode>SYNC</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>2017-04-16 02:01:12</delivery_date>
+            </header>
+            <criteria>
+                <business_criteria>
+                    <contact_id>${BusinessContactID}</contact_id>
+                </business_criteria>
+            </criteria>
+        </AddressBookRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1b120d29-5db7-443f-81fe-808de408a293"/><con:assertion type="XPath Match" name="XPath Match - Message" id="a8371d4a-8d4d-4ad1-b89b-d1381b7020cd"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact record(s) found</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="9f520221-5fbb-49c0-b43d-3f6e95b882c7"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="5853145d-c2de-402a-83f3-d32f5f9ae6cc"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Business ID" id="146387e3-60d7-476f-b4ea-1173d03ec95a"><con:configuration><path>//AddressBookResponse[1]/profile[1]/business_contacts[1]/business_id[1]</path><content>${Local Properties - Contact Related#BusinessContactID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Long Name" id="7c4459dd-87d1-4388-b2bf-1e27695289a0"><con:configuration><path>//AddressBookResponse[1]/profile[1]/business_contacts[1]/long_name[1]</path><content>Test Company Update</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Address ID" id="3313d841-4416-4fa6-87d2-193ac24f1316"><con:configuration><path>//AddressBookResponse[1]/profile[1]/business_contacts[1]/address[1]/addr_id[1]</path><content>${Local Properties - Contact Related#AddressID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Address Business ID" id="70659b35-37fc-4535-bc61-9fea60d5502a"><con:configuration><path>//AddressBookResponse[1]/profile[1]/business_contacts[1]/address[1]/business_id[1]</path><content>${Local Properties - Contact Related#BusinessContactID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - Entity Type" id="dace83be-1ebd-476f-b1ae-4d9326ac0e2b"><con:configuration><token>&lt;entity_type></token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains - Service Type" id="655a53d3-31ca-45ba-b80d-839357e3b9c5"><con:configuration><token>&lt;service_type></token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains -Zip element" id="fc127942-2c03-4577-a82d-dbc5f6462103"><con:configuration><token>&lt;zip></token><ignoreCase>true</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="BusinessContact-Delete" id="995d80c8-e2d2-4be2-9ab4-70b056efd2b2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>AddressBookSoapHttpBinding</con:interface><con:operation>processMessage</con:operation><con:request name="BusinessContact-Delete" outgoingWss="" incomingWss="" timeout="" wssPasswordType="" id="4247f2b4-3349-4dc2-9575-caace056942f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server-external-api/services/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AddressBookRequest>
+            <header>
+                <routing>JMS:rmt2.queue.addressbook</routing>
+                <application>addressbook</application>
+                <module>profile</module>
+                <transaction>DELETE_CONTACT</transaction>
+                <delivery_mode>SYNC</delivery_mode>
+                <message_mode>REQUEST</message_mode>
+                <delivery_date>2017-04-16 02:01:12</delivery_date>
+            </header>
+            <criteria>
+                <business_criteria>
+                    <contact_id>${BusinessContactID}</contact_id>
+                </business_criteria>
+            </criteria>
+        </AddressBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="200397a3-7d9f-43cd-83f1-aa6630524e34"/><con:assertion type="XPath Match" name="XPath Match - Message" id="3daf4893-28be-417c-bf28-887f52c6c42b"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/message[1]</path><content>Contact was deleted successfully</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Return Code" id="f06fd136-a7fc-48f2-ad2f-77c6e21a465f"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/return_code[1]</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Record Count" id="827934f0-b7e6-4d36-90d0-6e466302a42b"><con:configuration><path>//AddressBookResponse[1]/reply_status[1]/record_count[1]</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="AddressBookInterface/processMessageRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite>
