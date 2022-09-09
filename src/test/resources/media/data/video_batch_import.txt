@@ -1,0 +1,4 @@
+Title|Artist|Genre|Media Type|Year|Hours|Minutes|Seconds|Price|Cast|Disc|Ripped|Filename
+Meteor Man|Robert Townsend|502|2|1993|1|40||9.99|Robert Townsend, marla Gibbs, Eddie Griffin, Robert Fuillaume, James Earl Jones, Bill Cosby, and Another Bad Creation|1|1|The Meteor Man.mp4
+Anger Management|Peter Segal|502|2|2003||106||14.99|Adam Sandler, Jack Nicholson, Marisa Tomei, Luis Guzman, Woody Harrelson, and John Turturro|1|1|Anger Management.mp4
+Van Helsing|Stephen Sommers|508|2|2004|2|12||14.99|Hugh Jackman, Kate Beckinsale, Richard Roxburgh, Davis Wenham, Will Kemp, Kevin J. O'Connor, Shuler Hensley|1|1|Van Helsing.mp4
