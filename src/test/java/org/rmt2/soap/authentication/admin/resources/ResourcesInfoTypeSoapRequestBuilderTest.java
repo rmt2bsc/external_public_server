@@ -85,7 +85,7 @@ public class ResourcesInfoTypeSoapRequestBuilderTest {
 
         ResourcesubtypeType rst1 = ResourceSubtypeTypeBuilder.Builder.create()
                 .withSubTypeId(111)
-                .withTypeId(11)
+                .withType(rt)
                 .withName("Resource sub type name 1")
                 .withDescription("Resource sub type description 1")
                 .withRecordTrackingType(tracking)
@@ -93,7 +93,7 @@ public class ResourcesInfoTypeSoapRequestBuilderTest {
 
         ResourcesubtypeType rst2 = ResourceSubtypeTypeBuilder.Builder.create()
                 .withSubTypeId(222)
-                .withTypeId(22)
+                .withType(rt2)
                 .withName("Resource sub type name 2")
                 .withDescription("Resource sub type description 2")
                 .withRecordTrackingType(tracking)
@@ -105,8 +105,8 @@ public class ResourcesInfoTypeSoapRequestBuilderTest {
                 .withDescription("Resource Description 1")
                 .withHost("Host 1")
                 .withUrl("URL")
-                .withTypeId(11)
-                .withSubTypeId(111)
+                .withType(rt)
+                .withSubType(rst1)
                 .withSecuredFlag(1)
                 .withRecordTrackingType(tracking)
                 .build();
@@ -117,8 +117,8 @@ public class ResourcesInfoTypeSoapRequestBuilderTest {
                 .withDescription("Resource Description 2")
                 .withHost("Host 2")
                 .withUrl("URL")
-                .withTypeId(22)
-                .withSubTypeId(222)
+                .withType(rt2)
+                .withSubType(rst2)
                 .withSecuredFlag(1)
                 .withRecordTrackingType(tracking)
                 .build();

@@ -126,7 +126,7 @@ public class UserQuerySoapRequestBuilderTest {
                 .build();
 
         UserType ut = UserTypeBuilder.Builder.create()
-                .withLoginId(0)
+                .withLoginId(10)
                 .withGroupInfo(ugt)
                 .withUsername("username")
                 .withFirstname("roy")
@@ -143,7 +143,7 @@ public class UserQuerySoapRequestBuilderTest {
                 .build();
 
         UserType ut2 = UserTypeBuilder.Builder.create()
-                .withLoginId(0)
+                .withLoginId(10)
                 .withGroupInfo(ugt)
                 .withUsername("username")
                 .withFirstname("dione")

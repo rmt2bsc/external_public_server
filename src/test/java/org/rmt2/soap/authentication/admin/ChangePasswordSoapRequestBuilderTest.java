@@ -61,6 +61,7 @@ public class ChangePasswordSoapRequestBuilderTest {
         AuthProfileGroupType apgt = fact.createAuthProfileGroupType();
 
         UserType ut = UserTypeBuilder.Builder.create()
+                .withLoginId(10)
                 .withUsername("testuser")
                 .withPassword("testpassword")
                 .build();
@@ -110,6 +111,7 @@ public class ChangePasswordSoapRequestBuilderTest {
         AuthProfileGroupType apgt = fact.createAuthProfileGroupType();
 
         UserType ut = UserTypeBuilder.Builder.create()
+                .withLoginId(10)
                 .withUsername("username")
                 .build();
 

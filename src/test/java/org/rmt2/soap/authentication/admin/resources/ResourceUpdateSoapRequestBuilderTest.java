@@ -16,9 +16,13 @@ import org.rmt2.jaxb.HeaderType;
 import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.jaxb.ResourceType;
 import org.rmt2.jaxb.ResourcesInfoType;
+import org.rmt2.jaxb.ResourcesubtypeType;
+import org.rmt2.jaxb.ResourcetypeType;
 import org.rmt2.util.HeaderTypeBuilder;
+import org.rmt2.util.authentication.ResourceSubtypeTypeBuilder;
 import org.rmt2.util.authentication.ResourceTypeBuilder;
 import org.rmt2.util.authentication.ResourcesInfoTypeBuilder;
+import org.rmt2.util.authentication.ResourcetypeTypeBuilder;
 
 import com.api.config.ConfigConstants;
 import com.api.config.SystemConfigurator;
@@ -58,12 +62,22 @@ public class ResourceUpdateSoapRequestBuilderTest {
                 .build();
 
         AuthProfileGroupType apgt = fact.createAuthProfileGroupType();
+
+        ResourcetypeType rtt = ResourcetypeTypeBuilder.Builder.create()
+                .withTypeId(777)
+                .withDescription("rsrouce type Name7")
+                .build();
+
+        ResourcesubtypeType rst = ResourceSubtypeTypeBuilder.Builder.create()
+                .withSubTypeId(0)
+                .build();
+
         ResourceType rt = ResourceTypeBuilder.Builder.create()
                 .withResourceId(0)
                 .withName("Resource Name")
                 .withDescription("Resource Description")
-                .withTypeId(10)
-                .withSubTypeId(100)
+                .withType(rtt)
+                .withSubType(rst)
                 .withUrl("URL")
                 .withHost("Host")
                 .withSecuredFlag(1)
@@ -117,12 +131,22 @@ public class ResourceUpdateSoapRequestBuilderTest {
                 .build();
 
         AuthProfileGroupType apgt = fact.createAuthProfileGroupType();
+
+        ResourcetypeType rtt = ResourcetypeTypeBuilder.Builder.create()
+                .withTypeId(777)
+                .withDescription("rsrouce type Name7")
+                .build();
+
+        ResourcesubtypeType rst = ResourceSubtypeTypeBuilder.Builder.create()
+                .withSubTypeId(0)
+                .build();
+
         ResourceType rt = ResourceTypeBuilder.Builder.create()
                 .withResourceId(1)
                 .withName("Resource Name")
                 .withDescription("Resource Description")
-                .withTypeId(10)
-                .withSubTypeId(100)
+                .withType(rtt)
+                .withSubType(rst)
                 .withUrl("URL")
                 .withHost("Host")
                 .withSecuredFlag(1)

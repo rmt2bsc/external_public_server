@@ -94,7 +94,7 @@ public class UserAppRoleMaintenanceSoapRequestBuilderTest {
                 .build();
 
         UserType ut = UserTypeBuilder.Builder.create()
-                .withLoginId(0)
+                .withLoginId(10)
                 .withGroupInfo(ugt)
                 .withUsername("username")
                 .withFirstname("roy")

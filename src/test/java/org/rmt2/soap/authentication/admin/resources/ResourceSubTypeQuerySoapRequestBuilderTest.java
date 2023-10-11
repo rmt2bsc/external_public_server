@@ -19,9 +19,11 @@ import org.rmt2.jaxb.ObjectFactory;
 import org.rmt2.jaxb.ResourceCriteriaType;
 import org.rmt2.jaxb.ResourcesInfoType;
 import org.rmt2.jaxb.ResourcesubtypeType;
+import org.rmt2.jaxb.ResourcetypeType;
 import org.rmt2.util.HeaderTypeBuilder;
 import org.rmt2.util.authentication.ResourceSubtypeTypeBuilder;
 import org.rmt2.util.authentication.ResourcesInfoTypeBuilder;
+import org.rmt2.util.authentication.ResourcetypeTypeBuilder;
 
 import com.api.config.ConfigConstants;
 import com.api.config.SystemConfigurator;
@@ -111,23 +113,29 @@ public class ResourceSubTypeQuerySoapRequestBuilderTest {
                 .build();
 
         AuthProfileGroupType apgt = fact.createAuthProfileGroupType();
+
+        ResourcetypeType rtt = ResourcetypeTypeBuilder.Builder.create()
+                .withTypeId(777)
+                .withDescription("rsrouce type Name7")
+                .build();
+
         ResourcesubtypeType rt1 = ResourceSubtypeTypeBuilder.Builder.create()
                 .withSubTypeId(1000)
-                .withTypeId(100)
+                .withType(rtt)
                 .withName("rsrouce sub type Name1")
                 .withDescription("rsrouce sub type Description1")
                 .build();
 
         ResourcesubtypeType rt2 = ResourceSubtypeTypeBuilder.Builder.create()
                 .withSubTypeId(3000)
-                .withTypeId(300)
+                .withType(rtt)
                 .withName("rsrouce sub type Name3")
                 .withDescription("rsrouce sub type Description3")
                 .build();
 
         ResourcesubtypeType rt3 = ResourceSubtypeTypeBuilder.Builder.create()
                 .withSubTypeId(4000)
-                .withTypeId(400)
+                .withType(rtt)
                 .withName("rsrouce sub type Name4")
                 .withDescription("rsrouce sub type Description4")
                 .build();
