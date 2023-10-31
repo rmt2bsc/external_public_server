@@ -26065,7 +26065,9 @@
                 <delivery_date>10/05/2021 13:30:31</delivery_date>
             </header>
             <criteria>
-                <gl_criteria/>
+                <gl_criteria>
+                    <acct_type/>
+                </gl_criteria>
             </criteria>
         </AccountingGeneralLedgerRequest>
     </soapenv:Body>
